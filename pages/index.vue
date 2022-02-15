@@ -3,46 +3,62 @@
     <div class="container">
       <div class="row">
         <div class="col-md-3">
-          <div class="bg-white rounded pt-5 pb-3 px-3">
+          <div class="text-white radial-gradient rounded pt-5 pb-3 px-3">
             <h4 class="m-0">Frontend Mentor</h4>
             <small> <span class=" fw-light">Feedback Board</span></small>
           </div>
           <div class="bg-white px-3 py-3 mt-3 rounded">
-            <span class="badge bg-primary me-2">All</span>
-            <span class="badge bg-light text-dark me-2">UI</span>
-            <span class="badge bg-light text-dark me-2">UX</span>
-            <span class="badge bg-light text-dark me-2">Enhancement</span>
-            <span class="badge bg-light text-dark me-2">Bug</span>
-            <span class="badge bg-light text-dark me-2">Feature</span>
+            <span class="badge bg-primary px-3 py-2 me-2 fs-smaller">All</span>
+            <span class="badge bg-light text-dark px-3 py-2 me-2 fs-smaller fw-bold">UI</span>
+            <span class="badge bg-light text-dark px-3 py-2 me-2 fs-smaller fw-bold">UX</span>
+            <span class="badge bg-light text-dark px-3 py-2 me-2 fs-smaller fw-bold">Enhancement</span>
+            <span class="badge bg-light text-dark px-3 py-2 me-2 fs-smaller fw-bold">Bug</span>
+            <span class="badge bg-light text-dark px-3 py-2 me-2 fs-smaller fw-bold">Feature</span>
           </div>
-          <div class="bg-white p-3 mt-3 rounded">
+          <div class="bg-white p-4 my-3 rounded">
             Roadmap <span class="float-end text-muted"><small>View</small></span>
-            <br><br>
-            <ul class="ps-3 fw-light text-muted">
-              <li class="ps-2 fs-4">
-                <span class="fs-6">Planned <span class="d-inline float-end">0</span></span>
+            <ul class="ps-0 fw-light mt-4 fs-6 text-muted fs-small">
+              <li class="my-1">
+                <img src="/static/oval-maroon.svg" class="me-2"> Planned <span class="float-end fw-bold">0</span>
               </li>
-              <li>
-                <img src="/oval-maroon.png" alt="">
+              <li class="my-1">
+                <img src="/static/oval-purple.svg" class="me-2"> In-Progress <span class="float-end fw-bold">0</span>
+              </li>
+              <li class="my-1">
+                <img src="/static/oval-sky.svg" class="me-2"> Live <span class="float-end fw-bold">0</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div class="col-md-9">
-          <div class="bg-white">
-            Suggestions 
-            <NuxtLink to="/feedback-new">
-              <button type="button" class="btn btn-primary">+ Add Feedback</button>
-            </NuxtLink>
-          </div>
-          <div class=" mt-3 bg-white">
-            There is no feedback yet. <br><br>
-            Got a suggestion? Found a bug that needs to be squashed? We love hearing about new ideas to improve our app.
+        <div class="col-md-9 mb-5">
+          <div class="text-white rounded px-4 py-4 bg-white bg-dark-blue">
+            <img src="/static/light-bulb.svg" class="me-4 mb-2">
+            <strong>0 Suggestions</strong> 
+            <div class="float-end content-padding">
 
-            <br><br>
-            
-            <button type="button" class="btn btn-primary">+ Add Feedback</button>
+            <NuxtLink to="/feedback-new">
+              <button type="button" class="btn btn-primary py-2 px-4">
+                <small>
+                  + Add Feedback
+                </small>
+              </button>
+            </NuxtLink>
+            </div>
+          </div>
+          <div class="rounded p-5 mt-3 bg-white text-center text-muted fw-light">
+            <img src="/static/inspector-gadget.svg" alt="inspector-img" class="py-5">
+              <p>
+                <span class="fw-bold">There is no feedback yet. </span>
+                <br><br>
+                <small>
+                  Got a suggestion? Found a bug that needs to be squashed? <br>
+                  We love hearing about new ideas to improve our app.
+                </small>
+            </p>
+            <NuxtLink to="/feedback-new">
+              <button type="button" class="mt-5 mb-5 btn btn-primary py-2 px-4"><small>+ Add Feedback</small></button>
+            </NuxtLink>
           </div>
         </div>
       </div>
@@ -58,6 +74,12 @@ export default {
 </script>
 
 <style>
+.radial-gradient {
+  background-position: right 300px bottom -10px !important;
+  background-size: 300%!important;
+  background: radial-gradient(circle, rgba(232,77,112,1) 0%, rgba(163,55,246,1) 50%, rgba(40,167,237,1) 100%);
+}
+
 .badge {
   font-size: 14px;
   margin: 6px;
@@ -75,24 +97,43 @@ h4 {
 }
 
 .rounded {
-  border-radius: 100px;
+  border-radius: 10px !important;
+}
+
+.badge {
+  border-radius: 10px;
+  padding-top: 11px!important;
+  padding-bottom: 11px!important;
 }
 
 /* custom bullet colors */
 ul {
-  list-style: none; /* Remove default bullets */
-}
-
-ul li::before {
-  content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
-  color: red; /* Change the color */
-  font-weight: bold; /* If you want it to be bold */
-  display: inline-block; /* Needed to add space between the bullet and the text */
-  width: 1em; /* Also needed for space (tweak if needed) */
-  margin-left: -1em; /* Also needed for space (tweak if needed) */
+  list-style-type: none !important; /* Remove default bullets */
 }
 
 .lh-bullet-point {
   line-height: .4em;
+}
+
+.btn {
+  margin-top: -3px;
+  border: 0px;
+  border-radius: 10px;
+}
+
+.btn-primary {
+  background-color: #AD1FEA;
+}
+
+.bg-dark-blue {
+  background-color: #373F68 !important;
+}
+
+.fs-smaller {
+  font-size: 12px !important;
+}
+
+.fs-small {
+  font-size: 15px !important;
 }
 </style>
