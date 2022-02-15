@@ -16,7 +16,13 @@
             <span class="badge bg-light text-dark px-3 py-2 me-2 fs-smaller fw-bold">Feature</span>
           </div>
           <div class="bg-white p-4 my-3 rounded">
-            Roadmap <span class="float-end text-muted"><small>View</small></span>
+            Roadmap 
+
+            <NuxtLink to="/roadmap">
+              <span class="float-end text-muted">
+              <small>View</small></span>
+            </NuxtLink>
+
             <ul class="ps-0 fw-light mt-4 fs-6 text-muted fs-small">
               <li class="my-1">
                 <img src="/static/oval-maroon.svg" class="me-2"> Planned <span class="float-end fw-bold">0</span>

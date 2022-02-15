@@ -1,38 +1,75 @@
 <template>
   <div>
     <div class="container">
-      <div class="row">
+      <div class="row mb-5">
         <div class="col-md-6 offset-3">
-          <div>
+          <div class="py-4">
             <nuxtLink to="/">
               Go Back
             </nuxtLink>
           </div>
-          <div class="bg-white">
-            <h4>
+          <div class="bg-white p-4 rounded">
+            <h4 class="mb-3 fw-bold">
               + Create New Feedback
             </h4>
 
-            <br><br>
+            <br>
 
-            Feedback Title <br>
-            Add a short, descriptive headline
+            <span class="fw-bold">
+              <small>
+                Feedback Title
+              </small>
+            </span>  <br>
+            <span class="text-muted fs-smaller">
+              Add a short, descriptive headline
+            </span>
+            <br>
+            <input type="text" class="form-control my-2 w-100 p-2">
 
-            <input type="text">
+            <br>
 
-            <br><br>
+            <span class="fw-bold">
+              <small>
+                Category
+              </small>
+            </span>  <br>
+            <span class="text-muted fs-smaller">
+              Choose a category for your feedback
+            </span>
+            <br>
+            <input type="text" class="form-control my-2 w-100 p-2">
+            <br>
 
-            Category <br>
-            Choose a category for your feedback
+            <span class="fw-bold">
+              <small>
+                Feedback Detail
+              </small>
+            </span>  <br>
+            <span class="text-muted fs-smaller">
+              Include any specific comments on what should be improved, added, etc.
+            </span>
+            <br>
+            <textarea class="w-100 mt-2 form-control" />
+            <br>
 
-            <br><br>
+            <div class="d-flex justify-content-end mt-2">
+              <NuxtLink to="/">
+                <button type="button" class="btn btn-primary py-2 px-4 me-4">
+                  <small>
+                    + Add Feedback
+                  </small>
+                </button>
+              </NuxtLink>
 
-            Feedback Detail <br>
-            Include any specific comments on what should be improved, added, etc.
-            <br><br>
-            <textarea class="w-100">
-
-            </textarea>
+              <NuxtLink to="/">
+                <button type="button" class="btn btn-primary py-2 px-4">
+                  <small>
+                    + Add Feedback
+                  </small>
+                </button>
+              </NuxtLink>
+            </div>
+            
           </div>
         </div>
       </div>
