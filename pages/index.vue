@@ -41,6 +41,16 @@
           <div class="text-white rounded px-4 py-4 bg-white bg-dark-blue">
             <img src="/static/light-bulb.svg" class="me-4 mb-2">
             <strong>0 Suggestions</strong> 
+            
+            <span class="ms-4">
+              <small>
+                Sort by : 
+                
+                <span class="fw-bold">
+                  Most Upvotes v
+                </span>
+              </small>
+            </span>
             <div class="float-end content-padding">
 
             <NuxtLink to="/feedback-new">
@@ -52,6 +62,30 @@
             </NuxtLink>
             </div>
           </div>
+
+          <div class="rounded mt-3 bg-white fw-light">
+            <div class="container">
+              <div class="row pt-4 pb-3">
+                <div class="col-md-1">
+                  <span class="badge bg-light text-dark px-3 py-0 mx-0 mt-0 fw-bold fs-smaller">
+                    <span class="text-dark">^</span><br>
+                    112
+                  </span>
+                </div>
+                <div class="col-md-10">
+                  <span class="fw-bold">Add tags for solutions</span><br>
+                  <div class="text-muted py-1 fs-small">Easier to search for solutions based on a specific task.</div>
+                  <span class="badge bg-light text-dark px-3 py-0 mx-0 mt-2 fw-bold fs-smaller">Enhancement</span>
+                </div>
+                <div class="col-md-1">
+                  <div class="fw-bold h-100 d-flex justify-content-center align-items-center">
+                    <img src="/static/chat-bubble.svg" class="me-3" alt=""> 2
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="rounded p-5 mt-3 bg-white text-center text-muted fw-light">
             <img src="/static/inspector-gadget.svg" alt="inspector-img" class="py-5">
               <p>
