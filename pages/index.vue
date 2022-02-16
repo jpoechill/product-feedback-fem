@@ -73,7 +73,10 @@
                   </span>
                 </div>
                 <div class="col-md-10">
-                  <span class="fw-bold">Add tags for solutions</span><br>
+                  <NuxtLink to="/feedback-detail" class="text-dark text-decoration-none">
+                    <span class="fw-bold">Add tags for solutions</span>
+                  </NuxtLink>
+                  <br>
                   <div class="text-muted py-1 fs-small">Easier to search for solutions based on a specific task.</div>
                   <span class="badge bg-light text-dark px-3 py-0 mx-0 mt-2 fw-bold fs-smaller">Enhancement</span>
                 </div>
@@ -137,7 +140,7 @@ h4 {
 }
 
 .rounded {
-  border-radius: 10px !important;
+  border-radius: 6px !important;
 }
 
 .badge {
