@@ -25,10 +25,10 @@
 
             <ul class="ps-0 fw-light mt-4 fs-6 text-muted fs-small">
               <li class="my-1">
-                <img src="/static/oval-maroon.svg" class="me-2"> Planned <span class="float-end fw-bold">0</span>
+                <img src="~/oval-maroon.svg" class="me-2"> Planned <span class="float-end fw-bold">0</span>
               </li>
               <li class="my-1">
-                <img src="/static/oval-purple.svg" class="me-2"> In-Progress <span class="float-end fw-bold">0</span>
+                <img src="~/static/oval-purple.svg" class="me-2"> In-Progress <span class="float-end fw-bold">0</span>
               </li>
               <li class="my-1">
                 <img src="/static/oval-sky.svg" class="me-2"> Live <span class="float-end fw-bold">0</span>
@@ -63,31 +63,33 @@
             </div>
           </div>
 
-          <div class="rounded mt-3 bg-white fw-light">
+          <div class="rounded mt-3 bg-white fw-light" v-for="(product, index) in productRequests" :key="product.id">
             <div class="container">
               <div class="row pt-4 pb-3">
                 <div class="col-md-1">
                   <span class="badge bg-light text-dark px-3 py-0 mx-0 mt-0 fw-bold fs-smaller">
                     <span class="text-dark">^</span><br>
-                    112
+                    {{ product.upvotes }}
                   </span>
                 </div>
                 <div class="col-md-10">
                   <NuxtLink to="/feedback-detail" class="text-dark text-decoration-none">
-                    <span class="fw-bold">Add tags for solutions</span>
+                    <span class="fw-bold">{{ product.title }}</span>
                   </NuxtLink>
                   <br>
-                  <div class="text-muted py-1 fs-small">Easier to search for solutions based on a specific task.</div>
-                  <span class="badge bg-light text-dark px-3 py-0 mx-0 mt-2 fw-bold fs-smaller">Enhancement</span>
+                  <div class="text-muted py-1 fs-small">{{ product.description }}</div>
+                  <span class="badge bg-light text-dark px-3 py-0 mx-0 mt-2 fw-bold fs-smaller">{{ product.category }}</span>
                 </div>
                 <div class="col-md-1">
                   <div class="fw-bold h-100 d-flex justify-content-center align-items-center">
-                    <img src="/static/chat-bubble.svg" class="me-3" alt=""> 2
+                    <img src="/static/chat-bubble.svg" class="me-3" alt="">{{ getSize(index) }}
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
+          
 
           <div class="rounded p-5 mt-3 bg-white text-center text-muted fw-light">
             <img src="/static/inspector-gadget.svg" alt="inspector-img" class="py-5">
@@ -98,6 +100,7 @@
                   Got a suggestion? Found a bug that needs to be squashed? <br>
                   We love hearing about new ideas to improve our app.
                 </small>
+                {{ productRequests }} Items
             </p>
             <NuxtLink to="/feedback-new">
               <button type="button" class="mt-5 mb-5 btn btn-primary py-2 px-4"><small>+ Add Feedback</small></button>
@@ -110,7 +113,31 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
+  data() {
+    return {
+      currentUser: [],
+      productRequests: [],
+      itemName: "",
+    };
+  },
+  computed () {
+    getSize: function (ooga) {
+      return this.productRequests[ooga].length;
+    }
+  },
+  async created() {
+    try {
+      const res = await axios.get(`http://localhost:3004/productRequests`);
+      this.productRequests = res.data;
+
+      console.log(this.productRequests[0].comments.length)
+    } catch (error) {
+      console.log(error);
+    }
+  },
   components: {
   }
 }
