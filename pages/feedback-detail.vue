@@ -3,10 +3,18 @@
     <div class="container">
       <div class="row mb-4">
         <div class="col-md-8 offset-2">
-          <div class="py-4">
-            <nuxtLink to="/">
-              Go Back
+          <div class="py-4 d-flex justify-content-between">
+            <nuxtLink to="/" class="text-decoration-none">
+              <img src="/static/shared/icon-arrow-left.svg" class="me-3" alt="left arrow">
+              <span class="fs-smaller fw-bold text-muted">Go Back</span>
             </nuxtLink>
+            <NuxtLink to="/feedback-edit">
+              <button type="button" class="btn btn-primary py-2 px-4 fs-small fw-bold">
+                <small>
+                  Edit Feedback
+                </small>
+              </button>
+            </NuxtLink>
           </div>
           <div class="bg-white px-2 py-4 rounded">
             
@@ -111,7 +119,7 @@
             <div class="d-flex justify-content-between px-4 mt-4">
               <div class="d-inline text-muted fs-small">250 Characters Left</div>
               <div class="d-inline">
-                <button type="button" class="btn btn-primary fw-bold py-2 px-4">
+                <button type="button" class="btn btn-primary fs-small fw-bold py-2 px-4">
                   <small>
                     Post Comment
                   </small>

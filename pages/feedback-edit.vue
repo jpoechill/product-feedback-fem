@@ -4,8 +4,9 @@
       <div class="row mb-5">
         <div class="col-md-6 offset-3">
           <div class="py-4">
-            <nuxtLink to="/">
-              Go Back
+            <nuxtLink to="/" class="text-decoration-none">
+              <img src="/static/shared/icon-arrow-left.svg" class="me-3" alt="left arrow">
+              <span class="fs-smaller fw-bold text-muted">Go Back</span>
             </nuxtLink>
           </div>
           <div class="bg-white p-4 rounded">
