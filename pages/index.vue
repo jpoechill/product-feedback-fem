@@ -24,19 +24,19 @@
 
             <ul class="ps-0 fw-light mt-4 fs-6 text-muted fs-small">
               <li class="my-1">
-                <img src="/static/oval-maroon.svg" class="me-2"> Planned
+                <img src="/oval-maroon.svg" class="me-2"> Planned
                 <span class="float-end fw-bold">
                   {{ filterPlanned.length }}
                 </span>
               </li>
               <li class="my-1">
-                <img src="/public/oval-purple.svg" class="me-2"> In-Progress
+                <img src="/oval-purple.svg" class="me-2"> In-Progress
                 <span class="float-end fw-bold">
                   {{ filterInProgress.length }}
                 </span>
               </li>
               <li class="my-1">
-                <img src="/static/oval-sky.svg" class="me-2"> Live
+                <img src="/oval-sky.svg" class="me-2"> Live
                 <span class="float-end fw-bold">
                   {{ filterLive.length }}
                 </span>
