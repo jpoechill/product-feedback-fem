@@ -47,7 +47,7 @@
 
         <div class="col-md-9 mb-5">
           <div class="text-white rounded px-4 py-4 bg-white bg-dark-blue">
-            <img src="/static/light-bulb.svg" class="me-4 mb-2">
+            <img src="/light-bulb.svg" class="me-4 mb-2">
             <strong>{{ filterSuggestions.length }} Suggestions</strong> 
             
             <span class="ms-4">
@@ -77,7 +77,7 @@
             Loading
           </div>
           <div v-else-if="productRequestsVisible.length === 0" class="rounded p-5 mt-3 bg-white text-center text-muted fw-light">
-            <img src="/static/inspector-gadget.svg" alt="inspector-img" class="py-5">
+            <img src="/inspector-gadget.svg" alt="inspector-img" class="py-5">
               <p>
                 <span class="fw-bold">There is no feedback yet. </span>
                 <br><br>
@@ -95,7 +95,7 @@
               <div class="row pt-4 pb-3">
                 <div class="col-md-1">
                   <span class="badge bg-light text-dark px-3 py-0 mx-0 mt-0 fw-bold fs-smaller">
-                    <img src="/static/shared/icon-arrow-up.svg" alt="arrow-up" class="mb-2">
+                    <img src="/shared/icon-arrow-up.svg" alt="arrow-up" class="mb-2">
                     <br>
                     <span class="text-dark fw-bolder">{{ product.upvotes }}</span>
                   </span>
@@ -112,7 +112,7 @@
                 </div>
                 <div class="col-md-1">
                   <div class="fw-bold h-100 d-flex justify-content-center align-items-center">
-                    <img src="/static/chat-bubble.svg" class="me-3" alt="">
+                    <img src="/chat-bubble.svg" class="me-3" alt="">
                     <span v-if="!product.comments">
                       0
                     </span>

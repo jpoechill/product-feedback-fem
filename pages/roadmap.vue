@@ -8,7 +8,7 @@
               <div>
                 <div class="d-block mb-2 mt-2">
                   <NuxtLink to="/" class="text-white text-decoration-none">
-                    <img src="/static/shared/icon-arrow-left.svg" class="me-2 mb-1" fill="white" alt="arrow-left">
+                    <img src="/shared/icon-arrow-left.svg" class="me-2 mb-1" fill="white" alt="arrow-left">
                     <span class=" fs-small fw-bold">Go Back</span>
                   </NuxtLink>
                 </div>
@@ -34,7 +34,7 @@
 
           <div v-for="(item, index) in filterPlanned" :key="index" class="py-0 rounded bg-dark mb-4 position-relative overflow-hidden">
             <div class="bg-white text-dark p-4 border-top-orange">
-              <img src="/static/oval-maroon.svg" class="me-2 mb-1"> 
+              <img src="/oval-maroon.svg" class="me-2 mb-1"> 
                 <span class="d-inline ps-2 text-muted fs-small">{{ capitalize(item.status) }}</span>  
                 <span class="d-block pt-3 pb-2 fw-bold">{{ item.title }}</span>
                 <span class="d-block text-muted fs-small">
@@ -46,13 +46,13 @@
                 <br>
                 <div class="d-flex justify-content-between align-items-center">
                   <span class="badge bg-light text-dark ps-3 pe-3 ms-0 me-2 fs-smaller fw-bold">
-                    <img src="/static/shared/icon-arrow-up.svg" class="me-2 mb-1" alt="up-arrow"> 
+                    <img src="/shared/icon-arrow-up.svg" class="me-2 mb-1" alt="up-arrow"> 
                     <span class="text-dark">
                       {{ item.upvotes }}  
                     </span>
                   </span>
                   <div>
-                    <img src="/static/chat-bubble.svg" alt="" class="pe-3 mb-1">
+                    <img src="/chat-bubble.svg" alt="" class="pe-3 mb-1">
                     <span v-if="!item.comments" class="fw-bold fs-6">
                       0
                     </span>
@@ -71,7 +71,7 @@
 
           <div v-for="(item, index) in filterInProgress" :key="index" class="py-0 rounded bg-dark mb-4 position-relative overflow-hidden">
             <div class="bg-white text-dark p-4 border-top-purple">
-              <img src="/static/oval-purple.svg" class="me-2 mb-1"> 
+              <img src="/oval-purple.svg" class="me-2 mb-1"> 
                 <span class="d-inline ps-2 text-muted fs-small">{{ capitalize(item.status) }}</span>  
                 <span class="d-block pt-3 pb-2 fw-bold">{{ item.title }}</span>
                 <span class="d-block text-muted fs-small">
@@ -83,13 +83,13 @@
                 <br>
                 <div class="d-flex justify-content-between align-items-center">
                   <span class="badge bg-light text-dark ps-3 pe-3 ms-0 me-2 fs-smaller fw-bold">
-                    <img src="/static/shared/icon-arrow-up.svg" class="me-2 mb-1" alt="up-arrow"> 
+                    <img src="/shared/icon-arrow-up.svg" class="me-2 mb-1" alt="up-arrow"> 
                     <span class="text-dark">
                       {{ item.upvotes }}  
                     </span>
                   </span>
                   <div>
-                    <img src="/static/chat-bubble.svg" alt="" class="pe-3 mb-1">
+                    <img src="/chat-bubble.svg" alt="" class="pe-3 mb-1">
                     <span v-if="!item.comments" class="fw-bold fs-6">
                       0
                     </span>
@@ -108,7 +108,7 @@
 
           <div v-for="(item, index) in filterLive" :key="index" class="py-0 rounded bg-dark mb-4 position-relative overflow-hidden">
             <div class="bg-white text-dark p-4" style="border-top: 5px solid #62BCFA;">
-              <img src="/static/oval-sky.svg" class="me-2 mb-1"> 
+              <img src="/oval-sky.svg" class="me-2 mb-1"> 
                 <span class="d-inline ps-2 text-muted fs-small">{{ capitalize(item.status) }}</span>  
                 <span class="d-block pt-3 pb-2 fw-bold">{{ item.title }}</span>
                 <span class="d-block text-muted fs-small">
@@ -119,13 +119,13 @@
                 </span>  
                 <div class="d-flex justify-content-between align-items-center">
                   <span class="badge bg-light text-dark ps-3 pe-3 ms-0 me-2 fs-smaller fw-bold">
-                    <img src="/static/shared/icon-arrow-up.svg" class="me-2 mb-1" alt="up-arrow"> 
+                    <img src="/shared/icon-arrow-up.svg" class="me-2 mb-1" alt="up-arrow"> 
                     <span class="text-dark">
                       {{ item.upvotes }}  
                     </span> 
                   </span>
                   <div>
-                    <img src="/static/chat-bubble.svg" alt="" class="pe-3 mb-1">
+                    <img src="/chat-bubble.svg" alt="" class="pe-3 mb-1">
                     <span v-if="!item.comments" class="fw-bold fs-6">
                       0
                     </span>

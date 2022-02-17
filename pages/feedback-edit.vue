@@ -5,7 +5,7 @@
         <div class="col-md-6 offset-3">
           <div class="py-4">
             <nuxtLink to="/" class="text-decoration-none">
-              <img src="/static/shared/icon-arrow-left.svg" class="me-3" alt="left arrow">
+              <img src="/shared/icon-arrow-left.svg" class="me-3" alt="left arrow">
               <span class="fs-smaller fw-bold text-muted">Go Back</span>
             </nuxtLink>
           </div>

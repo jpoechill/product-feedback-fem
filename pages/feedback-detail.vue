@@ -5,7 +5,7 @@
         <div class="col-md-8 offset-2">
           <div class="py-4 d-flex justify-content-between">
             <nuxtLink to="/" class="text-decoration-none">
-              <img src="/static/shared/icon-arrow-left.svg" class="me-3" alt="left arrow">
+              <img src="/shared/icon-arrow-left.svg" class="me-3" alt="left arrow">
               <span class="fs-smaller fw-bold text-muted">Go Back</span>
             </nuxtLink>
             <NuxtLink to="/feedback-edit">
@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="col-md-1 d-flex justify-content-end align-items-center">
-                  <img src="/static/chat-bubble.svg" class="me-3" alt="">
+                  <img src="/chat-bubble.svg" class="me-3" alt="">
                   4
                 </div>
               </div>
@@ -53,7 +53,7 @@
             <div class="container text-muted">
               <div class="row">
                 <div class="col-md-1">
-                  <img src="/static/_elijahmoss.png" alt="" width="40px">
+                  <img src="/_elijahmoss.png" alt="" width="40px">
                 </div>
                 <div class="col-md-10">
                   Elijah Moss <br>
@@ -79,7 +79,7 @@
             <div class="container text-muted">
               <div class="row">
                 <div class="col-md-1">
-                  <img src="/static/_jamesskinner.png" alt="" width="40px">
+                  <img src="/_jamesskinner.png" alt="" width="40px">
                 </div>
                 <div class="col-md-10">
                   James Skinner <br>
