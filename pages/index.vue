@@ -24,7 +24,7 @@
 
             <ul class="ps-0 fw-light mt-4 fs-6 text-muted fs-small">
               <li class="my-1">
-                <img src="~/static/oval-maroon.svg" class="me-2"> Planned
+                <img src="/static/oval-maroon.svg" class="me-2"> Planned
                 <span class="float-end fw-bold">
                   {{ filterPlanned.length }}
                 </span>
