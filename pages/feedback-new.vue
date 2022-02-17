@@ -3,19 +3,25 @@
     <div class="container">
       <div class="row mb-5">
         <div class="col-md-6 offset-3">
-          <div class="py-4">
-            <nuxtLink to="/">
-              Go Back
+          <div class="pb-4 mb-4">
+            <nuxtLink to="/" class="text-decoration-none">
+              <img src="/static/shared/icon-arrow-left.svg" class="me-3" alt="left arrow">
+              <span class="fs-smaller fw-bold text-muted">Go Back</span>
             </nuxtLink>
           </div>
-          <div class="bg-white p-4 rounded">
-            <h4 class="mb-3 fw-bold">
-              + Create New Feedback
+          <div class="position-relative bg-white p-4 mt-4 rounded">
+
+            <div class="position-absolute top-0 start-0 translate-middle ms-5">
+              <img src="/static/shared/icon-new-feedback.svg" alt="icon-new-feedback">
+            </div>
+
+            <h4 class="mt-4 pt-2 mb-3 text-blue fw-bold">
+              Create New Feedback
             </h4>
 
             <br>
 
-            <span class="fw-bold">
+            <span class="text-blue fw-bold">
               <small>
                 Feedback Title
               </small>
@@ -28,7 +34,7 @@
 
             <br>
 
-            <span class="fw-bold">
+            <span class="text-blue fw-bold">
               <small>
                 Category
               </small>
@@ -40,7 +46,7 @@
             <input type="text" class="form-control my-2 w-100 p-2">
             <br>
 
-            <span class="fw-bold">
+            <span class="text-blue fw-bold">
               <small>
                 Feedback Detail
               </small>

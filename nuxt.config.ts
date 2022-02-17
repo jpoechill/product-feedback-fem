@@ -4,7 +4,8 @@ import { defineNuxtConfig } from 'nuxt3'
 export default defineNuxtConfig({
     meta: {
         link: [
-            { rel: "stylesheet", href: "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" }
+            { rel: "stylesheet", href: "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" },
+            { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Jost&display=swap" }
         ],
         script: [
             { src: 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js' },
