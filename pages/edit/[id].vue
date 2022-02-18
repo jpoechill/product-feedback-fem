@@ -15,8 +15,8 @@
               <img src="/shared/icon-edit-feedback.svg" alt="icon-new-feedback">
             </div>
 
-            <h4 class="mt-4 pt-2 mb-3 text-blue fw-bold">
-              Editing 'Add a dark theme option'
+            <h4 class="mt-4 pt-2 mb-3 text-blue fw-bolder">
+              <span style="font-weight: 600!important;">Editing '{{ currProduct.title }}'</span>
             </h4>
 
             <br>
@@ -65,13 +65,13 @@
               </small>
             </span>  <br>
             <span class="text-muted fs-smaller">
-              Include any specific comments on what should be improved, added, etc.
+              {Include any specific comments on what should be improved, added, etc.}
             </span>
             <br>
-            <textarea class="w-100 mt-2 form-control" />
+            <textarea v-model="currProduct.description" class="w-100 mt-2 mb-1 form-control" />
             <br>
 
-            <div class="d-flex justify-content-between mt-2">
+            <div class="d-flex justify-content-between mt-2 mb-2">
               <NuxtLink to="/">
                 <button type="button" class="btn btn-danger py-2 px-4 me-4">
                   <small>
@@ -81,7 +81,7 @@
               </NuxtLink>
 
               <div class="d-inline">
-                <NuxtLink to="/">
+                <NuxtLink :to="'/posts/' + currProduct.id">
                   <button type="button" class="btn btn-primary py-2 px-4 me-4">
                     <small>
                       Cancel
@@ -108,9 +108,26 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-  components: {
-  }
+  data() {
+    return {
+      currProduct: {}
+    }
+  },
+  async created() {
+    try {
+      const products = await axios.get(`http://localhost:3004/productRequests`);
+
+      this.currProduct = products.data.find(x => {
+        console.log(x.id, this.$route.params.id)
+        return this.$route.params.id == x.id 
+      }) 
+    } catch (error) {
+      console.log(error);
+    }
+  },
 }
 </script>
 

@@ -101,7 +101,7 @@
                   </span>
                 </div>
                 <div class="col-md-10">
-                  <NuxtLink to="/feedback-detail" class="text-dark text-decoration-none">
+                  <NuxtLink :to="'/posts/' + product.id" class="text-dark text-decoration-none">
                     <span class="fw-bold text-blue">{{ product.title }}</span>
                   </NuxtLink>
                   <br>

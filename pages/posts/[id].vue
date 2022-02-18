@@ -8,7 +8,8 @@
               <img src="/shared/icon-arrow-left.svg" class="me-3" alt="left arrow">
               <span class="fs-smaller fw-bold text-muted">Go Back</span>
             </nuxtLink>
-            <NuxtLink to="/feedback-edit">
+            <!-- {{ currProduct }} -->
+            <NuxtLink :to="'/edit/' + currProduct.id">
               <button type="button" class="btn btn-primary py-2 px-4 fs-small fw-bold">
                 <small>
                   Edit Feedback
@@ -24,22 +25,26 @@
                   <span class="badge bg-light text-dark px-2 pb-0 py-0 mx-0 mt-0 fw-bold fs-smaller">
                     <img src="/shared/icon-arrow-up.svg" alt="arrow-up" class="mb-2">
                     <br>
-                    <span class="text-dark fw-bolder">112</span>
+                    <span class="text-dark fw-bolder">
+                      {{ currProduct.upvotes }}
+                    </span>
                   </span>
                 </div>
 
                 <div class="col-md-10">
-                  <span class="fw-bold fs-6 d-block mb-2"> Add a dark theme option</span>
+                  <span class="fw-bold fs-6 d-block mb-2">{{ currProduct.title }}</span>
                   <span class="text-muted fs-small">
-                    It would help people with light sensitivities and who prefer dark mode
+                    {{ currProduct.description }}
                   </span>
                   <br>
-                  <span class="badge bg-light text-dark ps-3 pe-3 ms-0 mt-3 me-2 fs-smaller fw-bold">Feature</span> 
+                  <span class="badge bg-light text-dark ps-3 pe-3 ms-0 mt-3 me-2 fs-smaller fw-bold">
+                    {{ currProduct.category }}  
+                  </span> 
                 </div>
 
                 <div class="col-md-1 d-flex justify-content-end align-items-center">
                   <img src="/chat-bubble.svg" class="me-3" alt="">
-                  4
+                  {{ currProduct.comments ? currProduct.comments.length : '0' }}
                 </div>
               </div>
             </div>
@@ -142,9 +147,33 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   components: {
-  }
+  },
+  data() {
+    return {
+      productRequests: [],
+      currentUser: {},
+      currProduct: {}
+    }
+  },
+  mounted() {
+    // this.currentUser = this.productRequests.find(x => x.id === requestedId )
+  },
+  async created() {
+    try {
+      const products = await axios.get(`http://localhost:3004/productRequests`);
+
+      this.currProduct = products.data.find(x => {
+        console.log(x.id, this.$route.params.id)
+        return this.$route.params.id == x.id 
+      }) 
+    } catch (error) {
+      console.log(error);
+    }
+  },
 }
 </script>
 

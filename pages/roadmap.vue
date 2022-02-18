@@ -36,7 +36,9 @@
             <div class="bg-white text-dark p-4 border-top-orange">
               <img src="/oval-maroon.svg" class="me-2 mb-1"> 
                 <span class="d-inline ps-2 text-muted fs-small">{{ capitalize(item.status) }}</span>  
-                <span class="d-block pt-3 pb-2 fw-bold">{{ item.title }}</span>
+                <NuxtLink :to="'/posts/' + item.id" class="text-decoration-none text-blue">
+                  <span class="d-block pt-3 pb-2 fw-bold">{{ item.title }}</span>
+                </NuxtLink>
                 <span class="d-block text-muted fs-small">
                   {{ item.description }}
                 </span>
@@ -73,7 +75,9 @@
             <div class="bg-white text-dark p-4 border-top-purple">
               <img src="/oval-purple.svg" class="me-2 mb-1"> 
                 <span class="d-inline ps-2 text-muted fs-small">{{ capitalize(item.status) }}</span>  
-                <span class="d-block pt-3 pb-2 fw-bold">{{ item.title }}</span>
+                <nuxtLink :to="'/posts/' + item.id" class="text-decoration-none text-blue">
+                  <span class="d-block pt-3 pb-2 fw-bold">{{ item.title }}</span>
+                </nuxtLink>
                 <span class="d-block text-muted fs-small">
                   {{ item.description }}
                 </span>
@@ -110,7 +114,9 @@
             <div class="bg-white text-dark p-4" style="border-top: 5px solid #62BCFA;">
               <img src="/oval-sky.svg" class="me-2 mb-1"> 
                 <span class="d-inline ps-2 text-muted fs-small">{{ capitalize(item.status) }}</span>  
-                <span class="d-block pt-3 pb-2 fw-bold">{{ item.title }}</span>
+                <nuxtLink :to="'/posts/' + item.id" class="text-decoration-none text-blue">
+                  <span class="d-block pt-3 pb-2 fw-bold">{{ item.title }}</span>
+                </nuxtLink>
                 <span class="d-block text-muted fs-small">
                   {{ item.description }}
                 </span>
