@@ -216,7 +216,7 @@ export default {
     // ...mapState("movies", ["movieList"]),
   },
   mounted () {
-    console.log(this)
+    window.scrollTo(0, 0)
   },
   async created() {
     try {

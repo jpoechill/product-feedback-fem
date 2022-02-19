@@ -121,13 +121,14 @@
           <div class="bg-white px-2 py-4 rounded fs-small ">
             <span class="ps-4 fw-bolder">Add Comment</span> <br><br>
 
+            <!-- {{ currProduct}} -->
+
             <div class="px-4">
-              <textarea class="form-control ">
-              </textarea>
+              <textarea class="form-control" placeholder="Type your comment here" v-model="newComment" maxLength="250"></textarea>
             </div>
 
             <div class="d-flex justify-content-between px-4 mt-4">
-              <div class="d-inline text-muted fs-small">250 Characters Left</div>
+              <div class="d-inline text-muted fs-small">{{ (250 - newComment.length) }} Characters Left</div>
               <div class="d-inline">
                 <button type="button" class="btn btn-primary fs-small fw-bold py-2 px-4">
                   <small>
@@ -154,13 +155,23 @@ export default {
   },
   data() {
     return {
+      newComment: '',
       productRequests: [],
       currentUser: {},
       currProduct: {}
     }
   },
-  mounted() {
-    // this.currentUser = this.productRequests.find(x => x.id === requestedId )
+  mounted () {
+    window.scrollTo(0, 0)
+  },
+  computed: {
+    descriptionLength: function () {
+      if (currProduct.description) {
+        return currProduct.description.length
+      } else {
+        return 0
+      }
+    }
   },
   async created() {
     try {

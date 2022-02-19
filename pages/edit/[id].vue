@@ -43,21 +43,40 @@
               Choose a category for your feedback
             </span>
             <br>
-            <input type="text" class="form-control my-2 w-100 p-2">
+            
+            <span class="d-block mt-2 mb-2">
+              <small>
+                  <select class="form-select d-inline w-100" aria-label="Default select example">
+                    <option selected>Feature</option>
+                    <option value="1">UI</option>
+                    <option value="2">UX</option>
+                    <option value="3">Enhancement</option>
+                    <option value="4">Bug</option>
+                  </select>
+              </small>
+            </span>
+
             <br>
 
             <span class="fw-bold">
               <small>
                 Update Status
               </small>
-            </span>  <br>
-            <span class="text-muted fs-smaller">
-              Change feedback state
-            </span>
-            <br>
-            <textarea class="w-100 mt-2 form-control" />
+            </span>  
             <br>
 
+            <span class="d-block mt-2 mb-2">
+              <small>
+                  <select class="form-select d-inline w-100" aria-label="Default select example">
+                    <option selected>Suggestion</option>
+                    <option value="1">Planned</option>
+                    <option value="2">In-Progress</option>
+                    <option value="3">Live</option>
+                  </select>
+              </small>
+            </span>
+
+            <br>
 
             <span class="fw-bold">
               <small>
@@ -68,7 +87,7 @@
               {Include any specific comments on what should be improved, added, etc.}
             </span>
             <br>
-            <textarea v-model="currProduct.description" class="w-100 mt-2 mb-1 form-control" />
+            <textarea v-model="currProduct.description" maxlength="250" class="w-100 mt-2 mb-1 form-control" />
             <br>
 
             <div class="d-flex justify-content-between mt-2 mb-2">
@@ -115,6 +134,18 @@ export default {
     return {
       currProduct: {}
     }
+  },
+  computed: {
+    descriptionLength: function () {
+      if (currProduct.description) {
+        return currProduct.description.length
+      } else {
+        return 0
+      }
+    }
+  },
+  mounted () {
+    window.scrollTo(0, 0)
   },
   async created() {
     try {

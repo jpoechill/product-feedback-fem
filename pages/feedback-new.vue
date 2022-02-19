@@ -43,7 +43,17 @@
               Choose a category for your feedback
             </span>
             <br>
-            <input type="text" class="form-control my-2 w-100 p-2">
+            <span class="d-block mt-2 mb-2">
+              <small>
+                  <select class="form-select d-inline w-100" aria-label="Default select example">
+                    <option selected>Feature</option>
+                    <option value="1">UI</option>
+                    <option value="2">UX</option>
+                    <option value="3">Enhancement</option>
+                    <option value="3">Bug</option>
+                  </select>
+              </small>
+            </span>
             <br>
 
             <span class="text-blue fw-bold">

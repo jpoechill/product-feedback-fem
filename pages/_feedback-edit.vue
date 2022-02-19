@@ -43,7 +43,17 @@
               Choose a category for your feedback
             </span>
             <br>
-            <input type="text" class="form-control my-2 w-100 p-2">
+            <span class="ms-4">
+              <small>
+                Sort by : 
+                  <select class="form-select d-inline w-25" aria-label="Default select example">
+                    <option selected>Most Upvotes</option>
+                    <option value="1">Least Upvotes</option>
+                    <option value="2">Most Comments</option>
+                    <option value="3">Least Comments</option>
+                  </select>
+              </small>
+            </span>
             <br>
 
             <span class="fw-bold">
