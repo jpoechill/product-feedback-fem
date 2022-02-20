@@ -94,7 +94,7 @@
             <div class="container">
               <div class="row pt-4 pb-3">
                 <div class="col-md-1">
-                  <span class="badge bg-light text-dark px-3 py-0 mx-0 mt-0 fw-bold fs-smaller">
+                  <span class="badge bg-light text-dark px-3 py-0 mx-0 mt-0 fw-bold fs-smaller" role="button">
                     <img src="/shared/icon-arrow-up.svg" alt="arrow-up" class="mb-2">
                     <br>
                     <span class="text-dark fw-bolder">{{ product.upvotes }}</span>
@@ -216,6 +216,7 @@ export default {
     // ...mapState("movies", ["movieList"]),
   },
   mounted () {
+    console.log('ooga booga')
     window.scrollTo(0, 0)
   },
   async created() {

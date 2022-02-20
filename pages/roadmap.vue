@@ -7,10 +7,10 @@
             <div class="d-flex px-3 justify-content-between align-items-center">
               <div>
                 <div class="d-block mb-2 mt-2">
-                  <NuxtLink to="/" class="text-white text-decoration-none">
-                    <img src="/shared/icon-arrow-left.svg" class="me-2 mb-1" fill="white" alt="arrow-left">
-                    <span class=" fs-small fw-bold">Go Back</span>
-                  </NuxtLink>
+                  <div>
+                    <img src="/shared/icon-arrow-left.svg" class="me-3" role="button" alt="left arrow">
+                    <span @click="$router.back()" class="fs-smaller fw-bold text-white" role="button">Go Back</span>
+                  </div>
                 </div>
                 <h3 class="fw-bolder">Roadmap</h3>
               </div>
@@ -162,6 +162,9 @@ export default {
     capitalize: function (string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
     }
+  },
+  mounted () {
+    window.scrollTo(0, 0)
   },
   computed: {
     filterPlanned: function () {

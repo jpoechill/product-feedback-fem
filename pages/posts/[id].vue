@@ -4,10 +4,13 @@
       <div class="row mb-4">
         <div class="col-md-8 offset-2">
           <div class="py-4 d-flex justify-content-between">
-            <nuxtLink to="/" class="text-decoration-none">
+            <!-- <nuxtLink to="/" class="text-decoration-none"> -->
+            <div>
               <img src="/shared/icon-arrow-left.svg" class="me-3" alt="left arrow">
-              <span class="fs-smaller fw-bold text-muted">Go Back</span>
-            </nuxtLink>
+              <span @click="$router.back()" class="fs-smaller fw-bold text-muted" role="button">Go Back</span>
+            </div>
+             
+            <!-- </nuxtLink> -->
             <!-- {{ currProduct }} -->
             <NuxtLink :to="'/edit/' + currProduct.id">
               <button type="button" class="btn btn-primary py-2 px-4 fs-small fw-bold">
@@ -38,7 +41,7 @@
                   </span>
                   <br>
                   <span class="badge bg-light text-dark ps-3 pe-3 ms-0 mt-3 me-2 fs-smaller fw-bold">
-                    {{ currProduct.category }}  
+                    {{ capitalize(currProduct.category) }}  
                   </span> 
                 </div>
 
@@ -160,6 +163,11 @@ export default {
       currentUser: {},
       currProduct: {}
     }
+  },
+  methods: {
+    capitalize: function (string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    },
   },
   mounted () {
     window.scrollTo(0, 0)
