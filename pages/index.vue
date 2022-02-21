@@ -50,7 +50,9 @@
             <img src="/light-bulb.svg" class="me-4 mb-2">
             <strong>{{ filterSuggestions.length }} Suggestions</strong> 
             
-            <span class="ms-4">
+
+            <!-- old select menu -->
+            <!-- <span class="ms-4">
               <small>
                 Sort by : 
                   <select class="form-select d-inline w-25" aria-label="Default select example">
@@ -60,16 +62,33 @@
                     <option value="3">Least Comments</option>
                   </select>
               </small>
-            </span>
-            <div class="float-end content-padding">
+            </span> -->
 
-            <NuxtLink to="/feedback-new">
-              <button type="button" class="btn btn-primary py-2 px-4">
-                <small>
-                  + Add Feedback
-                </small>
-              </button>
-            </NuxtLink>
+            <span class="ms-4">
+              <small>
+                Sort by: 
+                <div class="dropdown d-inline">
+                  <button class="btn btn-dropdown dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <small>Most Upvotes</small> 
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Most Upvotes</a>
+                    <a class="dropdown-item" href="#">Least Upvotes</a>
+                    <a class="dropdown-item" href="#">Most Comments</a>
+                    <a class="dropdown-item" href="#">Least Comments</a>
+                  </div>
+                </div>
+              </small>
+            </span>
+
+            <div class="float-end content-padding">
+              <NuxtLink to="/feedback-new">
+                <button type="button" class="btn btn-primary py-2 px-4">
+                  <small>
+                    + Add Feedback
+                  </small>
+                </button>
+              </NuxtLink>
             </div>
           </div>
 
@@ -309,5 +328,27 @@ ul {
 
 .fs-small {
   font-size: 15px !important;
+}
+
+/* custom dropdown */
+
+.btn-dropdown, .btn-dropdown:hover {
+  color: white;
+}
+
+.btn-dropdown:focus {
+  box-shadow: none;
+}
+
+.dropdown-menu {
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 5px 30px 10px rgba(0,0,0,0.1);
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+    color: #AD1FEA;
+    background-color: transparent !important;
 }
 </style>
