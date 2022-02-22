@@ -2,7 +2,7 @@
   <div>
     <div class="container">
       <div class="row mb-5">
-        <div class="col-md-6 offset-3">
+        <div class="col-md-6 offset-md-3 offset-sm-none">
           <div class="pb-4 mb-4">
             <nuxtLink to="/" class="text-decoration-none">
               <img src="/shared/icon-arrow-left.svg" class="me-3" alt="left arrow">
@@ -136,8 +136,6 @@ export default {
   },
   methods: {
     toggleCategory: function (categoryName) {
-      // let self = this
-
       this.categoryOptions = this.categoryOptions.map(x => {
         if (x.name === categoryName) {
           x.isActive = true

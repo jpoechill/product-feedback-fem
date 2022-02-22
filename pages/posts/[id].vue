@@ -34,7 +34,7 @@
                   </span>
                 </div>
 
-                <div class="col-md-10">
+                <div class="col-md-8">
                   <span class="fw-bold fs-6 d-block mb-2">{{ currProduct.title }}</span>
                   <span class="text-muted fs-small">
                     {{ currProduct.description }}
@@ -46,8 +46,29 @@
                 </div>
 
                 <div class="col-md-1 d-flex justify-content-end align-items-center">
-                  <img src="/chat-bubble.svg" class="me-3" alt="">
-                  {{ currProduct.comments ? currProduct.comments.length : '0' }}
+                  <div class="d-md-none d-sm-block d-flex justify-content-between w-100 mt-2">
+                    <div>
+                      <span class="badge bg-light text-dark px-3 py-0 mx-0 mt-0 fw-bold fs-smaller" role="button">
+                        <img src="/shared/icon-arrow-up.svg" alt="arrow-up" class="me-2">
+                        <span class="text-dark fw-bolder">{{ currProduct.upvotes }}</span>
+                      </span>
+                    </div>
+                    <div>
+                      <img src="/chat-bubble.svg" class="me-3" alt="">
+                      <span v-if="!currProduct.comments">
+                        0
+                      </span>
+                      <span v-else>
+                        {{ currProduct.comments.length }}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="d-none d-md-inline-block">
+                    <img src="/chat-bubble.svg" class="d-inline me-3" alt="">
+                    <span>
+                      {{ currProduct.comments ? currProduct.comments.length : '0' }}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>

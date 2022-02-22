@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-3">
-          <div class="text-white radial-gradient rounded pt-5 pb-3 px-3">
+          <div class="text-white radial-gradient rounded pt-5 pb-3 px-3 mb-3">
             <h4 class="m-0 fw-bold">Frontend Mentor</h4> 
             <small> <span class=" fw-light">Feedback Board</span></small> 
             <!-- {{ fruits }} -->
@@ -45,9 +45,11 @@
         </div>
 
         <div class="col-md-9 mb-5">
-          <div class="text-white rounded px-4 py-4 bg-white bg-dark-blue d-none d-md-block">
-            <img src="/light-bulb.svg" class="me-4 mb-2">
-            <strong>{{ filterSuggestions.length }} Suggestions</strong> 
+          <div class="text-white rounded px-4 py-4 bg-white bg-dark-blue">
+            <div class="d-md-inline-block pe-4 d-none">
+              <img src="/light-bulb.svg" class="me-4 mb-2">
+              <strong>{{ filterSuggestions.length }} Suggestions</strong> 
+            </div>
             
 
             <!-- old select menu -->
@@ -63,7 +65,7 @@
               </small>
             </span> -->
 
-            <span class="ms-4">
+            <span class="">
               <small>
                 Sort by: 
                 <div class="dropdown d-inline">
@@ -117,7 +119,7 @@
           <div v-else v-for="(product, index) in productRequestsVisible" :key="index" class="rounded mt-3 bg-white fw-light">
             <div class="container">
               <div class="row pt-4 pb-3">
-                <div class="col-md-1">
+                <div class="col-md-1 d-none d-md-block col-md-1">
                   <span class="badge bg-light text-dark px-3 py-0 mx-0 mt-0 fw-bold fs-smaller" role="button">
                     <img src="/shared/icon-arrow-up.svg" alt="arrow-up" class="mb-2">
                     <br>
@@ -134,7 +136,28 @@
                     {{ capitalize(product.category) }}
                   </span>
                 </div>
-                <div class="col-md-1">
+                <div class="d-sm-block d-md-none col-md-12">
+                  <div class="fw-bold h-100 d-flex justify-content-center align-items-center">
+                    <div class="d-flex justify-content-between w-100 mt-2">
+                      <div>
+                        <span class="badge bg-light text-dark px-3 py-0 mx-0 mt-0 fw-bold fs-smaller" role="button">
+                          <img src="/shared/icon-arrow-up.svg" alt="arrow-up" class="me-2">
+                          <span class="text-dark fw-bolder">{{ product.upvotes }}</span>
+                        </span>
+                      </div>
+                      <div>
+                        <img src="/chat-bubble.svg" class="me-3" alt="">
+                        <span v-if="!product.comments">
+                          0
+                        </span>
+                        <span v-else>
+                          {{ product.comments.length }}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-none d-md-block col-md-1">
                   <div class="fw-bold h-100 d-flex justify-content-center align-items-center">
                     <img src="/chat-bubble.svg" class="me-3" alt="">
                     <span v-if="!product.comments">
