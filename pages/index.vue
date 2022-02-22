@@ -8,14 +8,13 @@
             <small> <span class=" fw-light">Feedback Board</span></small> 
             <!-- {{ fruits }} -->
           </div>
-          <div class="bg-white px-3 py-3 mt-3 rounded">
+          <div class="bg-white px-3 py-3 mt-3 rounded d-none d-md-block">
             <span v-for="(category, index) in categoryFilterOptions" :key="index" @click="toggleCategory(category.name)" :class="category.isActive ? 'bg-primary' : 'bg-light text-dark fw-bold'" role='button' class="badge px-3 py-2 me-2 fs-smaller">
               {{ category.title }}
             </span>
           </div>
-          <div class="bg-white p-4 my-3 rounded">
+          <div class="bg-white p-4 my-3 rounded d-none d-md-block">
             Roadmap 
-            <!-- {{ counter }} -->
 
             <NuxtLink to="/roadmap">
               <span class="float-end text-muted">
@@ -46,7 +45,7 @@
         </div>
 
         <div class="col-md-9 mb-5">
-          <div class="text-white rounded px-4 py-4 bg-white bg-dark-blue">
+          <div class="text-white rounded px-4 py-4 bg-white bg-dark-blue d-none d-md-block">
             <img src="/light-bulb.svg" class="me-4 mb-2">
             <strong>{{ filterSuggestions.length }} Suggestions</strong> 
             
@@ -399,9 +398,19 @@ ul {
   background-color: #AD1FEA;
 }
 
+.btn-dark-blue { 
+  background-color: #3a4374!important;
+}
+
+.btn-dark-blue:hover { 
+  background-color: #647196!important;
+}
+
 .bg-dark-blue {
   background-color: #373F68 !important;
 }
+
+
 
 .fs-smaller {
   font-size: 12px !important;

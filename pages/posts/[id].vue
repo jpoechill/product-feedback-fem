@@ -2,7 +2,7 @@
   <div>
     <div class="container">
       <div class="row mb-4">
-        <div class="col-md-8 offset-2">
+        <div class="col-md-8 offset-md-2 col-sm-12">
           <div class="py-4 d-flex justify-content-between">
             <!-- <nuxtLink to="/" class="text-decoration-none"> -->
             <div>
@@ -57,7 +57,7 @@
       </div>
 
       <div class="row mb-4">
-        <div class="col-md-8 offset-2">
+        <div class="col-md-8 offset-md-2 col-sm-12">
           
           <div class="bg-white px-2 py-4 rounded fs-small ">
             <span class="ps-4 fw-bold">4 Comments</span> <br><br>
@@ -120,18 +120,16 @@
       </div>
 
       <div class="row mb-5">
-        <div class="col-md-8 offset-2">
+        <div class="col-md-8 offset-md-2 col-sm-12">
           <div class="bg-white px-2 py-4 rounded fs-small ">
             <span class="ps-4 fw-bolder">Add Comment</span> <br><br>
-
-            <!-- {{ currProduct}} -->
 
             <div class="px-4">
               <textarea class="form-control" placeholder="Type your comment here" v-model="newComment" maxLength="250"></textarea>
             </div>
 
             <div class="d-flex justify-content-between px-4 mt-4">
-              <div class="d-inline text-muted fs-small">{{ (250 - newComment.length) }} Characters Left</div>
+              <div class="d-inline text-muted fs-small">{{ (250 - newComment.length) }} Characters left</div>
               <div class="d-inline">
                 <button type="button" class="btn btn-primary fs-small fw-bold py-2 px-4">
                   <small>

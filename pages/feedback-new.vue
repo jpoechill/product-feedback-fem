@@ -50,10 +50,10 @@
               <small>
                 <div class="dropdown my-2">
                   <button class="d-flex py-2 justify-content-between border align-items-center btn btn-dropdown text-left dropdown-toggle ps-4 text-dark w-100 border-box" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <small><span>Active Category</span></small> 
+                    <small><span>{{ categoryOptions.find(x => x.isActive).title}}</span></small> 
                   </button>
                   <div class="dropdown-menu text-muted w-100 my-2" aria-labelledby="dropdownMenuButton">
-                    <div v-for="(option, index) in categoryOptions" class="d-flex justify-content-between dropdown-item text-muted" :class="index !== (categoryOptions.length - 1) ? 'border-bottom' : ''" :key="index" role="button">
+                    <div v-for="(option, index) in categoryOptions" @click="toggleCategory(option.name)" class="d-flex justify-content-between dropdown-item text-muted" :class="index !== (categoryOptions.length - 1) ? 'border-bottom' : ''" :key="index" role="button">
                       <span>{{ option.title }} </span>
                       <div class="d-inline">
                         <img v-if="option.isActive" src="/checkmark-purple.svg" alt="">
@@ -132,6 +132,21 @@ export default {
           isActive: false
         },
       ],
+    }
+  },
+  methods: {
+    toggleCategory: function (categoryName) {
+      // let self = this
+
+      this.categoryOptions = this.categoryOptions.map(x => {
+        if (x.name === categoryName) {
+          x.isActive = true
+        } else {
+          x.isActive = false
+        }
+        
+        return x
+      }) 
     }
   },
 }

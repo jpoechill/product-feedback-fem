@@ -2,7 +2,7 @@
   <div>
     <div class="container">
       <div class="row mb-5">
-        <div class="col-md-6 offset-3">
+        <div class="col-md-6 offset-md-3 col-sm-12">
           <div class="py-4">
             <nuxtLink to="/" class="text-decoration-none">
               <img src="/shared/icon-arrow-left.svg" class="me-3" alt="left arrow">
@@ -47,10 +47,10 @@
               <small>
                 <div class="dropdown my-2">
                   <button class="d-flex py-2 justify-content-between border align-items-center btn btn-dropdown text-left dropdown-toggle ps-4 text-dark w-100 border-box" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <small><span>Active Category</span></small> 
+                    <small><span>{{ categoryOptions.find(x => x.isActive).title }}</span></small> 
                   </button>
                   <div class="dropdown-menu text-muted w-100 my-2" aria-labelledby="dropdownMenuButton">
-                    <div v-for="(option, index) in categoryOptions" class="d-flex justify-content-between dropdown-item text-muted" :class="index !== (categoryOptions.length - 1) ? 'border-bottom' : ''" :key="index" role="button">
+                    <div v-for="(option, index) in categoryOptions" @click="toggleCategory(option.name)" class="d-flex justify-content-between dropdown-item text-muted" :class="index !== (categoryOptions.length - 1) ? 'border-bottom' : ''" :key="index" role="button">
                       <span>{{ option.title }} </span>
                       <div class="d-inline">
                         <img v-if="option.isActive" src="/checkmark-purple.svg" alt="">
@@ -84,10 +84,10 @@
               <small>
                 <div class="dropdown my-2">
                   <button class="d-flex py-2 justify-content-between border align-items-center btn btn-dropdown text-left dropdown-toggle ps-4 text-dark w-100 border-box" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <small><span>Active Feature</span></small> 
+                    <small><span>{{ statusOptions.find(x => x.isActive).title }}</span></small> 
                   </button>
                   <div class="dropdown-menu text-muted my-2 w-100" aria-labelledby="dropdownMenuButton">
-                    <div v-for="(option, index) in statusOptions" class="d-flex justify-content-between dropdown-item text-muted" :class="index !== (statusOptions.length - 1) ? 'border-bottom' : ''" :key="index" role="button">
+                    <div v-for="(option, index) in statusOptions" @click="toggleStatus(option.name)" class="d-flex justify-content-between dropdown-item text-muted" :class="index !== (statusOptions.length - 1) ? 'border-bottom' : ''" :key="index" role="button">
                       <span>{{ option.title }} </span>
                       <div class="d-inline">
                         <img v-if="option.isActive" src="/checkmark-purple.svg" alt="">
@@ -106,7 +106,7 @@
               </small>
             </span>  <br>
             <span class="text-muted fs-smaller">
-              {Include any specific comments on what should be improved, added, etc.}
+              Include any specific comments on what should be improved, added, etc.
             </span>
             <br>
             <textarea v-model="currProduct.description" maxlength="250" class="w-100 mt-2 mb-1 form-control" />
@@ -123,7 +123,7 @@
 
               <div class="d-inline">
                 <NuxtLink :to="'/posts/' + currProduct.id">
-                  <button type="button" class="btn btn-primary py-2 px-4 me-4">
+                  <button type="button" class="btn btn-primary btn-dark-blue py-2 px-4 me-4">
                     <small>
                       Cancel
                     </small>
@@ -133,7 +133,7 @@
                 <NuxtLink to="/">
                   <button type="button" class="btn btn-primary py-2 px-4">
                     <small>
-                      Add Feedback
+                      Save Changes
                     </small>
                   </button>
                 </NuxtLink>
@@ -204,6 +204,30 @@ export default {
           isActive: false
         },
       ],
+    }
+  },
+  methods: {
+    toggleStatus: function (statusName) {
+      this.statusOptions = this.statusOptions.map(x => {
+        if (x.name === statusName) {
+          x.isActive = true
+        } else {
+          x.isActive = false
+        }
+        
+        return x
+      }) 
+    },
+    toggleCategory: function (categoryName) {
+      this.categoryOptions = this.categoryOptions.map(x => {
+        if (x.name === categoryName) {
+          x.isActive = true
+        } else {
+          x.isActive = false
+        }
+        
+        return x
+      }) 
     }
   },
   computed: {
