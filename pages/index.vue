@@ -68,14 +68,20 @@
               <small>
                 Sort by: 
                 <div class="dropdown d-inline">
-                  <button class="btn btn-dropdown dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <small>Most Upvotes</small> 
+                  <button class="btn btn-dropdown dropdown-toggle ps-4" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <small><span>{{ sortOptions.find(x => x.isActive ).title }}</span></small> 
                   </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Most Upvotes</a>
-                    <a class="dropdown-item" href="#">Least Upvotes</a>
-                    <a class="dropdown-item" href="#">Most Comments</a>
-                    <a class="dropdown-item" href="#">Least Comments</a>
+                  <div class="dropdown-menu text-muted" aria-labelledby="dropdownMenuButton">
+                    <div v-for="(option, index) in sortOptions" @click="toggleSort(option.name)" class="d-flex justify-content-between dropdown-item text-muted" :class="index !== (sortOptions.length - 1) ? 'border-bottom' : ''" :key="index" role="button">
+                      <span>{{ option.title }} </span>
+                      <div class="d-inline">
+                        <img v-if="option.isActive" src="/checkmark-purple.svg" alt="">
+                      </div>
+                    </div>
+                    <!-- <a class="dropdown-item text-muted border-bottom" href="#">Most Upvotes</a>
+                    <a class="dropdown-item border-bottom" href="#">Least Upvotes</a>
+                    <a class="dropdown-item border-bottom" href="#">Most Comments</a>
+                    <a class="dropdown-item" href="#">Least Comments</a> -->
                   </div>
                 </div>
               </small>
@@ -152,7 +158,6 @@
 
 <script>
 import axios from "axios";
-// import { mapState } from 'vuex'
 
 export default {
   data() {
@@ -160,6 +165,28 @@ export default {
       productRequestsVisible: [],
       productRequests: [],
       currentUser: {},
+      sortOptions: [
+        {
+          name: 'mostUpvotes',
+          title: 'Most Upvotes',
+          isActive: true
+        },
+        {
+          name: 'leastUpvotes',
+          title: 'Least Upvotes',
+          isActive: false
+        },
+        {
+          name: 'mostComments',
+          title: 'Most Comments',
+          isActive: false
+        },
+        {
+          name: 'leastComments',
+          title: 'Least Comments',
+          isActive: false
+        },
+      ],
       categoryFilterOptions: [
         {
           name: 'all',
@@ -195,12 +222,61 @@ export default {
     };
   },
   methods: {
+    sortBy: function (direction) {
+      this.productRequestsVisible = this.productRequestsVisible.sort((a, b) => {
+        if (!a.comments) {
+          a.comments = []
+        }
+
+        if (!b.comments) {
+          b.comments = []
+        }
+
+        if (direction === 'mostUpvotes') {
+          return b.upvotes - a.upvotes
+        } else if (direction === 'leastUpvotes')  {
+          return a.upvotes - b.upvotes
+        } else if (direction === 'mostComments') {
+          return b.comments.length - a.comments.length
+        } else if (direction === 'leastComments')  {
+          return a.comments.length - b.comments.length
+        }
+      })
+    },
     capitalize: function (string) {
       if (string) {
         return string.charAt(0).toUpperCase() + string.slice(1)
       } else {
         return ''
       }
+    },
+    toggleSort: function (sortName) {
+      let self = this
+
+      this.sortOptions = this.sortOptions.map(x => {
+        switch (sortName) {
+          case 'mostUpvotes':
+            self.sortBy('mostUpvotes')
+            break;
+          case 'leastUpvotes':
+            self.sortBy('leastUpvotes')
+            break;
+          case 'mostComments':
+            self.sortBy('mostComments')
+            break;
+          case 'leastComments':
+            self.sortBy('leastComments')
+            break;
+        }
+        
+        if (x.name === sortName && x) {
+          x.isActive = true
+        } else {
+          x.isActive = false
+        }
+
+        return x
+      })
     },
     toggleCategory: function (categoryName) {
       let self = this
@@ -213,7 +289,6 @@ export default {
           } else {
             self.productRequestsVisible = self.productRequests.filter(y => y.category === x.name)
           }
-          
           x.isActive = true
         } else {
           x.isActive = false
@@ -221,9 +296,15 @@ export default {
         
         return x
       })
+
+      console.log(self.activeSortOption.name)
+      self.sortBy(self.activeSortOption.name)    
     }
   },
   computed: {
+    activeSortOption: function () {
+      return this.sortOptions.find(x => x.isActive === true)
+    },
     filterSuggestions: function () {
       return this.productRequests.filter(x => x.status === 'suggestion')
     },
@@ -341,14 +422,26 @@ ul {
 }
 
 .dropdown-menu {
-  padding: 14px;
+  width: 250px;
+  padding: 0px;
+  padding-top: 6px;
+  padding-bottom: 4px;
+  padding-right: 0px;
+  margin-left: 14px;
   border: none;
   border-radius: 10px;
   box-shadow: 0px 5px 30px 10px rgba(0,0,0,0.1);
 }
 
+.dropdown-item {
+  padding-right: 22px;
+  padding-left: 22px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
 .dropdown-item:focus, .dropdown-item:hover {
-    color: #AD1FEA;
+    color: #AD1FEA!important;
     background-color: transparent !important;
 }
 </style>

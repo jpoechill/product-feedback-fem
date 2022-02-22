@@ -30,7 +30,7 @@
               Add a short, descriptive headline
             </span>
             <br>
-            <input type="text" class="form-control my-2 w-100 p-2">
+            <input type="text" class="form-control my-2 w-100 p-2" v-model="currProduct.title">
 
             <br>
 
@@ -42,17 +42,22 @@
             <span class="text-muted fs-smaller">
               Choose a category for your feedback
             </span>
-            <br>
             
-            <span class="d-block mt-2 mb-2">
+            <span class="ms-4">
               <small>
-                  <select class="form-select d-inline w-100" aria-label="Default select example">
-                    <option selected>Feature</option>
-                    <option value="1">UI</option>
-                    <option value="2">UX</option>
-                    <option value="3">Enhancement</option>
-                    <option value="4">Bug</option>
-                  </select>
+                <div class="dropdown my-2">
+                  <button class="d-flex py-2 justify-content-between border align-items-center btn btn-dropdown text-left dropdown-toggle ps-4 text-dark w-100 border-box" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <small><span>Active Category</span></small> 
+                  </button>
+                  <div class="dropdown-menu text-muted w-100 my-2" aria-labelledby="dropdownMenuButton">
+                    <div v-for="(option, index) in categoryOptions" class="d-flex justify-content-between dropdown-item text-muted" :class="index !== (categoryOptions.length - 1) ? 'border-bottom' : ''" :key="index" role="button">
+                      <span>{{ option.title }} </span>
+                      <div class="d-inline">
+                        <img v-if="option.isActive" src="/checkmark-purple.svg" alt="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </small>
             </span>
 
@@ -63,9 +68,8 @@
                 Update Status
               </small>
             </span>  
-            <br>
 
-            <span class="d-block mt-2 mb-2">
+            <!-- <span class="d-block mt-2 mb-2">
               <small>
                   <select class="form-select d-inline w-100" aria-label="Default select example">
                     <option selected>Suggestion</option>
@@ -73,6 +77,24 @@
                     <option value="2">In-Progress</option>
                     <option value="3">Live</option>
                   </select>
+              </small>
+            </span> -->
+
+            <span class="ms-4">
+              <small>
+                <div class="dropdown my-2">
+                  <button class="d-flex py-2 justify-content-between border align-items-center btn btn-dropdown text-left dropdown-toggle ps-4 text-dark w-100 border-box" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <small><span>Active Feature</span></small> 
+                  </button>
+                  <div class="dropdown-menu text-muted my-2 w-100" aria-labelledby="dropdownMenuButton">
+                    <div v-for="(option, index) in statusOptions" class="d-flex justify-content-between dropdown-item text-muted" :class="index !== (statusOptions.length - 1) ? 'border-bottom' : ''" :key="index" role="button">
+                      <span>{{ option.title }} </span>
+                      <div class="d-inline">
+                        <img v-if="option.isActive" src="/checkmark-purple.svg" alt="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </small>
             </span>
 
@@ -132,7 +154,56 @@ import axios from 'axios'
 export default {
   data() {
     return {
-      currProduct: {}
+      currProduct: {},
+      statusOptions: [
+        {
+          name: 'suggestion',
+          title: 'Suggestion',
+          isActive: true
+        },
+        {
+          name: 'planned',
+          title: 'Planned',
+          isActive: false
+        },
+        {
+          name: 'inProgress',
+          title: 'In-Progress',
+          isActive: false
+        },
+        {
+          name: 'live',
+          title: 'Live',
+          isActive: false
+        },
+      ],
+      categoryOptions: [
+        {
+          name: 'feature',
+          title: 'Feature',
+          isActive: true
+        },
+        {
+          name: 'ui',
+          title: 'UI',
+          isActive: false
+        },
+        {
+          name: 'ux',
+          title: 'UX',
+          isActive: false
+        },
+        {
+          name: 'enhancement',
+          title: 'Enhancement',
+          isActive: false
+        },
+        {
+          name: 'bug',
+          title: 'Bug',
+          isActive: false
+        },
+      ],
     }
   },
   computed: {
@@ -162,5 +233,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
 </style>

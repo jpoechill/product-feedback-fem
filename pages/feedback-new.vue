@@ -43,24 +43,32 @@
               Choose a category for your feedback
             </span>
             <br>
-            <span class="d-block mt-2 mb-2">
-              <small>
-                  <select class="form-select d-inline w-100" aria-label="Default select example">
-                    <option selected>Feature</option>
-                    <option value="1">UI</option>
-                    <option value="2">UX</option>
-                    <option value="3">Enhancement</option>
-                    <option value="3">Bug</option>
-                  </select>
-              </small>
-            </span>
-            <br>
 
-            <span class="text-blue fw-bold">
+
+            
+            <div class="mb-4">
+              <small>
+                <div class="dropdown my-2">
+                  <button class="d-flex py-2 justify-content-between border align-items-center btn btn-dropdown text-left dropdown-toggle ps-4 text-dark w-100 border-box" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <small><span>Active Category</span></small> 
+                  </button>
+                  <div class="dropdown-menu text-muted w-100 my-2" aria-labelledby="dropdownMenuButton">
+                    <div v-for="(option, index) in categoryOptions" class="d-flex justify-content-between dropdown-item text-muted" :class="index !== (categoryOptions.length - 1) ? 'border-bottom' : ''" :key="index" role="button">
+                      <span>{{ option.title }} </span>
+                      <div class="d-inline">
+                        <img v-if="option.isActive" src="/checkmark-purple.svg" alt="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </small>
+            </div>
+
+            <div class="text-blue fw-bold pt-2">
               <small>
                 Feedback Detail
               </small>
-            </span>  <br>
+            </div>
             <span class="text-muted fs-smaller">
               Include any specific comments on what should be improved, added, etc.
             </span>
@@ -95,8 +103,37 @@
 
 <script>
 export default {
-  components: {
-  }
+  data() {
+    return {
+      categoryOptions: [
+        {
+          name: 'feature',
+          title: 'Feature',
+          isActive: true
+        },
+        {
+          name: 'ui',
+          title: 'UI',
+          isActive: false
+        },
+        {
+          name: 'ux',
+          title: 'UX',
+          isActive: false
+        },
+        {
+          name: 'enhancement',
+          title: 'Enhancement',
+          isActive: false
+        },
+        {
+          name: 'bug',
+          title: 'Bug',
+          isActive: false
+        },
+      ],
+    }
+  },
 }
 </script>
 
