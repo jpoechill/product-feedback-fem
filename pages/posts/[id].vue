@@ -24,50 +24,54 @@
             
             <div class="container py-2">
               <div class="row">
-                <div class="col-md-1">
-                  <span class="badge bg-light text-dark px-2 pb-0 py-0 mx-0 mt-0 fw-bold fs-smaller">
-                    <img src="/shared/icon-arrow-up.svg" alt="arrow-up" class="mb-2">
+                <div class="col-md-1 d-none d-md-block">
+                  <span class="badge bg-light text-dark px-2 pb-0 py-0 mx-0 mt-0 fw-bold fs-smaller" role="button">
+                    <svg width="10" height="7" class="mb-2" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1 6l4-4 4 4" stroke="#4661E6" stroke-width="2" fill="none" fill-rule="evenodd"/>
+                    </svg>
                     <br>
-                    <span class="text-dark fw-bolder">
+                    <span class="text-dark fw-bolder" role="button">
                       {{ currProduct.upvotes }}
                     </span>
                   </span>
                 </div>
 
-                <div class="col-md-8">
+                <div class="col-md-9">
                   <span class="fw-bold fs-6 d-block mb-2">{{ currProduct.title }}</span>
                   <span class="text-muted fs-small">
                     {{ currProduct.description }}
                   </span>
                   <br>
-                  <span class="badge bg-light text-dark ps-3 pe-3 ms-0 mt-3 me-2 fs-smaller fw-bold">
+                  <span id="badge-no-click" class="badge bg-light badge-no-click text-dark ps-3 pe-3 ms-0 mt-3 me-2 fs-smaller fw-bold">
                     {{ capitalize(currProduct.category) }}  
                   </span> 
                 </div>
 
-                <div class="col-md-1 d-flex justify-content-end align-items-center">
-                  <div class="d-md-none d-sm-block d-flex justify-content-between w-100 mt-2">
-                    <div>
-                      <span class="badge bg-light text-dark px-3 py-0 mx-0 mt-0 fw-bold fs-smaller" role="button">
-                        <img src="/shared/icon-arrow-up.svg" alt="arrow-up" class="me-2">
-                        <span class="text-dark fw-bolder">{{ currProduct.upvotes }}</span>
-                      </span>
-                    </div>
-                    <div>
-                      <img src="/chat-bubble.svg" class="me-3" alt="">
-                      <span v-if="!currProduct.comments">
-                        0
-                      </span>
-                      <span v-else>
-                        {{ currProduct.comments.length }}
-                      </span>
+                <div class="col-md-2 d-flex justify-content-end align-items-center">
+                  <div class="d-md-none d-sm-block mt-2 w-100">
+                    <div class="d-flex justify-content-between w-100"> 
+                      <div class="d-inline">
+                        <span class="badge bg-light text-dark px-3 py-0 mx-0 mt-0 fw-bold fs-smaller" role="button">
+                          <img src="/shared/icon-arrow-up.svg" alt="arrow-up" class="me-2">
+                          <span class="text-dark fw-bolder">{{ currProduct.upvotes }}</span>
+                        </span>
+                      </div>
+                      <div class="d-inline">
+                        <img src="/chat-bubble.svg" class="me-3" alt="">
+                        <span v-if="!currProduct.comments">
+                          0
+                        </span>
+                        <span v-else>
+                          {{ currProduct.comments.length }}
+                        </span>
+                      </div>
                     </div>
                   </div>
                   <div class="d-none d-md-inline-block">
-                    <img src="/chat-bubble.svg" class="d-inline me-3" alt="">
-                    <span>
+                    <img src="/chat-bubble.svg" class="d-inline-block pe-3" alt="">
+                    <!-- <span> -->
                       {{ currProduct.comments ? currProduct.comments.length : '0' }}
-                    </span>
+                    <!-- </span> -->
                   </div>
                 </div>
               </div>

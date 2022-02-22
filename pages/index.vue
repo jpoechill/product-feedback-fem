@@ -50,20 +50,6 @@
               <img src="/light-bulb.svg" class="me-4 mb-2">
               <strong>{{ filterSuggestions.length }} Suggestions</strong> 
             </div>
-            
-
-            <!-- old select menu -->
-            <!-- <span class="ms-4">
-              <small>
-                Sort by : 
-                  <select class="form-select d-inline w-25" aria-label="Default select example">
-                    <option selected>Most Upvotes</option>
-                    <option value="1">Least Upvotes</option>
-                    <option value="2">Most Comments</option>
-                    <option value="3">Least Comments</option>
-                  </select>
-              </small>
-            </span> -->
 
             <span class="">
               <small>
@@ -79,10 +65,6 @@
                         <img v-if="option.isActive" src="/checkmark-purple.svg" alt="">
                       </div>
                     </div>
-                    <!-- <a class="dropdown-item text-muted border-bottom" href="#">Most Upvotes</a>
-                    <a class="dropdown-item border-bottom" href="#">Least Upvotes</a>
-                    <a class="dropdown-item border-bottom" href="#">Most Comments</a>
-                    <a class="dropdown-item" href="#">Least Comments</a> -->
                   </div>
                 </div>
               </small>
@@ -121,7 +103,9 @@
               <div class="row pt-4 pb-3">
                 <div class="col-md-1 d-none d-md-block col-md-1">
                   <span class="badge bg-light text-dark px-3 py-0 mx-0 mt-0 fw-bold fs-smaller" role="button">
-                    <img src="/shared/icon-arrow-up.svg" alt="arrow-up" class="mb-2">
+                    <svg width="10" height="7" class="mb-2" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1 6l4-4 4 4" stroke="#4661E6" stroke-width="2" fill="none" fill-rule="evenodd"/>
+                    </svg>
                     <br>
                     <span class="text-dark fw-bolder">{{ product.upvotes }}</span>
                   </span>
@@ -132,7 +116,7 @@
                   </NuxtLink>
                   <br>
                   <div class="text-muted py-1 fs-small">{{ product.description }}</div>
-                  <span @click="toggleCategory(product.category)" class="badge bg-light text-dark px-3 py-0 mx-0 mt-2 fw-bold fs-smaller" role="button">
+                  <span id="badge-no-click" class="badge bg-light badge-no-click text-dark px-3 py-0 mx-0 mt-2 fw-bold fs-smaller">
                     {{ capitalize(product.category) }}
                   </span>
                 </div>
@@ -383,8 +367,34 @@ body, html {
   padding: 8px;
 }
 
+.badge:hover {
+  background-color: #CFD7FF!important;
+}
+
+.badge:active {
+  background-color: #4661E6!important;
+  color: #fff;
+}
+
+.badge-no-click:hover, #badge-no-click:active {
+  color: #4661E6!important;
+  background-color: #f8f9fa!important;
+}
+
+.badge:active span {
+  color: #fff!important;
+}
+
+.badge:active svg path {
+  stroke: #FFF!important;
+}
+
 .badge.text-dark {
   color: #4661E6!important;
+}
+
+.badge.text-dark:active {
+  color: #FFF!important;
 }
 
 h4 {
@@ -419,6 +429,10 @@ ul {
 
 .btn-primary {
   background-color: #AD1FEA;
+}
+
+.btn-primary:hover {
+  background-color: #C75AF6;
 }
 
 .btn-dark-blue { 

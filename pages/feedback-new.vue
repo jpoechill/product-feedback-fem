@@ -78,7 +78,7 @@
 
             <div class="d-flex justify-content-end mt-2">
               <NuxtLink to="/">
-                <button type="button" class="btn btn-primary py-2 px-4 me-4">
+                <button type="button" class="btn btn-dark-blue text-white py-2 px-4 me-4">
                   <small>
                     Cancel
                   </small>

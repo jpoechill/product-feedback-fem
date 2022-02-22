@@ -42,13 +42,15 @@
                 <span class="d-block text-muted fs-small">
                   {{ item.description }}
                 </span>
-                <span class="badge bg-light text-dark ps-3 pe-3 ms-0 mt-3 me-2 fs-smaller fw-bold">
+                <span id="badge-no-click" class="badge badge-no-click bg-light text-dark ps-3 pe-3 ms-0 mt-3 me-2 fs-smaller fw-bold">
                   {{ capitalize(item.category) }}  
                 </span> 
                 <br>
                 <div class="d-flex justify-content-between align-items-center">
-                  <span class="badge bg-light text-dark ps-3 pe-3 ms-0 me-2 fs-smaller fw-bold">
-                    <img src="/shared/icon-arrow-up.svg" class="me-2 mb-1" alt="up-arrow"> 
+                  <span class="badge bg-light text-dark ps-3 pe-3 ms-0 me-2 fs-smaller fw-bold" role="button">
+                    <svg width="10" height="7" class="me-2" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1 6l4-4 4 4" stroke="#4661E6" stroke-width="2" fill="none" fill-rule="evenodd"/>
+                    </svg>
                     <span class="text-dark">
                       {{ item.upvotes }}  
                     </span>
@@ -81,13 +83,15 @@
                 <span class="d-block text-muted fs-small">
                   {{ item.description }}
                 </span>
-                <span class="badge bg-light text-dark ps-3 pe-3 ms-0 mt-3 me-2 fs-smaller fw-bold">
+                <span id="badge-no-click" class="badge bg-light badge-no-click text-dark ps-3 pe-3 ms-0 mt-3 me-2 fs-smaller fw-bold">
                   {{ capitalize(item.category) }}  
                 </span> 
                 <br>
                 <div class="d-flex justify-content-between align-items-center">
-                  <span class="badge bg-light text-dark ps-3 pe-3 ms-0 me-2 fs-smaller fw-bold">
-                    <img src="/shared/icon-arrow-up.svg" class="me-2 mb-1" alt="up-arrow"> 
+                  <span class="badge bg-light text-dark ps-3 pe-3 ms-0 me-2 fs-smaller fw-bold" role="button">
+                    <svg width="10" height="7" class="me-2" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1 6l4-4 4 4" stroke="#4661E6" stroke-width="2" fill="none" fill-rule="evenodd"/>
+                    </svg>
                     <span class="text-dark">
                       {{ item.upvotes }}  
                     </span>
@@ -120,15 +124,17 @@
                 <span class="d-block text-muted fs-small">
                   {{ item.description }}
                 </span>
-                <span class="badge bg-light text-dark ps-3 pe-3 ms-0 mt-3 me-2 fs-smaller fw-bold">
+                <span id="badge-no-click" class="badge badge-no-click bg-light text-dark ps-3 pe-3 ms-0 mt-3 me-2 fs-smaller fw-bold">
                   {{ capitalize(item.category) }}  
                 </span>  
                 <div class="d-flex justify-content-between align-items-center">
-                  <span class="badge bg-light text-dark ps-3 pe-3 ms-0 me-2 fs-smaller fw-bold">
-                    <img src="/shared/icon-arrow-up.svg" class="me-2 mb-1" alt="up-arrow"> 
+                  <span class="badge bg-light text-dark ps-3 pe-3 ms-0 me-2 fs-smaller fw-bold" role="button">
+                    <svg width="10" height="7" class="me-2" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1 6l4-4 4 4" stroke="#4661E6" stroke-width="2" fill="none" fill-rule="evenodd"/>
+                    </svg>
                     <span class="text-dark">
                       {{ item.upvotes }}  
-                    </span> 
+                    </span>
                   </span>
                   <div>
                     <img src="/chat-bubble.svg" alt="" class="pe-3 mb-1">
