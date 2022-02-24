@@ -83,11 +83,6 @@
 
       <div class="row mb-4">
         <div class="col-md-8 offset-md-2 col-sm-12">
-          <!-- <img src="/image-anne.jpg" alt="" width="400px"> asdasd
-          <img src="/_jamesskinner.png" alt="" width="400px"> asdasd
-          <img src="/_elijahmoss.png" alt="" width="100%"> -->
-
-          
           <div class="bg-white px-2 py-4 mb-0 rounded fs-small ">
             <span class="ps-4 fw-bold">{{ currProduct.comments ? currProduct.comments.length : '0'}} Comments</span> <br><br>
 
@@ -95,95 +90,112 @@
               <div class="row">
                 <div class="col-md-1">
                   <img :src="comment.user.image" class="img-avatar-size" alt="" width="100%">
-                
                 </div>
-                <div class="col-md-10">
-                  {{ comment.user.name }} <br>
-                  @{{ comment.user.username }} <br>
-                  has replies? {{ comment.replies ? 'Yes' : 'No'}}
-                </div>
-                <div class="col-md-1">
-                  Reply
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-11 offset-md-1 mt-3">
-                  {{ comment.content }}  
+                <div class="col-md-11">
+                  <div class="d-flex justify-content-between">
+                    <div>
+                      {{ comment.user.name }} <br>
+                      @{{ comment.user.username }} <br>
+                      has replies? {{ comment.replies ? 'Yes' : 'No'}}
+                    </div>
+                    <div>
+                      <span @click="showReply(index)" role="button">Reply</span>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="row" v-if="index !== currProduct.comments.length - 1">
-                <div class="col-md-12">
-                  <hr>
-                </div>
-              </div>
-            </div>
 
-            <!-- <div v-for="(comment, index) in currProduct.comments" :key="index">
-              id: {{ comment.id }} <br>
-              content: {{ comment.content }} <br>
-              user: {{ comment.user }} <br>
-            </div> -->
-          </div>
-        </div>
-        <div class="d-none col-md-8 offset-md-2 col-sm-12">
-          <div class="bg-white px-2 py-4 rounded fs-small ">
-            <span class="ps-4 fw-bold">4 Comments</span> <br><br>
+              <div class="row">
 
-            <!-- First Comment -->
-            <div class="container text-muted">
-              <div class="row">
-                <div class="col-md-1">
-                  <img src="/_elijahmoss.png" alt="" width="40px">
-                </div>
-                <div class="col-md-10">
-                  Elijah Moss <br>
-                  @hexagon.bestagon
-                </div>
-                <div class="col-md-1">
-                  Reply
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-11 offset-md-1 mt-3">
-                  Also, please allow styles to be applied based on system preferences. I would love to be able to browse Frontend Mentor in the evening after my device’s dark mode turns on without the bright background it currently has.
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <hr>
-                </div>
-              </div>
-            </div>
-
-            <!-- Second Comment -->
-            <div class="container text-muted">
-              <div class="row">
-                <div class="col-md-1">
-                  <img src="/_jamesskinner.png" alt="" width="40px">
-                </div>
-                <div class="col-md-10">
-                  James Skinner <br>
-                  @hummingbird1
-                </div>
-                <div class="col-md-1">
-                  Reply
-                </div>
-              </div>
-              <div class="row">
                 <div class="col-md-1 pt-3 text-center">
-                  <div class="mx-auto" style="background-color: lightgrey; width: 1px; height: 100%;"></div>
+                  <div class="mx-auto" style="background-color: lightgrey; width: 1px; height: 100%;" v-if="comment.replies && comment.replies.length >= 1"></div>
                 </div>
-                <div class="col-md-11 mt-3">
-                  Also, please allow styles to be applied based on system preferences. I would love to be able to browse Frontend Mentor in the evening after my device’s dark mode turns on without the bright background it currently has.
-                  <br>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officia labore, alias dolorem facilis veniam itaque perspiciatis eveniet natus suscipit ullam distinctio, neque saepe placeat amet incidunt porro unde nemo numquam excepturi quo. Optio corrupti saepe soluta laudantium aliquam, odio repudiandae atque laborum accusantium incidunt rem non cumque et praesentium voluptatibus velit fugit quod iure, error nam in? Iusto dicta saepe laudantium aspernatur ratione quos, quibusdam magni ut expedita culpa. Ratione minima, id corrupti nesciunt assumenda perspiciatis nemo odio nostrum? Rerum molestiae magnam corrupti dignissimos debitis repudiandae, ipsam excepturi? Corporis amet tenetur quaerat totam illum, beatae cupiditate praesentium sunt saepe.
+
+                <div class="col-md-11 mt-3 mb-2" :class="(comment.replies && comment.replies.length >= 1) ? 'mb-5' : ''">
+                  {{ comment.content }} <br>
+
+                  <div class="container px-0 pt-0 mb-2 mt-3"  v-if="commentReplies[index] && commentReplies[index].isActive">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="d-flex">
+                          <textarea rows="3" class="d-inline form-control mb-0 me-3 w-sm-50" style="width: 100%;"></textarea>
+                          <div>
+                            <button type="button" class="d-inline btn btn-primary fs-small fw-bold py-2 px-4">
+                              <small class="text-nowrap">
+                                Post Comment
+                              </small>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- {{ comment.replies }} -->
+
+                  <div class="position-relative">
+                    <div class="position-absolute">
+
+                    </div>
+                  </div>
+                  <div class="container ps-0" v-for="(reply, index) in comment.replies" :key="index" >
+                    <div class="row mt-4 mb-0"  v-if="index !== comment.replies.length - 1">
+                      <div class="col-md-1">
+                        <div class="position-relative">
+                          <div class="position-absolute translate-custom">
+                            <img :src="reply.user.image" class="img-avatar-size" alt="" width="100%">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-11 ps-0 position-relative">
+                        {{ reply.user.name }} <br>
+                        {{ reply.user.username }} 
+                        
+                        <span v-if="index !== comment.replies.length - 1">
+                        <br><br>
+                        @{{ reply.replyingTo }} 
+                        
+                          {{ reply.content }}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              
+              <div class="offset-md-1 ps-1 col-md-10" style="margin-top: -1.5em!important;" v-if="comment.replies && comment.replies.length >= 1">
+                <div class="container ps-0">
+                  <div class="row mt-0">
+                    <div class="col-md-1">
+                      <div class="position-relative">
+                        <div class="position-absolute translate-custom">
+                          <img :src="comment.replies[comment.replies.length-1].user.image" class="img-avatar-size" alt="" width="100%">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-11 ps-0 position-relative">
+                      {{ comment.replies[comment.replies.length-1].user.name }} <br>
+                      {{ comment.replies[comment.replies.length-1].user.username }}
+                       <br><br>
+                      @{{ comment.replies[comment.replies.length-1].replyingTo }} 
+                      @{{ comment.replies[comment.replies.length-1].content }} 
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="row mb-3" v-if="index !== currProduct.comments.length - 1">
+                <div class="col-md-12">
+                  <hr>
                 </div>
               </div>
             </div>
 
           </div>
-
         </div>
+
       </div>
 
       <div class="row mb-5">
@@ -225,6 +237,7 @@ export default {
     return {
       newComment: '',
       productRequests: [],
+      commentReplies: [],
       currentUser: {},
       currProduct: {}
     }
@@ -236,6 +249,10 @@ export default {
       } else {
         return ''
       }
+    },
+    showReply: function (index) {
+      console.log(this.commentReplies)
+      this.commentReplies[index].isActive = !this.commentReplies[index].isActive
     }
   },
   mounted () {
@@ -259,8 +276,15 @@ export default {
         return this.$route.params.id == x.id 
       }) 
 
-      if (!this.currProduct.category) {
-        self.$route.push('/')
+      this.currProduct.comments.forEach(x => {
+        self.commentReplies.push({
+          isActive: false,
+          comment: ''
+        })
+      })
+
+      if (!this.currProduct) {
+        self.$router.push('/')
       }
 
     } catch (error) {
@@ -271,6 +295,10 @@ export default {
 </script>
 
 <style>
+.translate-custom {
+  transform: translate(-50%,0%)!important;
+}
+
 .img-avatar-size {
   width: 40px !important;
   border-radius: 100px;
