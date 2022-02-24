@@ -83,13 +83,22 @@
 
       <div class="row mb-4">
         <div class="col-md-8 offset-md-2 col-sm-12">
+          <!-- <img src="/image-anne.jpg" alt="" width="400px"> asdasd
+          <img src="/_jamesskinner.png" alt="" width="400px"> asdasd
+          <img src="/_elijahmoss.png" alt="" width="100%"> -->
+
+          
           <div class="bg-white px-2 py-4 mb-3 rounded fs-small ">
             <span class="ps-4 fw-bold">{{ currProduct.comments ? currProduct.comments.length : '0'}} Comments</span> <br><br>
 
             <div v-for="(comment, index) in currProduct.comments" :key="index" class="container text-muted">
               <div class="row">
                 <div class="col-md-1">
-                  <img src="/assets/image-anne.jpg" alt="" width="400px">
+                  <img :src="'/image-anne.jpg'" class="img-avatar-size" alt="" width="100%">
+                  <img :src="'/_jamesskinner.png'" alt="" width="400px">
+                  <img src="/image-anne.jpg" alt="" width="100%">
+                  <img src="/_jamesskinner.png" alt="" width="100%">
+                
                 </div>
                 <div class="col-md-10">
                   {{ comment.user.name }} <br>
@@ -259,4 +268,8 @@ export default {
 </script>
 
 <style>
+.img-avatar-size {
+  width: 40px !important;
+  border-radius: 100px;
+}
 </style>
