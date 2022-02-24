@@ -83,7 +83,42 @@
 
       <div class="row mb-4">
         <div class="col-md-8 offset-md-2 col-sm-12">
-          
+          <div class="bg-white px-2 py-4 mb-3 rounded fs-small ">
+            <span class="ps-4 fw-bold">{{ currProduct.comments ? currProduct.comments.length : '0'}} Comments</span> <br><br>
+
+            <div v-for="(comment, index) in currProduct.comments" :key="index" class="container text-muted">
+              <div class="row">
+                <div class="col-md-1">
+                  <img src="/assets/image-anne.jpg" alt="" width="400px">
+                </div>
+                <div class="col-md-10">
+                  {{ comment.user.name }} <br>
+                  @{{ comment.user.username }}
+                </div>
+                <div class="col-md-1">
+                  Reply
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-11 offset-md-1 mt-3">
+                  {{ comment.content }}  
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <hr>
+                </div>
+              </div>
+            </div>
+
+            <div v-for="(comment, index) in currProduct.comments" :key="index">
+              id: {{ comment.id }} <br>
+              content: {{ comment.content }} <br>
+              user: {{ comment.user }} <br>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8 offset-md-2 col-sm-12">
           <div class="bg-white px-2 py-4 rounded fs-small ">
             <span class="ps-4 fw-bold">4 Comments</span> <br><br>
 
