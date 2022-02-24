@@ -443,6 +443,14 @@ ul {
   background-color: #647196!important;
 }
 
+.btn-blue { 
+  background-color: #4661E6!important;
+}
+
+.btn-blue:hover { 
+  background-color: #7C91F9!important;
+}
+
 .bg-dark-blue {
   background-color: #373F68 !important;
 }

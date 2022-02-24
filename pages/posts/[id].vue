@@ -13,7 +13,7 @@
             <!-- </nuxtLink> -->
             <!-- {{ currProduct }} -->
             <NuxtLink :to="'/edit/' + currProduct.id">
-              <button type="button" class="btn btn-primary py-2 px-4 fs-small fw-bold">
+              <button type="button" class="btn btn-primary btn-blue py-2 px-4 fs-small fw-bold">
                 <small>
                   Edit Feedback
                 </small>
@@ -88,7 +88,7 @@
           <img src="/_elijahmoss.png" alt="" width="100%"> -->
 
           
-          <div class="bg-white px-2 py-4 mb-3 rounded fs-small ">
+          <div class="bg-white px-2 py-4 mb-0 rounded fs-small ">
             <span class="ps-4 fw-bold">{{ currProduct.comments ? currProduct.comments.length : '0'}} Comments</span> <br><br>
 
             <div v-for="(comment, index) in currProduct.comments" :key="index" class="container text-muted">
@@ -99,7 +99,8 @@
                 </div>
                 <div class="col-md-10">
                   {{ comment.user.name }} <br>
-                  @{{ comment.user.username }}
+                  @{{ comment.user.username }} <br>
+                  has replies? {{ comment.replies ? 'Yes' : 'No'}}
                 </div>
                 <div class="col-md-1">
                   Reply
@@ -124,7 +125,7 @@
             </div> -->
           </div>
         </div>
-        <div class="col-md-8 offset-md-2 col-sm-12">
+        <div class="d-none col-md-8 offset-md-2 col-sm-12">
           <div class="bg-white px-2 py-4 rounded fs-small ">
             <span class="ps-4 fw-bold">4 Comments</span> <br><br>
 
@@ -251,12 +252,17 @@ export default {
   },
   async created() {
     try {
+      let self = this
       const products = await axios.get(`http://localhost:3004/productRequests`);
 
       this.currProduct = products.data.find(x => {
-        console.log(x.id, this.$route.params.id)
         return this.$route.params.id == x.id 
       }) 
+
+      if (!this.currProduct.category) {
+        self.$route.push('/')
+      }
+
     } catch (error) {
       console.log(error);
     }
