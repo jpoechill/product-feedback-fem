@@ -94,10 +94,7 @@
             <div v-for="(comment, index) in currProduct.comments" :key="index" class="container text-muted">
               <div class="row">
                 <div class="col-md-1">
-                  <img :src="'/assets/image-anne.jpg'" class="img-avatar-size" alt="" width="100%">
-                  <img :src="'/_jamesskinner.png'" class="img-avatar-size" alt="" width="400px">
-                  <img src="/assets/image-anne.jpg" class="img-avatar-size" alt="" width="100%">
-                  <img src="/_jamesskinner.png" class="img-avatar-size" alt="" width="100%">
+                  <img :src="comment.user.image" class="img-avatar-size" alt="" width="100%">
                 
                 </div>
                 <div class="col-md-10">
@@ -113,18 +110,18 @@
                   {{ comment.content }}  
                 </div>
               </div>
-              <div class="row">
+              <div class="row" v-if="index !== currProduct.comments.length - 1">
                 <div class="col-md-12">
                   <hr>
                 </div>
               </div>
             </div>
 
-            <div v-for="(comment, index) in currProduct.comments" :key="index">
+            <!-- <div v-for="(comment, index) in currProduct.comments" :key="index">
               id: {{ comment.id }} <br>
               content: {{ comment.content }} <br>
               user: {{ comment.user }} <br>
-            </div>
+            </div> -->
           </div>
         </div>
         <div class="col-md-8 offset-md-2 col-sm-12">
