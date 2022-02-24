@@ -94,10 +94,10 @@
             <div v-for="(comment, index) in currProduct.comments" :key="index" class="container text-muted">
               <div class="row">
                 <div class="col-md-1">
-                  <img :src="'/image-anne.jpg'" class="img-avatar-size" alt="" width="100%">
-                  <img :src="'/_jamesskinner.png'" alt="" width="400px">
-                  <img src="/image-anne.jpg" alt="" width="100%">
-                  <img src="/_jamesskinner.png" alt="" width="100%">
+                  <img :src="'././assets/image-anne.jpg'" class="img-avatar-size" alt="" width="100%">
+                  <img :src="'/_jamesskinner.png'" class="img-avatar-size" alt="" width="400px">
+                  <img src="././assets/image-anne.jpg" class="img-avatar-size" alt="" width="100%">
+                  <img src="/_jamesskinner.png" class="img-avatar-size" alt="" width="100%">
                 
                 </div>
                 <div class="col-md-10">
