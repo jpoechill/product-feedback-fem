@@ -17,8 +17,9 @@
             Roadmap 
 
             <NuxtLink to="/roadmap">
-              <span class="float-end text-muted">
-              <small>View</small></span>
+              <span class="float-end text-muted text-underline-hover">
+                <small>View</small>
+              </span>
             </NuxtLink>
 
             <ul class="ps-0 fw-light mt-4 fs-6 text-muted fs-small">
@@ -497,5 +498,15 @@ ul {
 .dropdown-item:focus, .dropdown-item:hover {
     color: #AD1FEA!important;
     background-color: transparent !important;
+}
+
+.text-dark-blue {
+  color: #4661E6!important;
+  font-size: .8em;
+  font-weight: bold;
+}
+
+.text-underline-hover:hover {
+  text-decoration: underline;
 }
 </style>
