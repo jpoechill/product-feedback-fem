@@ -96,7 +96,6 @@
                     <div>
                       {{ comment.user.name }} <br>
                       @{{ comment.user.username }} <br>
-                      has replies? {{ comment.replies ? 'Yes' : 'No'}}
                     </div>
                     <div>
                       <span @click="showReply(index)" role="button">Reply</span>
@@ -131,15 +130,14 @@
                     </div>
                   </div>
 
-                  <!-- {{ comment.replies }} -->
+                  <!-- Top level replies -->
 
                   <div class="position-relative">
                     <div class="position-absolute">
-
                     </div>
                   </div>
-                  <div class="container ps-0" v-for="(reply, index) in comment.replies" :key="index" >
-                    <div class="row mt-4 mb-0"  v-if="index !== comment.replies.length - 1">
+                  <div class="container ps-0" v-for="(reply, replyIndex) in comment.replies" :key="replyIndex" >
+                    <div class="row mt-4 mb-0"  v-if="replyIndex !== comment.replies.length - 1">
                       <div class="col-md-1">
                         <div class="position-relative">
                           <div class="position-absolute translate-custom">
@@ -147,15 +145,34 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-md-11 ps-0 position-relative">
-                        {{ reply.user.name }} <br>
-                        {{ reply.user.username }} 
+                      <div class="col-md-11 px-0 position-relative">
+                        <div class="d-flex justify-content-between w-100 mb-3">
+                          <div>
+                            {{ comment.replies[replyIndex].user.name }} <br>
+                            @{{ comment.replies[replyIndex].user.username }} <br> 
+                          </div>
+                          <div class="d-flex justify-content-end">
+                            <span @click="toggleSubReply(index, replyIndex)" type="button">
+                              Reply
+                            </span>
+                          </div>
+                        </div>
                         
-                        <span v-if="index !== comment.replies.length - 1">
-                        <br><br>
-                        @{{ reply.replyingTo }} 
-                        
+                        <span v-if="replyIndex !== comment.replies.length - 1">
+                          @{{ reply.replyingTo }} 
                           {{ reply.content }}
+
+                          <div class="d-flex mt-3" v-if="comment.replies[replyIndex].isActive">
+                            <textarea rows="3" class="d-inline form-control mb-0 me-3 w-sm-50" style="width: 100%;"></textarea>
+                            <div>
+                              <button type="button" class="d-inline btn btn-primary fs-small fw-bold py-2 px-4">
+                                <small class="text-nowrap">
+                                  Post Comment
+                                </small>
+                              </button>
+                            </div>
+                          </div>
+
                         </span>
                       </div>
                     </div>
@@ -164,8 +181,10 @@
                 </div>
               </div>
               
-              <div class="offset-md-1 ps-1 col-md-10" style="margin-top: -1.5em!important;" v-if="comment.replies && comment.replies.length >= 1">
-                <div class="container ps-0">
+              <!-- Last level reply -->
+
+              <div class="offset-md-1 ps-1 col-md-11" style="margin-top: -1.5em!important;" v-if="comment.replies && comment.replies.length >= 1">
+                <div class="container ps-0 mb-3">
                   <div class="row mt-0">
                     <div class="col-md-1">
                       <div class="position-relative">
@@ -174,12 +193,33 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-11 ps-0 position-relative">
-                      {{ comment.replies[comment.replies.length-1].user.name }} <br>
-                      {{ comment.replies[comment.replies.length-1].user.username }}
-                       <br><br>
+                    <div class="col-md-11 px-0 position-relative">
+                      <div class="d-flex justify-content-between w-100 mb-3">
+                        <div>
+                          {{ comment.replies[comment.replies.length-1].user.name }} <br>
+                          @{{ comment.replies[comment.replies.length-1].user.username }}
+                        </div>
+                        <div class="d-flex justify-content-end">
+                          <span @click="toggleSubReply(index, comment.replies.length-1)" type="button">
+                            Reply
+                          </span>
+                        </div>
+                      </div>
+
                       @{{ comment.replies[comment.replies.length-1].replyingTo }} 
-                      @{{ comment.replies[comment.replies.length-1].content }} 
+                      {{ comment.replies[comment.replies.length-1].content }} 
+                      
+                      <div class="d-flex mt-3" v-if="comment.replies[comment.replies.length-1].isActive">
+                        <textarea rows="3" class="d-inline form-control mb-0 me-3 w-sm-50" style="width: 100%;"></textarea>
+                        <div>
+                          <button type="button" class="d-inline btn btn-primary fs-small fw-bold py-2 px-4">
+                            <small class="text-nowrap">
+                              Post Comment
+                            </small>
+                          </button>
+                        </div>
+                      </div>
+
                     </div>
                   </div>
                 </div>
@@ -239,7 +279,9 @@ export default {
       productRequests: [],
       commentReplies: [],
       currentUser: {},
-      currProduct: {}
+      currProduct: {
+        comments: []
+      }
     }
   },
   methods: {
@@ -251,8 +293,10 @@ export default {
       }
     },
     showReply: function (index) {
-      console.log(this.commentReplies)
       this.commentReplies[index].isActive = !this.commentReplies[index].isActive
+    },
+    toggleSubReply: function (commentIndex, replyIndex) {
+      this.currProduct.comments[commentIndex].replies[replyIndex].isActive = !this.currProduct.comments[commentIndex].replies[replyIndex].isActive
     }
   },
   mounted () {
@@ -276,11 +320,23 @@ export default {
         return this.$route.params.id == x.id 
       }) 
 
-      this.currProduct.comments.forEach(x => {
-        self.commentReplies.push({
+      this.currProduct.comments = this.currProduct.comments.map(x => {
+        let item = {
           isActive: false,
-          comment: ''
-        })
+          comment: '',
+        }
+
+        if (x.replies) {
+          console.log(x.replies)
+          x.replies = x.replies.map((y) => {
+            y.isActive = false
+            return y
+          })
+        }
+
+        self.commentReplies.push(item)
+
+        return x
       })
 
       if (!this.currProduct) {
