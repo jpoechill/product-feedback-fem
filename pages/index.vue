@@ -1,5 +1,11 @@
 <template>
   <div>
+    
+    <!-- Basic store -->
+    <!-- <div @click="store.hit()">
+      {{ store.counter }}
+    </div> -->
+    
     <div class="container">
       <div class="row">
         <div class="col-md-3">
@@ -165,10 +171,12 @@
 
 <script>
 import axios from "axios";
+import { useStore } from '~~/stores/store'
 
 export default {
   data() {
     return {
+      store: useStore(),
       productRequestsVisible: [],
       productRequests: [],
       currentUser: {},
