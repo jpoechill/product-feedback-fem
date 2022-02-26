@@ -150,11 +150,13 @@
 
 <script>
 import axios from 'axios'
+import { useStore } from '~~/stores/store'
 
 export default {
   data() {
     return {
       currProduct: {},
+      productRequests: useStore().productRequests,
       statusOptions: [
         {
           name: 'suggestion',
@@ -244,9 +246,10 @@ export default {
   },
   async created() {
     try {
-      const products = await axios.get(`http://localhost:3004/productRequests`);
+      // const products = await axios.get(`http://localhost:3004/productRequests`);
+      const products = this.productRequests
 
-      this.currProduct = products.data.find(x => {
+      this.currProduct = products.find(x => {
         console.log(x.id, this.$route.params.id)
         return this.$route.params.id == x.id 
       }) 

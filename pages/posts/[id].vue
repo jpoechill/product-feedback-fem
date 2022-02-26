@@ -271,6 +271,7 @@
 
 <script>
 import axios from "axios";
+import { useStore } from '~~/stores/store'
 
 export default {
   components: {
@@ -278,7 +279,7 @@ export default {
   data() {
     return {
       newComment: '',
-      productRequests: [],
+      productRequests: useStore().productRequests,
       commentReplies: [],
       currentUser: {},
       currProduct: {
@@ -316,9 +317,9 @@ export default {
   async created() {
     try {
       let self = this
-      const products = await axios.get(`http://localhost:3004/productRequests`);
+      const products = this.productRequests
 
-      this.currProduct = products.data.find(x => {
+      this.currProduct = products.find(x => {
         return this.$route.params.id == x.id 
       }) 
 

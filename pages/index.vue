@@ -176,9 +176,9 @@ import { useStore } from '~~/stores/store'
 export default {
   data() {
     return {
-      store: useStore(),
+      // store: useStore(),
       productRequestsVisible: [],
-      productRequests: [],
+      productRequests: useStore().productRequests,
       currentUser: {},
       sortOptions: [
         {
@@ -340,12 +340,12 @@ export default {
   },
   async created() {
     try {
-      const products = await axios.get(`http://localhost:3004/productRequests`);
-      const userInfo = await axios.get(`http://localhost:3004/currentUser `);
+      // const products = await axios.get(`http://localhost:3004/productRequests`);
+      // const userInfo = await axios.get(`http://localhost:3004/currentUser `);
       
-      this.productRequests = products.data;
+      // this.productRequests = products.data;
       this.productRequestsVisible = this.productRequests.filter(y => y.status === 'suggestion')
-      this.currentUser = userInfo.data;
+      // this.currentUser = userInfo.data;
 
     } catch (error) {
       console.log(error);
