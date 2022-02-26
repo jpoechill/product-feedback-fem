@@ -156,12 +156,13 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
+import { useStore } from '~~/stores/store'
 
 export default {
   data() {
     return {
-      productRequests: [],
+      productRequests: useStore().productRequests,
     };
   },
   methods: {
@@ -189,9 +190,9 @@ export default {
   },
   async created() {
     try {
-      const products = await axios.get(`http://localhost:3004/productRequests`);
+      // const products = await axios.get(`http://localhost:3004/productRequests`);
       
-      this.productRequests = products.data;
+      // this.productRequests = products.data;
 
     } catch (error) {
       console.log(error);
