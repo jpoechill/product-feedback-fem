@@ -30,7 +30,7 @@
               Add a short, descriptive headline
             </span>
             <br>
-            <input type="text" class="form-control my-2 w-100 p-2">
+            <input v-model="feedback.title" type="text" class="form-control my-2 w-100 p-2">
 
             <br>
 
@@ -73,7 +73,7 @@
               Include any specific comments on what should be improved, added, etc.
             </span>
             <br>
-            <textarea class="w-100 mt-2 form-control" />
+            <textarea v-model="feedback.description" class="w-100 mt-2 form-control" />
             <br>
 
             <div class="d-flex justify-content-end mt-2">
@@ -85,13 +85,13 @@
                 </button>
               </NuxtLink>
 
-              <NuxtLink to="/">
-                <button type="button" class="btn btn-primary py-2 px-4">
+              <!-- <NuxtLink to="#"> -->
+                <button @click="addFeeback()" type="button" class="btn btn-primary py-2 px-4">
                   <small>
                     Add Feedback
                   </small>
                 </button>
-              </NuxtLink>
+              <!-- </NuxtLink> -->
             </div>
             
           </div>
@@ -102,9 +102,21 @@
 </template>
 
 <script>
+import { useStore } from '~~/stores/store'
+
 export default {
   data() {
     return {
+      store: useStore(),
+      feedback: {
+        "id": 3,
+        "title": "",
+        "category": "feature",
+        "upvotes": 0,
+        "status": "suggestion",
+        "description": "",
+        "comments": []
+      },
       categoryOptions: [
         {
           name: 'feature',
@@ -135,6 +147,10 @@ export default {
     }
   },
   methods: {
+    addFeeback: function () {
+      this.store.addFeedback(this.feedback); 
+      this.$router.push('/')
+    },
     toggleCategory: function (categoryName) {
       this.categoryOptions = this.categoryOptions.map(x => {
         if (x.name === categoryName) {

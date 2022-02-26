@@ -113,13 +113,13 @@
             <br>
 
             <div class="d-flex justify-content-between mt-2 mb-2">
-              <NuxtLink to="/">
-                <button type="button" class="btn btn-danger py-2 px-4 me-4">
+              <!-- <NuxtLink to="/"> -->
+                <button @click="store.deleteFeedback(currProduct.id); this.$router.push('/')" type="button" class="btn btn-danger py-2 px-4 me-4">
                   <small>
                     Delete
                   </small>
                 </button>
-              </NuxtLink>
+              <!-- </NuxtLink> -->
 
               <div class="d-inline">
                 <NuxtLink :to="'/posts/' + currProduct.id">
@@ -156,6 +156,7 @@ export default {
   data() {
     return {
       currProduct: {},
+      store: useStore(),
       productRequests: useStore().productRequests,
       statusOptions: [
         {

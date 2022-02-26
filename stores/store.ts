@@ -8,7 +8,8 @@ export const useStore = defineStore('storeId', {
       "currentUser": {
         "image": "/user-images/image-zena.jpg",
         "name": "Zena Kelley",
-        "username": "velvetround"
+        "username": "velvetround",
+        upvotes: []
       },
       "productRequests": [
         {
@@ -304,15 +305,29 @@ export const useStore = defineStore('storeId', {
             }
           ]
         }
-      ],
-      name: 'Eduardo',
-      isAdmin: true,
+      ]
     }
   },
   actions:{
-     hit(){
-       this.counter++;
-     }
+    addFeedback(payload){
+      payload.id = this.productRequests[this.productRequests.length-1].id + 1
+      this.productRequests.push(payload)
+    },
+    addComment(commentID, payload){
+      
+    },
+    addReply(commentID, payload){
+       
+    },
+    editFeedback(commentID, payload){
+
+    },
+    deleteFeedback(feedbackID){
+      this.productRequests = this.productRequests.filter(x => x.id !== feedbackID)
+    },
+    upvoteFeedback(commentID, payload){
+      
+    },
   },
 
   getters:{
