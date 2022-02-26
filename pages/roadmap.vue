@@ -29,7 +29,7 @@
       </div>
       <div class="row mt-4 mb-5">
         <div class="col-md-4">
-          <span class="fw-bold">Planned (2)</span> <br>
+          <span class="fw-bold">Planned ({{ filterPlanned.length }})</span> <br>
           <span class="text-muted fs-small d-block mb-4 pb-2">Ideas prioritized for research</span>
 
           <div v-for="(item, index) in filterPlanned" :key="index" class="py-0 rounded bg-dark mb-4 position-relative overflow-hidden">
@@ -70,7 +70,7 @@
 
         </div>
         <div class="col-md-4">
-          <span class="fw-bold">In-Progress (2)</span> <br>
+          <span class="fw-bold">In-Progress ({{ filterInProgress.length }})</span> <br>
           <span class="text-muted fs-small d-block mb-4 pb-2">Currently being developed</span>
 
           <div v-for="(item, index) in filterInProgress" :key="index" class="py-0 rounded bg-dark mb-4 position-relative overflow-hidden">
@@ -111,7 +111,7 @@
         </div>
         
         <div class="col-md-4">
-          <span class="fw-bold">Live (2)</span> <br>
+          <span class="fw-bold">Live ({{ filterLive.length }})</span> <br>
           <span class="text-muted fs-small d-block mb-4 pb-2">Released features</span>
 
           <div v-for="(item, index) in filterLive" :key="index" class="py-0 rounded bg-dark mb-4 position-relative overflow-hidden">
