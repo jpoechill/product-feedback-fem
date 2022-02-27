@@ -118,12 +118,12 @@
                     <div class="row">
                       <div class="col-md-12">
                         <div class="d-flex">
-                          {{ comment }}
-                          <textarea rows="3" class="d-inline form-control mb-0 me-3 w-sm-50" style="width: 100%;"></textarea>
+                          <!-- {{ comment }} -->
+                          <textarea v-model="comment.activeComment" rows="3" class="d-inline form-control mb-0 me-3 w-sm-50" style="width: 100%;"></textarea>
                           <div>
-                            <button @click="addReply(index, comment.user.username)" type="button" class="d-inline btn btn-primary fs-small fw-bold py-2 px-4">
+                            <button @click="addReply(index, comment.activeComment, comment.user.username); commentReplies[index].isActive = !commentReplies[index].isActive; comment.activeComment = ''" type="button" class="d-inline btn btn-primary fs-small fw-bold py-2 px-4">
                               <small class="text-nowrap">
-                                123 Post Reply
+                                Post Reply
                               </small>
                             </button>
                           </div>
@@ -165,11 +165,11 @@
                           {{ reply.content }}
 
                           <div class="d-flex mt-3" v-if="comment.replies[replyIndex].isActive">
-                            <textarea v-model="comment.replies[replyIndex].activeComment" rows="3" class="d-inline form-control mb-0 me-3 w-sm-50" style="width: 100%;"></textarea>
+                            <textarea v-model="comment.replies[replyIndex].activeReply" rows="3" class="d-inline form-control mb-0 me-3 w-sm-50" style="width: 100%;"></textarea>
                             <div>
-                              <button @click="addReply(index, comment.replies[replyIndex].user.username)" type="button" class="d-inline btn btn-primary fs-small fw-bold py-2 px-4">
+                              <button @click="addReply(index, comment.replies[replyIndex].activeReply, comment.replies[replyIndex].user.username, replyIndex); comment.replies[replyIndex].isActive = !comment.replies[replyIndex].isActive; comment.replies[replyIndex].activeReply = ''" type="button" class="d-inline btn btn-primary fs-small fw-bold py-2 px-4">
                                 <small class="text-nowrap">
-                                  456 Post Reply
+                                  Post Reply
                                 </small>
                               </button>
                             </div>
@@ -212,11 +212,11 @@
                         {{ comment.replies[comment.replies.length-1].content }} 
                         
                         <div class="d-flex mt-3" v-if="comment.replies[comment.replies.length-1].isActive">
-                          <textarea v-model="comment.replies[comment.replies.length-1].activeComment" rows="3" class="d-inline form-control mb-0 me-3 w-sm-50" style="width: 100%;"></textarea>
+                          <textarea v-model="comment.replies[comment.replies.length-1].activeReply" rows="3" class="d-inline form-control mb-0 me-3 w-sm-50" style="width: 100%;"></textarea>
                           <div>
-                            <button @click="addReply(index, comment.replies[comment.replies.length-1].user.username)"  type="button" class="d-inline btn btn-primary fs-small fw-bold py-2 px-4">
+                            <button @click="addReply(index, comment.replies[comment.replies.length-1].activeReply, comment.replies[comment.replies.length-1].user.username); comment.replies[comment.replies.length-2].isActive = !comment.replies[comment.replies.length-2].isActive; comment.replies[comment.replies.length-2].activeReply = ''"  type="button" class="d-inline btn btn-primary fs-small fw-bold py-2 px-4">
                               <small class="text-nowrap">
-                                789 Post Reply
+                                Post Reply
                               </small>
                             </button>
                           </div>
@@ -246,7 +246,7 @@
             <span @click="addComment()" class="ps-4 fw-bolder">Add Comment</span> <br><br>
 
             <div class="px-4">
-              <textarea class="form-control" placeholder="Type your comment here" v-model="newComment" maxLength="250"></textarea>
+              <textarea v-model="newComment" class="form-control" placeholder="Type your comment here" maxLength="250"></textarea>
             </div>
 
             <div class="d-flex justify-content-between px-4 mt-4">
@@ -303,14 +303,22 @@ export default {
         user: useStore().currentUser
       }
 
+      this.newComment = ''
+
       useStore().addComment(this.currProduct.id, payload)
+      this.reset()
     },
-    addReply: function (commentIndex, replyTo) {
+    addReply: function (commentIndex, commentContent, replyTo, replyIndex) {
       const payload = {
-        content: this.newComment,
+        content: commentContent,
         replyingTo: replyTo,
         user: useStore().currentUser
       }
+
+      // // if (!replyIndex) {
+      //   this.productRequests[commentIndex].activeReply = ''
+      // }
+      // this.productRequests.comments[commentIndex].replies[replyIndex].activeReply = ''
 
       useStore().addReply(this.currProduct.id, commentIndex, payload)
     },
@@ -319,6 +327,44 @@ export default {
     },
     toggleSubReply: function (commentIndex, replyIndex) {
       this.currProduct.comments[commentIndex].replies[replyIndex].isActive = !this.currProduct.comments[commentIndex].replies[replyIndex].isActive
+    },
+    reset: function () {
+      try {
+        let self = this
+        const products = this.productRequests
+
+
+        let temp = products.find(x => {
+          return this.$route.params.id == x.id 
+        }) 
+
+        if (temp) {
+          this.currProduct = temp
+
+          this.currProduct.comments = this.currProduct.comments.map(x => {
+            let item = {
+              isActive: false,
+              comment: '',
+            }
+
+            if (x.replies) {
+              x.replies = x.replies.map((y) => {
+                y.activeReply = ''
+                y.isActive = false
+                return y
+              })
+            }
+
+            x.activeComment = ''
+
+            self.commentReplies.push(item)
+
+            return x
+          })
+        }
+      } catch (error) {
+        console.log(error);
+      }
     }
   },
   mounted () {
@@ -334,47 +380,7 @@ export default {
     }
   },
   async created() {
-    try {
-      let self = this
-      const products = this.productRequests
-
-      this.currProduct = products.find(x => {
-        return this.$route.params.id == x.id 
-      }) 
-
-      this.currProduct.comments = this.currProduct.comments.map(x => {
-        let item = {
-          isActive: false,
-          comment: '',
-        }
-
-        if (x.replies) {
-          x.replies = x.replies.map((y) => {
-            y.activeComment = 'asdasd'
-            y.isActive = false
-            return y
-          })
-        }
-
-        if (x.comments) {
-          x.comments = x.comments.map((y) => {
-            y.activeComment = 'ooga booga'
-            return y
-          })
-        }
-
-        self.commentReplies.push(item)
-
-        return x
-      })
-
-      if (!this.currProduct) {
-        self.$router.push('/')
-      }
-
-    } catch (error) {
-      console.log(error);
-    }
+    this.reset()
   },
 }
 </script>
