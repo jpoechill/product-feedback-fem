@@ -80,7 +80,6 @@
           </div>
         </div>
       </div>
-
       <div class="row mb-4">
         <div class="col-md-8 offset-md-2 col-sm-12">
           <div class="bg-white px-2 py-4 mb-0 rounded fs-small ">
@@ -119,11 +118,12 @@
                     <div class="row">
                       <div class="col-md-12">
                         <div class="d-flex">
+                          {{ comment }}
                           <textarea rows="3" class="d-inline form-control mb-0 me-3 w-sm-50" style="width: 100%;"></textarea>
                           <div>
-                            <button type="button" class="d-inline btn btn-primary fs-small fw-bold py-2 px-4">
+                            <button @click="addReply(index, comment.user.username)" type="button" class="d-inline btn btn-primary fs-small fw-bold py-2 px-4">
                               <small class="text-nowrap">
-                                Post Comment
+                                123 Post Reply
                               </small>
                             </button>
                           </div>
@@ -165,11 +165,11 @@
                           {{ reply.content }}
 
                           <div class="d-flex mt-3" v-if="comment.replies[replyIndex].isActive">
-                            <textarea rows="3" class="d-inline form-control mb-0 me-3 w-sm-50" style="width: 100%;"></textarea>
+                            <textarea v-model="comment.replies[replyIndex].activeComment" rows="3" class="d-inline form-control mb-0 me-3 w-sm-50" style="width: 100%;"></textarea>
                             <div>
-                              <button type="button" class="d-inline btn btn-primary fs-small fw-bold py-2 px-4">
+                              <button @click="addReply(index, comment.replies[replyIndex].user.username)" type="button" class="d-inline btn btn-primary fs-small fw-bold py-2 px-4">
                                 <small class="text-nowrap">
-                                  Post Comment
+                                  456 Post Reply
                                 </small>
                               </button>
                             </div>
@@ -212,11 +212,11 @@
                         {{ comment.replies[comment.replies.length-1].content }} 
                         
                         <div class="d-flex mt-3" v-if="comment.replies[comment.replies.length-1].isActive">
-                          <textarea rows="3" class="d-inline form-control mb-0 me-3 w-sm-50" style="width: 100%;"></textarea>
+                          <textarea v-model="comment.replies[comment.replies.length-1].activeComment" rows="3" class="d-inline form-control mb-0 me-3 w-sm-50" style="width: 100%;"></textarea>
                           <div>
-                            <button type="button" class="d-inline btn btn-primary fs-small fw-bold py-2 px-4">
+                            <button @click="addReply(index, comment.replies[comment.replies.length-1].user.username)"  type="button" class="d-inline btn btn-primary fs-small fw-bold py-2 px-4">
                               <small class="text-nowrap">
-                                Post Comment
+                                789 Post Reply
                               </small>
                             </button>
                           </div>
@@ -243,7 +243,7 @@
       <div class="row mb-5">
         <div class="col-md-8 offset-md-2 col-sm-12">
           <div class="bg-white px-2 py-4 rounded fs-small ">
-            <span class="ps-4 fw-bolder">Add Comment</span> <br><br>
+            <span @click="addComment()" class="ps-4 fw-bolder">Add Comment</span> <br><br>
 
             <div class="px-4">
               <textarea class="form-control" placeholder="Type your comment here" v-model="newComment" maxLength="250"></textarea>
@@ -252,7 +252,7 @@
             <div class="d-flex justify-content-between px-4 mt-4">
               <div class="d-inline text-muted fs-small">{{ (250 - newComment.length) }} Characters left</div>
               <div class="d-inline">
-                <button type="button" class="btn btn-primary fs-small fw-bold py-2 px-4">
+                <button @click="addComment()" type="button" class="btn btn-primary fs-small fw-bold py-2 px-4">
                   <small>
                     Post Comment
                   </small>
@@ -270,7 +270,7 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 import { useStore } from '~~/stores/store'
 
 export default {
@@ -283,7 +283,8 @@ export default {
       commentReplies: [],
       currentUser: {},
       currProduct: {
-        comments: []
+        comments: [],
+        id: 0
       }
     }
   },
@@ -294,6 +295,24 @@ export default {
       } else {
         return ''
       }
+    },
+    addComment: function () {
+      const payload = {
+        id: this.currProduct.comments[this.currProduct.comments.length-1].id + 1,
+        content: this.newComment,
+        user: useStore().currentUser
+      }
+
+      useStore().addComment(this.currProduct.id, payload)
+    },
+    addReply: function (commentIndex, replyTo) {
+      const payload = {
+        content: this.newComment,
+        replyingTo: replyTo,
+        user: useStore().currentUser
+      }
+
+      useStore().addReply(this.currProduct.id, commentIndex, payload)
     },
     showReply: function (index) {
       this.commentReplies[index].isActive = !this.commentReplies[index].isActive
@@ -330,9 +349,16 @@ export default {
         }
 
         if (x.replies) {
-          console.log(x.replies)
           x.replies = x.replies.map((y) => {
+            y.activeComment = 'asdasd'
             y.isActive = false
+            return y
+          })
+        }
+
+        if (x.comments) {
+          x.comments = x.comments.map((y) => {
+            y.activeComment = 'ooga booga'
             return y
           })
         }

@@ -313,11 +313,15 @@ export const useStore = defineStore('storeId', {
       payload.id = this.productRequests[this.productRequests.length-1].id + 1
       this.productRequests.push(payload)
     },
-    addComment(commentID, payload){
-      
+    addComment(feedbackID, payload){
+      this.productRequests.find(x => x.id === feedbackID).comments.push(payload)
     },
-    addReply(commentID, payload){
-       
+    addReply(feedbackID, commentIndex, payload){
+      if (!this.productRequests.find(x => x.id === feedbackID).comments[commentIndex].replies) {
+        this.productRequests.find(x => x.id === feedbackID).comments[commentIndex].replies = [payload]
+      } else {
+        this.productRequests.find(x => x.id === feedbackID).comments[commentIndex].replies.push(payload)
+      }
     },
     editFeedback(commentID, payload){
 
