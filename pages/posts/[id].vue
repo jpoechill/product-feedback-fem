@@ -315,18 +315,47 @@ export default {
         user: useStore().currentUser
       }
 
-      // // if (!replyIndex) {
-      //   this.productRequests[commentIndex].activeReply = ''
-      // }
-      // this.productRequests.comments[commentIndex].replies[replyIndex].activeReply = ''
-
       useStore().addReply(this.currProduct.id, commentIndex, payload)
+    },
+    toggleAllReplies: function(commentIndex, replyIndex) {
+      // console.log(this.commentReplies)
+      let self = this
+      
+      if (!replyIndex) {
+        this.commentReplies.forEach((x, index) => {
+          if (commentIndex !== index) {
+            x.isActive = false
+          }
+
+          self.currProduct.comments.forEach((y) => {
+            if (y.replies) {
+              y.replies.forEach(z => {
+                z.isActive = false
+              })
+            }
+          })
+        })
+      } else {
+        this.commentReplies.forEach((x, index) => {
+          x.isActive = false
+
+          self.currProduct.comments[commentIndex].replies.forEach((y, z) => {
+            console.log(replyIndex)
+            if (z !== replyIndex - 1) {
+              y.isActive = false
+            }
+          })
+        })
+      }
     },
     showReply: function (index) {
       this.commentReplies[index].isActive = !this.commentReplies[index].isActive
+      this.toggleAllReplies(index)
     },
     toggleSubReply: function (commentIndex, replyIndex) {
+      console.log('toggle')
       this.currProduct.comments[commentIndex].replies[replyIndex].isActive = !this.currProduct.comments[commentIndex].replies[replyIndex].isActive
+      this.toggleAllReplies(commentIndex, replyIndex + 1)
     },
     reset: function () {
       try {
