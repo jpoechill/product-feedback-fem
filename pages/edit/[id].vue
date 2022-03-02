@@ -247,6 +247,7 @@ export default {
         }).name
 
         this.store.editFeedback(this.currProduct.id, this.currProduct)
+        this.$router.push('/')
       }
     },
     toggleStatus: function (statusName) {
@@ -294,7 +295,25 @@ export default {
         return this.$route.params.id == x.id 
       }) }
 
-      console.log(this.currProduct)
+      this.statusOptions = this.statusOptions.map(x => {
+        if (x.name === this.currProduct.status) {
+          x.isActive = true
+          return x
+        } else {
+          x.isActive = false
+          return x
+        }
+      })
+
+      this.categoryOptions = this.categoryOptions.map(x => {
+        if (x.name === this.currProduct.category) {
+          x.isActive = true
+          return x
+        } else {
+          x.isActive = false
+          return x
+        }
+      })
 
       this.currProductTitle = this.currProduct.title.slice()
     } catch (error) {
