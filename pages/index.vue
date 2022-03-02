@@ -15,13 +15,14 @@
             <!-- {{ fruits }} -->
           </div>
           <div class="bg-white px-3 py-3 mt-3 rounded d-none d-md-block">
-            <span v-for="(category, index) in categoryFilterOptions" :key="index" @click="toggleCategory(category.name)" :class="category.isActive ? 'bg-primary' : 'bg-light text-dark fw-bold'" role='button' class="badge px-3 py-2 me-2 fs-smaller">
+            <span v-for="(category, index) in categoryFilterOptions" :key="index" @click="toggleCategory(category.name)" :class="category.isActive ? 'bg-primary' : 'bg-light text-dark fw-semibold'" role='button' class="badge px-3 py-2 me-2 fs-smaller">
               {{ category.title }}
             </span>
           </div>
           <div class="bg-white p-4 my-3 rounded d-none d-md-block">
-            Roadmap 
-
+            <span style="font-weight: 600; font-size: 18px; color: #3A4374;">
+              Roadmap 
+            </span>
             <NuxtLink to="/roadmap">
               <span class="float-end text-muted text-underline-hover">
                 <small>View</small>
@@ -31,19 +32,19 @@
             <ul class="ps-0 fw-light mt-4 fs-6 text-muted fs-small">
               <li class="my-1">
                 <img src="/oval-maroon.svg" class="me-2"> Planned
-                <span class="float-end fw-bold">
+                <span class="float-end">
                   {{ filterPlanned.length }}
                 </span>
               </li>
               <li class="my-1">
                 <img src="/oval-purple.svg" class="me-2"> In-Progress
-                <span class="float-end fw-bold">
+                <span class="float-end">
                   {{ filterInProgress.length }}
                 </span>
               </li>
               <li class="my-1">
                 <img src="/oval-sky.svg" class="me-2"> Live
-                <span class="float-end fw-bold">
+                <span class="float-end">
                   {{ filterLive.length }}
                 </span>
               </li>
@@ -53,7 +54,7 @@
 
         <div class="col-md-9 mb-5">
           <div class="text-white rounded px-4 py-4 bg-white bg-dark-blue">
-            <div class="d-md-inline-block pe-4 d-none">
+            <div class="d-md-inline-block pe-4 d-none" style="font-size: 18px;">
               <img src="/light-bulb.svg" class="me-4 mb-2">
               <strong>{{ filterSuggestions.length }} Suggestions</strong> 
             </div>
@@ -62,7 +63,7 @@
               <small>
                 Sort by: 
                 <div class="dropdown d-inline">
-                  <button class="btn btn-dropdown dropdown-toggle ps-4" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <button class="btn btn-dropdown dropdown-toggle ps-4" style="background-color: transparent!important; color: #FFF!important; font-weight: 600!important;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <small><span>{{ sortOptions.find(x => x.isActive ).title }}</span></small> 
                   </button>
                   <div class="dropdown-menu text-muted" aria-labelledby="dropdownMenuButton">
@@ -80,9 +81,9 @@
             <div class="float-end content-padding">
               <NuxtLink to="/feedback-new">
                 <button type="button" class="btn btn-primary py-2 px-4">
-                  <small>
+                  <span class="fw-semibold" style="font-size: 14px;">
                     + Add Feedback
-                  </small>
+                  </span>
                 </button>
               </NuxtLink>
             </div>
@@ -94,15 +95,17 @@
           <div v-else-if="productRequestsVisible.length === 0" class="rounded p-5 mt-3 bg-white text-center text-muted fw-light">
             <img src="/inspector-gadget.svg" alt="inspector-img" class="py-5">
               <p>
-                <span class="fw-bold">There is no feedback yet. </span>
+                <span class="fw-bold text-blue" style="font-size: 24px;">There is no feedback yet. </span>
                 <br><br>
-                <small>
                   Got a suggestion? Found a bug that needs to be squashed? <br>
                   We love hearing about new ideas to improve our app.
-                </small>
             </p>
             <NuxtLink to="/feedback-new">
-              <button type="button" class="mt-5 mb-5 btn btn-primary py-2 px-4"><small>+ Add Feedback</small></button>
+              <button type="button" class="mt-5 mb-5 btn btn-primary py-2 px-4">
+                <span class="fw-semibold" style="font-size: 14px;">
+                  + Add Feedback
+                </span>
+              </button>
             </NuxtLink>
           </div>
 
@@ -115,16 +118,16 @@
                       <path d="M1 6l4-4 4 4" stroke="#4661E6" stroke-width="2" fill="none" fill-rule="evenodd"/>
                     </svg>
                     <br>
-                    <span class="text-dark fw-bolder">{{ product.upvotes }}</span>
+                    <span class="text-blue fw-bold">{{ product.upvotes }}</span>
                   </span>
                 </div>
                 <div class="col-md-10">
                   <NuxtLink :to="'/posts/' + product.id" class="text-dark text-decoration-none">
-                    <span class="fw-bold text-blue">{{ product.title }}</span>
+                    <span class="fw-bold text-blue" style="font-size: 18px;">{{ product.title }}</span>
                   </NuxtLink>
                   <br>
                   <div class="text-muted py-1 fs-small">{{ product.description }}</div>
-                  <span id="badge-no-click" class="badge bg-light badge-no-click text-dark px-3 py-0 mx-0 mt-2 fw-bold fs-smaller">
+                  <span id="badge-no-click" class="badge bg-light badge-no-click text-dark px-3 py-0 mx-0 mt-2" style="font-weight: 500; font-size: 13px;">
                     {{ capitalize(product.category) }}
                   </span>
                 </div>
@@ -358,6 +361,8 @@ export default {
 <style>
 body, html {
   font-family: 'Jost', sans-serif;
+  font-size: 16px;
+  letter-spacing: .1px;;
 }
 
 .text-blue {
@@ -410,6 +415,7 @@ body, html {
 h4 {
   font-size: 20px;
   font-weight: 400;
+  letter-spacing: -0.25px!important;
 }
 
 .rounded {
@@ -465,14 +471,32 @@ ul {
   background-color: #373F68 !important;
 }
 
-
+.fw-reg {
+  font-weight: 400!important;
+}
 
 .fs-smaller {
-  font-size: 12px !important;
+  font-size: 13px !important;
 }
 
 .fs-small {
-  font-size: 15px !important;
+  font-size: 16px !important;
+}
+
+.fw-semibold {
+  font-weight: 600!important;
+}
+
+.fw-bold {
+  font-weight: 600!important;
+}
+
+.font-light-blue {
+  color: #4661E6!important;
+}
+
+.font-purple {
+  color: #AD1FEA;
 }
 
 /* custom dropdown */
@@ -493,7 +517,7 @@ ul {
   padding-right: 0px;
   margin-left: 14px;
   border: none;
-  border-radius: 10px;
+  border-radius: 6px;
   box-shadow: 0px 5px 30px 10px rgba(0,0,0,0.1);
 }
 
@@ -517,5 +541,36 @@ ul {
 
 .text-underline-hover:hover {
   text-decoration: underline;
+}
+
+.text-custom {
+  font-family: 'Jost', sans-serif!important;
+  font-size: 15px!important;
+}
+
+input[type=text] {
+  border-radius: 6px!important;
+  background-color: #F7F8FD!important;
+  border: none;
+  padding: 10px 16px !important;
+  font-family: 'Jost', sans-serif!important;
+  font-size: 15px!important;
+  color: #3A4374!important;
+}
+
+textarea, .dropdown button {
+  border-radius: 6px!important;
+  background-color: #F7F8FD!important;
+  border: none!important;
+  padding: 10px 16px !important;
+  font-family: 'Jost', sans-serif!important;
+  font-size: 15px!important;
+  color: #3A4374!important;
+}
+
+input[type=text]:focus, textarea:focus, .dropdown button:focus {
+  border: 1px solid #4761E6 !important;
+  background-color: #F7F8FD;
+  box-shadow: none!important;
 }
 </style>

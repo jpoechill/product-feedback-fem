@@ -26,12 +26,14 @@
                 Feedback Title
               </small>
             </span>  <br>
-            <span class="text-muted fs-smaller">
+            <span class="text-muted" style="font-size: 14px;">
               Add a short, descriptive headline
             </span>
             <br>
-            <input v-model="feedback.title" type="text" class="form-control my-2 w-100 p-2">
-
+            <input v-model="feedback.title" type="text" class="form-control my-2 w-100 p-2" :class="[hasErrorTitle ? 'has-error' : '']">
+            <span v-if="hasErrorTitle" class="d-block mt-1" style="font-size: 14px; color: red; font-weight: 300">
+              Can't be empty.
+            </span>
             <br>
 
             <span class="text-blue fw-bold">
@@ -39,13 +41,11 @@
                 Category
               </small>
             </span>  <br>
-            <span class="text-muted fs-smaller">
+            <span class="text-muted" style="font-size: 14px;">
               Choose a category for your feedback
             </span>
             <br>
 
-
-            
             <div class="mb-4">
               <small>
                 <div class="dropdown my-2">
@@ -69,11 +69,14 @@
                 Feedback Detail
               </small>
             </div>
-            <span class="text-muted fs-smaller">
+            <span class="text-muted" style="font-size: 14px;">
               Include any specific comments on what should be improved, added, etc.
             </span>
             <br>
-            <textarea v-model="feedback.description" class="w-100 mt-2 form-control" />
+            <textarea v-model="feedback.description" class="w-100 mt-2 form-control" :class="[hasErrorFeedback ? 'has-error' : '']" />
+            <span v-if="hasErrorFeedback" class="d-block mt-2" style="font-size: 14px; color: red; font-weight: 300">
+              Can't be empty.
+            </span>
             <br>
 
             <div class="d-flex justify-content-end mt-2">
@@ -86,7 +89,7 @@
               </NuxtLink>
 
               <!-- <NuxtLink to="#"> -->
-                <button @click="addFeeback()" type="button" class="btn btn-primary py-2 px-4">
+                <button @click="validate()" type="button" class="btn btn-primary py-2 px-4">
                   <small>
                     Add Feedback
                   </small>
@@ -108,8 +111,10 @@ export default {
   data() {
     return {
       store: useStore(),
+      hasErrorTitle: false,
+      hasErrorFeedback: false,
       feedback: {
-        "id": 3,
+        "id": '',
         "title": "",
         "category": "feature",
         "upvotes": 0,
@@ -147,9 +152,27 @@ export default {
     }
   },
   methods: {
-    addFeeback: function () {
+    addFeedback: function () {
       this.store.addFeedback(this.feedback); 
       this.$router.push('/')
+    },
+    validate: function () {
+      if (this.feedback.title === '') {
+        this.hasErrorTitle = true
+      } else {
+        this.hasErrorTitle = false
+      }
+
+      if (this.feedback.description === '') {
+        this.hasErrorFeedback = true
+      } else {
+        this.hasErrorFeedback = false
+      }
+
+      if (!this.hasErrorTitle && !this.hasErrorFeedback) {
+        this.addFeedback()
+      }
+
     },
     toggleCategory: function (categoryName) {
       this.categoryOptions = this.categoryOptions.map(x => {
@@ -167,4 +190,7 @@ export default {
 </script>
 
 <style>
+.has-error {
+  border: 1px solid red!important;; 
+}
 </style>

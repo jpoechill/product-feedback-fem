@@ -30,15 +30,17 @@
                       <path d="M1 6l4-4 4 4" stroke="#4661E6" stroke-width="2" fill="none" fill-rule="evenodd"/>
                     </svg>
                     <br>
-                    <span class="text-dark fw-bolder" role="button">
+                    <span class="text-dark fw-bold" role="button">
                       {{ currProduct.upvotes }}
                     </span>
                   </span>
                 </div>
 
                 <div class="col-md-9">
-                  <span class="fw-bold fs-6 d-block mb-2">{{ currProduct.title }}</span>
-                  <span class="text-muted fs-small">
+                  <span class="fw-bold text-blue fs-6 d-block mb-1" style="font-size: 18px!important;">
+                    {{ currProduct.title }}
+                  </span>
+                  <span class="text-muted" style="font-size: 16px;">
                     {{ currProduct.description }}
                   </span>
                   <br>
@@ -93,11 +95,16 @@
                 <div class="col-md-11">
                   <div class="d-flex justify-content-between">
                     <div>
-                      {{ comment.user.name }} <br>
-                      @{{ comment.user.username }} <br>
+                      <span class="fw-bold text-blue" style="font-size: 14px;">
+                        {{ comment.user.name }}
+                      </span>
+                      <br>
+                      <span style="font-size: 14px;">
+                        @{{ comment.user.username }} 
+                      </span><br>
                     </div>
                     <div>
-                      <span @click="showReply(index)" role="button" class="text-underline-hover text-dark-blue">
+                      <span @click="showReply(index)" role="button" class="text-underline-hover font-light-blue fw-semibold" style="font-size: 13px;">
                         Reply
                       </span>
                     </div>
@@ -154,14 +161,14 @@
                             @{{ comment.replies[replyIndex].user.username }} <br> 
                           </div>
                           <div class="d-flex justify-content-end">
-                            <span @click="toggleSubReply(index, replyIndex)" class="text-underline-hover text-dark-blue" type="button">
+                            <span @click="toggleSubReply(index, replyIndex)" class="text-underline-hover text-dark-blue fw-semibold" type="button">
                               Reply
                             </span>
                           </div>
                         </div>
                         
                         <span v-if="replyIndex !== comment.replies.length - 1">
-                          @{{ reply.replyingTo }} 
+                          <span class="font-purple fw-bold"> @{{ reply.replyingTo }} </span>
                           {{ reply.content }}
 
                           <div class="d-flex mt-3" v-if="comment.replies[replyIndex].isActive">
@@ -202,13 +209,12 @@
                             @{{ comment.replies[comment.replies.length-1].user.username }}
                           </div>
                           <div class="d-flex justify-content-end">
-                            <span @click="toggleSubReply(index, comment.replies.length-1)" class="text-underline-hover text-dark-blue" type="button">
+                            <span @click="toggleSubReply(index, comment.replies.length-1)" class="text-underline-hover font-light-blue fw-semibold" style="font-size: 13px;" type="button">
                               Reply
                             </span>
                           </div>
                         </div>
-
-                        @{{ comment.replies[comment.replies.length-1].replyingTo }} 
+                        <span class="font-purple fw-bold"> @{{ comment.replies[comment.replies.length-1].replyingTo }}  </span>
                         {{ comment.replies[comment.replies.length-1].content }} 
                         
                         <div class="d-flex mt-3" v-if="comment.replies[comment.replies.length-1].isActive">
@@ -243,14 +249,14 @@
       <div class="row mb-5">
         <div class="col-md-8 offset-md-2 col-sm-12">
           <div class="bg-white px-2 py-4 rounded fs-small ">
-            <span @click="addComment()" class="ps-4 fw-bolder">Add Comment</span> <br><br>
+            <span @click="addComment()" class="ps-4 fw-bold text-blue">Add Comment</span> <br><br>
 
             <div class="px-4">
               <textarea v-model="newComment" class="form-control" placeholder="Type your comment here" maxLength="250"></textarea>
             </div>
 
             <div class="d-flex justify-content-between px-4 mt-4">
-              <div class="d-inline text-muted fs-small">{{ (250 - newComment.length) }} Characters left</div>
+              <div class="d-inline text-muted fs-small">{{ (250 - newComment.length) }} characters left</div>
               <div class="d-inline">
                 <button @click="addComment()" type="button" class="btn btn-primary fs-small fw-bold py-2 px-4">
                   <small>

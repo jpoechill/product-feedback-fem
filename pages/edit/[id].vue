@@ -16,17 +16,17 @@
             </div>
 
             <h4 class="mt-4 pt-2 mb-3 text-blue fw-bolder">
-              <span style="font-weight: 600!important;">Editing '{{ currProduct.title }}'</span>
+              <span style="font-weight: 600!important;">Editing '{{ currProductTitle }}'</span>
             </h4>
 
             <br>
 
-            <span class="fw-bold">
+            <span class="fw-bold text-blue">
               <small>
                 Feedback Title
               </small>
             </span>  <br>
-            <span class="text-muted fs-smaller">
+            <span class="text-muted" style="font-size: 14px;">
               Add a short, descriptive headline
             </span>
             <br>
@@ -34,12 +34,12 @@
 
             <br>
 
-            <span class="fw-bold">
+            <span class="fw-bold text-blue">
               <small>
                 Category
               </small>
             </span>  <br>
-            <span class="text-muted fs-smaller">
+            <span class="text-muted" style="font-size: 14px;">
               Choose a category for your feedback
             </span>
             
@@ -47,7 +47,11 @@
               <small>
                 <div class="dropdown my-2">
                   <button class="d-flex py-2 justify-content-between border align-items-center btn btn-dropdown text-left dropdown-toggle ps-4 text-dark w-100 border-box" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <small><span>{{ categoryOptions.find(x => x.isActive).title }}</span></small> 
+                    <!-- <small> -->
+                      <span>
+                        {{ categoryOptions.find(x => x.isActive).title }}
+                      </span>
+                    <!-- </small>  -->
                   </button>
                   <div class="dropdown-menu text-muted w-100 my-2" aria-labelledby="dropdownMenuButton">
                     <div v-for="(option, index) in categoryOptions" @click="toggleCategory(option.name)" class="d-flex justify-content-between dropdown-item text-muted" :class="index !== (categoryOptions.length - 1) ? 'border-bottom' : ''" :key="index" role="button">
@@ -63,10 +67,8 @@
 
             <br>
 
-            <span class="fw-bold">
-              <small>
-                Update Status
-              </small>
+            <span class="fw-bold text-blue" style="font-size: 14px;">
+              Update Status
             </span>  
 
             <!-- <span class="d-block mt-2 mb-2">
@@ -84,11 +86,15 @@
               <small>
                 <div class="dropdown my-2">
                   <button class="d-flex py-2 justify-content-between border align-items-center btn btn-dropdown text-left dropdown-toggle ps-4 text-dark w-100 border-box" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <small><span>{{ statusOptions.find(x => x.isActive).title }}</span></small> 
+                    <!-- <small> -->
+                      <span>
+                        {{ statusOptions.find(x => x.isActive).title }}
+                      </span>
+                    <!-- </small>  -->
                   </button>
                   <div class="dropdown-menu text-muted my-2 w-100" aria-labelledby="dropdownMenuButton">
                     <div v-for="(option, index) in statusOptions" @click="toggleStatus(option.name)" class="d-flex justify-content-between dropdown-item text-muted" :class="index !== (statusOptions.length - 1) ? 'border-bottom' : ''" :key="index" role="button">
-                      <span>{{ option.title }} </span>
+                      <span class="text-custom">{{ option.title }} </span>
                       <div class="d-inline">
                         <img v-if="option.isActive" src="/checkmark-purple.svg" alt="">
                       </div>
@@ -100,12 +106,12 @@
 
             <br>
 
-            <span class="fw-bold">
+            <span class="fw-bold text-blue">
               <small>
                 Feedback Detail
               </small>
             </span>  <br>
-            <span class="text-muted fs-smaller">
+            <span class="text-muted" style="font-size: 14px;">
               Include any specific comments on what should be improved, added, etc.
             </span>
             <br>
@@ -130,13 +136,13 @@
                   </button>
                 </NuxtLink>
 
-                <NuxtLink to="/">
+                <!-- <NuxtLink to="/"> -->
                   <button type="button" class="btn btn-primary py-2 px-4">
                     <small>
                       Save Changes
                     </small>
                   </button>
-                </NuxtLink>
+                <!-- </NuxtLink> -->
               </div>
               
             </div>
@@ -155,6 +161,7 @@ import { useStore } from '~~/stores/store'
 export default {
   data() {
     return {
+      currProductTitle: '',
       currProduct: {},
       store: useStore(),
       productRequests: useStore().productRequests,
@@ -249,11 +256,13 @@ export default {
     try {
       // const products = await axios.get(`http://localhost:3004/productRequests`);
       const products = this.productRequests
+      let self = this
 
-      this.currProduct = products.find(x => {
-        console.log(x.id, this.$route.params.id)
+      this.currProduct = {...products.find(x => {
         return this.$route.params.id == x.id 
-      }) 
+      }) }
+
+      this.currProductTitle = this.currProduct.title.slice()
     } catch (error) {
       console.log(error);
     }
