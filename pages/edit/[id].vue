@@ -30,8 +30,10 @@
               Add a short, descriptive headline
             </span>
             <br>
-            <input type="text" class="form-control my-2 w-100 p-2" v-model="currProduct.title">
-
+            <input type="text" class="form-control my-2 w-100 p-2" v-model="currProduct.title" :class="[hasErrorTitle ? 'has-error' : '']">
+            <span v-if="hasErrorTitle" class="d-block mt-1" style="font-size: 14px; color: red; font-weight: 300">
+              Can't be empty.
+            </span>
             <br>
 
             <span class="fw-bold text-blue">
@@ -115,7 +117,10 @@
               Include any specific comments on what should be improved, added, etc.
             </span>
             <br>
-            <textarea v-model="currProduct.description" maxlength="250" class="w-100 mt-2 mb-1 form-control" />
+            <textarea v-model="currProduct.description" maxlength="250" class="w-100 mt-2 mb-1 form-control" :class="[hasErrorFeedback ? 'has-error' : '']" />
+            <span v-if="hasErrorFeedback" class="d-block mt-1" style="font-size: 14px; color: red; font-weight: 300">
+              Can't be empty.
+            </span>
             <br>
 
             <div class="d-flex justify-content-between mt-2 mb-2">
@@ -137,7 +142,7 @@
                 </NuxtLink>
 
                 <!-- <NuxtLink to="/"> -->
-                  <button type="button" class="btn btn-primary py-2 px-4">
+                  <button @click="validate()" type="button" class="btn btn-primary py-2 px-4">
                     <small>
                       Save Changes
                     </small>
@@ -161,6 +166,8 @@ import { useStore } from '~~/stores/store'
 export default {
   data() {
     return {
+      hasErrorTitle: false,
+      hasErrorFeedback: false,
       currProductTitle: '',
       currProduct: {},
       store: useStore(),
@@ -217,6 +224,31 @@ export default {
     }
   },
   methods: {
+    validate: function () {
+      if (this.currProduct.title === '') {
+        this.hasErrorTitle = true
+      } else {
+        this.hasErrorTitle = false
+      }
+
+      if (this.currProduct.description === '') {
+        this.hasErrorFeedback = true
+      } else {
+        this.hasErrorFeedback = false
+      }
+
+      if (!this.hasErrorTitle && !this.hasErrorFeedback) {
+        this.currProduct.category = this.categoryOptions.find(x => {
+          return x.isActive === true
+        }).name
+        
+        this.currProduct.status = this.statusOptions.find(x => {
+          return x.isActive === true
+        }).name
+
+        this.store.editFeedback(this.currProduct.id, this.currProduct)
+      }
+    },
     toggleStatus: function (statusName) {
       this.statusOptions = this.statusOptions.map(x => {
         if (x.name === statusName) {
@@ -261,6 +293,8 @@ export default {
       this.currProduct = {...products.find(x => {
         return this.$route.params.id == x.id 
       }) }
+
+      console.log(this.currProduct)
 
       this.currProductTitle = this.currProduct.title.slice()
     } catch (error) {

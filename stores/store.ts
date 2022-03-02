@@ -324,7 +324,13 @@ export const useStore = defineStore('storeId', {
       }
     },
     editFeedback(commentID, payload){
-
+      this.productRequests = this.productRequests.map(x => {
+        if (x.id === commentID) {
+          return payload
+        } else {
+          return x
+        }
+      })
     },
     deleteFeedback(feedbackID){
       this.productRequests = this.productRequests.filter(x => x.id !== feedbackID)

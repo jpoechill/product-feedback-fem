@@ -126,7 +126,7 @@
                     <span class="fw-bold text-blue" style="font-size: 18px;">{{ product.title }}</span>
                   </NuxtLink>
                   <br>
-                  <div class="text-muted py-1 fs-small">{{ product.description }}</div>
+                  <div class="py-1 fs-small" style="font-weight: 300; color=#647196;">{{ product.description }}</div>
                   <span id="badge-no-click" class="badge bg-light badge-no-click text-dark px-3 py-0 mx-0 mt-2" style="font-weight: 500; font-size: 13px;">
                     {{ capitalize(product.category) }}
                   </span>
