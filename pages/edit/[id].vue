@@ -2,7 +2,7 @@
   <div>
     <div class="container">
       <div class="row mb-5">
-        <div class="col-md-6 offset-md-3 col-sm-12">
+        <div class="col-lg-6 offset-lg-3 col-md-12">
           <div class="py-4">
             <nuxtLink to="/" class="text-decoration-none">
               <img src="/shared/icon-arrow-left.svg" class="me-3" alt="left arrow">

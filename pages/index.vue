@@ -5,54 +5,81 @@
     <!-- <div @click="store.hit()">
       {{ store.counter }}
     </div> -->
+
+    <!-- <div class="container">
+
+      <div class="row">
+        <div class="col-md-12 d-none d-md-block bg-dark text-white">
+          Container
+        </div>
+      </div>
+
+    </div> -->
+
     
     <div class="container">
       <div class="row">
-        <div class="col-md-3">
-          <div class="text-white radial-gradient rounded pt-5 pb-3 px-3 mb-3">
-            <h4 class="m-0 fw-bold">Frontend Mentor</h4> 
-            <small> <span class=" fw-light">Feedback Board</span></small> 
-            <!-- {{ fruits }} -->
-          </div>
-          <div class="bg-white px-3 py-3 mt-3 rounded d-none d-md-block">
-            <span v-for="(category, index) in categoryFilterOptions" :key="index" @click="toggleCategory(category.name)" :class="category.isActive ? 'bg-primary' : 'bg-light text-dark fw-semibold'" role='button' class="badge px-3 py-2 me-2 fs-smaller">
-              {{ category.title }}
-            </span>
-          </div>
-          <div class="bg-white p-4 my-3 rounded d-none d-md-block">
-            <span style="font-weight: 600; font-size: 18px; color: #3A4374;">
-              Roadmap 
-            </span>
-            <NuxtLink to="/roadmap">
-              <span class="float-end text-muted text-underline-hover">
-                <small>View</small>
-              </span>
-            </NuxtLink>
+        <div class="col-lg-3 col-md-12 p-0 m-0">
+          
+          <div class="container p-0 m-0">
+            <div class="row p-0 m-0">
 
-            <ul class="ps-0 fw-light mt-4 fs-6 text-muted fs-small">
-              <li class="my-1">
-                <img src="/oval-maroon.svg" class="me-2"> Planned
-                <span class="float-end">
-                  {{ filterPlanned.length }}
-                </span>
-              </li>
-              <li class="my-1">
-                <img src="/oval-purple.svg" class="me-2"> In-Progress
-                <span class="float-end">
-                  {{ filterInProgress.length }}
-                </span>
-              </li>
-              <li class="my-1">
-                <img src="/oval-sky.svg" class="me-2"> Live
-                <span class="float-end">
-                  {{ filterLive.length }}
-                </span>
-              </li>
-            </ul>
+              <div class="col-md-4 col-lg-12 mt-md-0 mb-lg-3 d-none d-md-block">
+                <div class="text-white radial-gradient pb-md-1 rounded pt-5 pb-3 h-100 px-3 mb-3">
+                  <h4 class="m-0 fw-bold">Frontend Mentor</h4> 
+                  <small> <span class=" fw-light">Feedback Board</span></small> 
+                </div>
+              </div>
+
+              <div class="col-md-4 col-lg-12">
+                <div class="bg-white px-3 pb-md-1 py-3 mt-md-0 mt-3 rounded d-none d-md-block h-100">
+                  <span v-for="(category, index) in categoryFilterOptions" :key="index" @click="toggleCategory(category.name)" :class="category.isActive ? 'bg-primary' : 'bg-light text-dark fw-semibold'" role='button' class="badge px-3 py-2 me-2 fs-smaller">
+                    {{ category.title }}
+                  </span>
+                </div>
+              </div>
+
+              <div class="col-md-4 col-lg-12 mt-lg-3">
+                <div class="bg-white p-4 my-3 mt-md-0 pb-md-1 rounded d-none d-md-block h-100">
+                  <span style="font-weight: 600; font-size: 18px; color: #3A4374;">
+                    Roadmap 
+                  </span>
+                  <NuxtLink to="/roadmap">
+                    <span class="float-end text-muted text-underline-hover">
+                      <small>View</small>
+                    </span>
+                  </NuxtLink>
+
+                  <ul class="ps-0 fw-light mt-4 fs-6 text-muted fs-small">
+                    <li class="my-1">
+                      <img src="/oval-maroon.svg" class="me-2"> Planned
+                      <span class="float-end">
+                        {{ filterPlanned.length }}
+                      </span>
+                    </li>
+                    <li class="my-1">
+                      <img src="/oval-purple.svg" class="me-2"> In-Progress
+                      <span class="float-end">
+                        {{ filterInProgress.length }}
+                      </span>
+                    </li>
+                    <li class="my-1">
+                      <img src="/oval-sky.svg" class="me-2"> Live
+                      <span class="float-end">
+                        {{ filterLive.length }}
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
+          
+          
+          
         </div>
 
-        <div class="col-md-9 mb-5">
+        <div class="col-lg-9 col-md-12 mb-5 mt-lg-0 mt-md-4">
           <div class="text-white rounded px-4 py-4 bg-white bg-dark-blue">
             <div class="d-md-inline-block pe-4 d-none" style="font-size: 18px;">
               <img src="/light-bulb.svg" class="me-4 mb-2">
@@ -121,7 +148,7 @@
                     <span class="text-blue fw-bold">{{ product.upvotes }}</span>
                   </span>
                 </div>
-                <div class="col-md-10">
+                <div class="col-md-10 ps-md-4">
                   <NuxtLink :to="'/posts/' + product.id" class="text-dark text-decoration-none">
                     <span class="fw-bold text-blue" style="font-size: 18px;">{{ product.title }}</span>
                   </NuxtLink>

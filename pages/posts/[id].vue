@@ -2,7 +2,7 @@
   <div>
     <div class="container">
       <div class="row mb-4">
-        <div class="col-md-8 offset-md-2 col-sm-12">
+        <div class="col-lg-8 offset-lg-2 col-md-12">
           <div class="py-4 d-flex justify-content-between">
             <!-- <nuxtLink to="/" class="text-decoration-none"> -->
             <div>
@@ -83,29 +83,30 @@
         </div>
       </div>
       <div class="row mb-4">
-        <div class="col-md-8 offset-md-2 col-sm-12">
+        <div class="col-lg-8 offset-lg-2 col-md-12">
           <div class="bg-white px-2 py-4 mb-0 rounded fs-small ">
             <span class="ps-4 fw-bold">{{ currProduct.comments ? currProduct.comments.length : '0'}} Comments</span> <br><br>
 
             <div v-for="(comment, index) in currProduct.comments" :key="index" class="container text-muted">
               <div class="row">
-                <div class="col-md-1">
-                  <img :src="comment.user.image" class="img-avatar-size" alt="" width="100%">
-                </div>
-                <div class="col-md-11">
-                  <div class="d-flex justify-content-between">
-                    <div>
-                      <span class="fw-bold text-blue" style="font-size: 14px;">
-                        {{ comment.user.name }}
-                      </span>
-                      <br>
+                <div class="col-md-12">
+                  <div class="d-flex justify-content-between align-items-top">
+                    <div class="d-flex align-items-top">
+                      <div class="d-inline-block">
+                        <img :src="comment.user.image" class="img-avatar-size mt-1 d-inline-block" alt="" width="100%">
+                      </div> 
+                      <div class="d-inline-block ps-3">
+                        <span class="fw-bold text-blue" style="font-size: 14px;">
+                        {{ comment.user.name }} 111
+                      </span><br>
                       <span style="font-size: 14px;">
                         @{{ comment.user.username }} 
                       </span><br>
+                      </div>
                     </div>
                     <div>
                       <span @click="showReply(index)" role="button" class="text-underline-hover font-light-blue fw-semibold" style="font-size: 13px;">
-                        Reply
+                        Reply {{ index }}
                       </span>
                     </div>
                   </div>
@@ -113,7 +114,6 @@
               </div>
 
               <div class="row">
-
                 <div class="col-md-1 pt-3 text-center">
                   <div class="mx-auto" style="background-color: lightgrey; width: 1px; height: 100%;" v-if="comment.replies && comment.replies.length >= 1"></div>
                 </div>
@@ -139,33 +139,34 @@
                     </div>
                   </div>
 
+              <div class="pb-xs-5 pb-md-0" :class="comment.replies && comment.replies.length >= 1 ? 'border-responsive' : ''">
                   <!-- Top level replies -->
 
-                  <div class="position-relative">
-                    <div class="position-absolute">
-                    </div>
-                  </div>
-                  <div class="container ps-0" v-for="(reply, replyIndex) in comment.replies" :key="replyIndex" >
+                  <div class="container ps-5 ps-md-0" v-for="(reply, replyIndex) in comment.replies" :key="replyIndex" >
                     <div class="row mt-4 mb-0"  v-if="replyIndex !== comment.replies.length - 1">
-                      <div class="col-md-1">
-                        <div class="position-relative">
-                          <div class="position-absolute translate-custom">
-                            <img :src="reply.user.image" class="img-avatar-size" alt="" width="100%">
+                      <div class="col-md-12 px-0">
+                        
+                        <div class="d-flex justify-content-between align-items-top mb-3">
+                          <div class="d-flex align-items-top">
+                            <div class="d-inline-block">
+                              <img :src="comment.replies[replyIndex].user.image" class="img-avatar-size mt-1 d-inline-block" alt="" width="100%">
+                            </div> 
+                            <div class="d-inline-block ps-3">
+                              <span class="fw-bold text-blue" style="font-size: 14px;">
+                              {{ comment.replies[replyIndex].user.name }} 111
+                            </span><br>
+                            <span style="font-size: 14px;">
+                              @{{ comment.replies[replyIndex].user.username }}
+                            </span><br>
+                            </div>
                           </div>
-                        </div>
-                      </div>
-                      <div class="col-md-11 px-0 position-relative">
-                        <div class="d-flex justify-content-between w-100 mb-3">
                           <div>
-                            {{ comment.replies[replyIndex].user.name }} <br>
-                            @{{ comment.replies[replyIndex].user.username }} <br> 
-                          </div>
-                          <div class="d-flex justify-content-end">
-                            <span @click="toggleSubReply(index, replyIndex)" class="text-underline-hover text-dark-blue fw-semibold" type="button">
+                            <span @click="toggleSubReply(index, replyIndex)" role="button" class="text-underline-hover font-light-blue fw-semibold" style="font-size: 13px;">
                               Reply
                             </span>
                           </div>
                         </div>
+
                         
                         <span v-if="replyIndex !== comment.replies.length - 1">
                           <span class="font-purple fw-bold"> @{{ reply.replyingTo }} </span>
@@ -189,31 +190,38 @@
 
                 </div>
               </div>
+              </div>
               
               <!-- Last level reply -->
               <div class="row">
-                <div class="offset-md-1 col-md-11" style="margin-top: -1.5em!important;" v-if="comment.replies && comment.replies.length >= 1">
-                  <div class="container ps-0 pe-custom mb-3">
+                <div class="offset-md-1 col-md-11" style="margin-top: -1.5em!important;" v-if="comment.replies && comment.replies.length >= 1" >
+                  <div class="container ps-5 ps-md-0 pe-custom mb-3"  :class="comment.replies && comment.replies.length == 1 ? 'border-responsive' : ''">
                     <div class="row mt-0">
-                      <div class="col-md-1">
-                        <div class="position-relative">
-                          <div class="position-absolute translate-custom">
-                            <img :src="comment.replies[comment.replies.length-1].user.image" class="img-avatar-size" alt="" width="100%">
+                      <div class="col-md-12 px-0">
+                        
+                        <div class="d-flex justify-content-between align-items-top">
+                          <div class="d-flex align-items-top">
+                            <div class="d-inline-block">
+                              <img :src="comment.replies[comment.replies.length-1].user.image" class="img-avatar-size mt-1 d-inline-block" alt="" width="100%">
+                            </div> 
+                            <div class="d-inline-block ps-3">
+                              <span class="fw-bold text-blue" style="font-size: 14px;">
+                              {{ comment.replies[comment.replies.length-1].user.name }} 111
+                            </span><br>
+                            <span style="font-size: 14px;">
+                              @{{ comment.replies[comment.replies.length-1].user.username }}
+                            </span><br>
+                            </div>
                           </div>
-                        </div>
-                      </div>
-                      <div class="col-md-11 px-0 pe-0 position-relative">
-                        <div class="d-flex justify-content-between w-100 mb-3">
                           <div>
-                            {{ comment.replies[comment.replies.length-1].user.name }} <br>
-                            @{{ comment.replies[comment.replies.length-1].user.username }}
-                          </div>
-                          <div class="d-flex justify-content-end">
-                            <span @click="toggleSubReply(index, comment.replies.length-1)" class="text-underline-hover font-light-blue fw-semibold" style="font-size: 13px;" type="button">
+                            <span @click="toggleSubReply(index, comment.replies.length-1)" role="button" class="text-underline-hover font-light-blue fw-semibold" style="font-size: 13px;">
                               Reply
                             </span>
                           </div>
                         </div>
+
+                      </div>
+                      <div class="col-md-11 pt-3 px-0 pe-0 position-relative">
                         <span class="font-purple fw-bold"> @{{ comment.replies[comment.replies.length-1].replyingTo }}  </span>
                         {{ comment.replies[comment.replies.length-1].content }} 
                         
@@ -309,7 +317,10 @@ export default {
         user: useStore().currentUser
       }
 
-      this.newComment = ''
+      console.log(payload)
+      console.log(this.currProduct.id, payload)
+
+      // this.newComment = ''
 
       useStore().addComment(this.currProduct.id, payload)
       this.reset()
@@ -359,7 +370,6 @@ export default {
       this.toggleAllReplies(index)
     },
     toggleSubReply: function (commentIndex, replyIndex) {
-      console.log('toggle')
       this.currProduct.comments[commentIndex].replies[replyIndex].isActive = !this.currProduct.comments[commentIndex].replies[replyIndex].isActive
       this.toggleAllReplies(commentIndex, replyIndex + 1)
     },
@@ -432,5 +442,11 @@ export default {
 
 .pe-custom {
   padding-right: 0.7rem!important;
+}
+
+@media only screen and (max-width: 767px) {
+  .border-responsive {
+    border-left: 1px solid lightgrey;
+  }
 }
 </style>

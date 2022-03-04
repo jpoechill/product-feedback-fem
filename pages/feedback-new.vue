@@ -2,7 +2,7 @@
   <div>
     <div class="container">
       <div class="row mb-5">
-        <div class="col-md-6 offset-md-3 offset-sm-none">
+        <div class="col-lg-6 offset-lg-3 offset-md-none col-md-12">
           <div class="pb-4 mb-4">
             <nuxtLink to="/" class="text-decoration-none">
               <img src="/shared/icon-arrow-left.svg" class="me-3" alt="left arrow">
@@ -172,7 +172,6 @@ export default {
       if (!this.hasErrorTitle && !this.hasErrorFeedback) {
         this.addFeedback()
       }
-
     },
     toggleCategory: function (categoryName) {
       this.categoryOptions = this.categoryOptions.map(x => {
