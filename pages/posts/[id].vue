@@ -194,7 +194,7 @@
               
               <!-- Last level reply -->
               <div class="row">
-                <div class="offset-md-1 col-md-11" style="margin-top: -1.5em!important;" v-if="comment.replies && comment.replies.length >= 1" >
+                <div class="offset-md-1 col-md-11 margin-custom"  v-if="comment.replies && comment.replies.length >= 1" >
                   <div class="container ps-5 ps-md-0 pe-custom mb-3"  :class="comment.replies && comment.replies.length == 1 ? 'border-responsive' : ''">
                     <div class="row mt-0">
                       <div class="col-md-12 px-0">
@@ -444,9 +444,21 @@ export default {
   padding-right: 0.7rem!important;
 }
 
+.margin-custom {
+  margin-top: -1.5em!important;
+}
+
 @media only screen and (max-width: 767px) {
   .border-responsive {
     border-left: 1px solid lightgrey;
+    padding-bottom: 3rem!important;
+  }
+}
+
+
+@media only screen and (max-width: 767px) {
+  .margin-custom {
+    margin-top: -4.5em!important;
   }
 }
 </style>
