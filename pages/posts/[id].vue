@@ -139,7 +139,7 @@
                     </div>
                   </div>
 
-              <div class="pb-xs-5 pb-md-0" :class="comment.replies && comment.replies.length >= 1 ? 'border-responsive' : ''">
+              <div class="pb-xs-5 pb-md-0" :class="[comment.replies && comment.replies.length > 1 ? 'border-responsive-padding' : '', comment.replies && comment.replies.length == 1 ? 'mt-5 mt-md-0' : '']">
                   <!-- Top level replies -->
 
                   <div class="container ps-5 ps-md-0" v-for="(reply, replyIndex) in comment.replies" :key="replyIndex" >
@@ -195,10 +195,11 @@
               <!-- Last level reply -->
               <div class="row">
                 <div class="offset-md-1 col-md-11 margin-custom"  v-if="comment.replies && comment.replies.length >= 1" >
-                  <div class="container ps-5 ps-md-0 pe-custom mb-3"  :class="comment.replies && comment.replies.length == 1 ? 'border-responsive' : ''">
+                  <div class="container ps-5 ps-md-0 pe-custom mb-3"  :class="comment.replies && comment.replies.length == 1 ? 'border-responsive-margin' : ''">
                     <div class="row mt-0">
                       <div class="col-md-12 px-0">
-                        
+                        <!-- oooga {{ comment.replies.length }} {{ comment.replies && comment.replies.length == 1 }} -->
+                        <!-- {{comment.replies.length}} -->
                         <div class="d-flex justify-content-between align-items-top">
                           <div class="d-flex align-items-top">
                             <div class="d-inline-block">
@@ -311,16 +312,25 @@ export default {
       }
     },
     addComment: function () {
+      console.log('add comment')
+
+      let commentID = this.currProduct.comments.length ? this.currProduct.comments[this.currProduct.comments.length-1].id + 1 : 1
+      // console.log(this.currProduct.comments[this.currProduct.comments.length-1].id + 1)
+      console.log(commentID)
+
+      console.log('before')
+
       const payload = {
-        id: this.currProduct.comments[this.currProduct.comments.length-1].id + 1,
+        id: commentID,
         content: this.newComment,
         user: useStore().currentUser
       }
 
+      console.log('middle')
       console.log(payload)
       console.log(this.currProduct.id, payload)
 
-      // this.newComment = ''
+      this.newComment = ''
 
       useStore().addComment(this.currProduct.id, payload)
       this.reset()
@@ -449,12 +459,18 @@ export default {
 }
 
 @media only screen and (max-width: 767px) {
-  .border-responsive {
+  .border-responsive-padding {
     border-left: 1px solid lightgrey;
     padding-bottom: 3rem!important;
   }
 }
 
+@media only screen and (max-width: 767px) {
+  .border-responsive-margin {
+    border-left: 1px solid lightgrey;
+    margin-bottom: 3rem!important;
+  }
+}
 
 @media only screen and (max-width: 767px) {
   .margin-custom {
