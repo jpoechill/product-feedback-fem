@@ -83,7 +83,7 @@
     </div>
     
 
-    <div class="bg-dark-blue d-md-none">
+    <div class="bg-dark-blue d-md-none mt-5">
       <div class="container">
         <div class="row px-2">
           <div class="col-md-12 text-white pt-5 mt-1 pb-3">
@@ -372,12 +372,12 @@ export default {
   },
   methods: {
     snap: function () {
-      var offcanvasElementList = [].slice.call(document.querySelectorAll('.offcanvas'))
-      var offcanvasList = offcanvasElementList.map(function (offcanvasEl) {
-        return new bootstrap.Offcanvas(offcanvasEl)
-      })
+      // var offcanvasElementList = [].slice.call(document.querySelectorAll('.offcanvas'))
+      // var offcanvasList = offcanvasElementList.map(function (offcanvasEl) {
+      //   return new bootstrap.Offcanvas(offcanvasEl)
+      // })
 
-      console.log(offcanvasElementList)
+      // console.log(offcanvasElementList)
     },
     sortBy: function (direction) {
       this.productRequestsVisible = this.productRequestsVisible.sort((a, b) => {

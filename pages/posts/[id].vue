@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container">
+    <div class="container mt-5">
       <div class="row mb-4">
         <div class="col-lg-8 offset-lg-2 col-md-12">
           <div class="py-4 d-flex justify-content-between">

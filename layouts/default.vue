@@ -2,8 +2,8 @@
   <div class="">
 
     <!-- <div class="p-3 d-md-none"></div> -->
-    <div class="mt-5">
-      <slot class="mt-5" />
+    <div>
+      <slot />
     </div>
   </div>
 </template>
