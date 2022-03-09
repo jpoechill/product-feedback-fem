@@ -12,7 +12,7 @@
                     <span class="fw-bold">
                     Feedback Mentor 
                     </span><br>
-                    Feedbackbord
+                    Feedbackboard
                   </div>
                   <div class="pe-2">
                     <a class="d-block" data-bs-toggle="offcanvas" @click="snap()" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
