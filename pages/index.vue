@@ -15,7 +15,7 @@
                     Feedbackbord
                   </div>
                   <div class="pe-2">
-                    <a class="d-block" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                    <a class="d-block" data-bs-toggle="offcanvas" @click="snap()" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
                       <img :src="isToggled ? '/shared/mobile/icon-close.svg' : '/shared/mobile/icon-hamburger.svg'" alt="" @click="isToggled = !isToggled">
                     </a>
                   </div>
@@ -36,7 +36,7 @@
 
               <div class="col-md-4 col-lg-12">
                 <div class="bg-white px-3 pb-md-1 py-3 mt-md-0 mt-1 rounded h-100">
-                  <span v-for="(category, index) in categoryFilterOptions" :key="index" @click="toggleCategory(category.name)" :class="category.isActive ? 'bg-primary' : 'bg-light text-dark fw-semibold'" role='button' class="badge px-3 py-2 me-2 fs-smaller">
+                  <span v-for="(category, index) in categoryFilterOptions" :key="index" data-bs-dismiss="offcanvas" @click="toggleCategory(category.name); isToggled = !isToggled;" :class="category.isActive ? 'bg-primary' : 'bg-light text-dark fw-semibold'" role='button' class="badge px-3 py-2 me-2 fs-smaller">
                     {{ category.title }}
                   </span>
                 </div>
@@ -83,7 +83,7 @@
     </div>
     
 
-    <div class="bg-dark-blue">
+    <div class="bg-dark-blue d-md-none">
       <div class="container">
         <div class="row px-2">
           <div class="col-md-12 text-white pt-5 mt-1 pb-3">
@@ -371,6 +371,14 @@ export default {
     };
   },
   methods: {
+    snap: function () {
+      var offcanvasElementList = [].slice.call(document.querySelectorAll('.offcanvas'))
+      var offcanvasList = offcanvasElementList.map(function (offcanvasEl) {
+        return new bootstrap.Offcanvas(offcanvasEl)
+      })
+
+      console.log(offcanvasElementList)
+    },
     sortBy: function (direction) {
       this.productRequestsVisible = this.productRequestsVisible.sort((a, b) => {
         if (!a.comments) {
