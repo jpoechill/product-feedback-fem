@@ -107,7 +107,7 @@
                     </div>
                     <div>
                       <span @click="showReply(index)" role="button" class="text-underline-hover font-light-blue fw-semibold" style="font-size: 13px;">
-                        Reply {{ index }}
+                        Reply
                       </span>
                     </div>
                   </div>
