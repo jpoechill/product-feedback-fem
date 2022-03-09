@@ -1,22 +1,125 @@
 <template>
   <div>
-    
-    <!-- Basic store -->
-    <!-- <div @click="store.hit()">
-      {{ store.counter }}
-    </div> -->
 
-    <!-- <div class="container">
-
-      <div class="row">
-        <div class="col-md-12 d-none d-md-block bg-dark text-white">
-          Container
+    <div class="d-md-none">
+      <div class="text-white fixed-top sticky" style="z-index: 9999;">
+        <div style="background: url(/suggestions/mobile/background-header.png); background-size: cover;">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="py-3 ps-2">
+                    <span class="fw-bold">
+                    Feedback Mentor 
+                    </span><br>
+                    Feedbackbord
+                  </div>
+                  <div class="pe-2">
+                    <a class="d-block" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                      <img :src="isToggled ? '/shared/mobile/icon-close.svg' : '/shared/mobile/icon-hamburger.svg'" alt="" @click="isToggled = !isToggled">
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
+        
       </div>
 
-    </div> -->
+      <div class="offcanvas offcanvas-end" style="background-color: #F4F5FA;" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-body mt-5 pt-5">
+          
+          <div class="container p-0 m-0">
+            <div class="row p-0 m-0">
 
+              <div class="col-md-4 col-lg-12">
+                <div class="bg-white px-3 pb-md-1 py-3 mt-md-0 mt-1 rounded h-100">
+                  <span v-for="(category, index) in categoryFilterOptions" :key="index" @click="toggleCategory(category.name)" :class="category.isActive ? 'bg-primary' : 'bg-light text-dark fw-semibold'" role='button' class="badge px-3 py-2 me-2 fs-smaller">
+                    {{ category.title }}
+                  </span>
+                </div>
+              </div>
+
+              <div class="col-md-4 col-lg-12 mt-lg-3">
+                <div class="bg-white pt-4 pb-0 px-4 mt-4 mt-md-0 pb-md-1 rounded h-100">
+                  <span style="font-weight: 600; font-size: 18px; color: #3A4374;">
+                    Roadmap 
+                  </span>
+                  <NuxtLink to="/roadmap">
+                    <span class="float-end text-muted text-underline-hover">
+                      <small>View</small>
+                    </span>
+                  </NuxtLink>
+
+                  <ul class="ps-0 fw-light mt-4 fs-6 text-muted fs-small mb-0">
+                    <li class="my-1">
+                      <img src="/oval-maroon.svg" class="me-2"> Planned
+                      <span class="float-end">
+                        {{ filterPlanned.length }}
+                      </span>
+                    </li>
+                    <li class="my-1">
+                      <img src="/oval-purple.svg" class="me-2"> In-Progress
+                      <span class="float-end">
+                        {{ filterInProgress.length }}
+                      </span>
+                    </li>
+                    <li class="my-1">
+                      <img src="/oval-sky.svg" class="me-2"> Live
+                      <span class="float-end">
+                        {{ filterLive.length }}
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
     
+
+    <div class="bg-dark-blue">
+      <div class="container">
+        <div class="row px-2">
+          <div class="col-md-12 text-white pt-5 mt-1 pb-3">
+            <span>
+              <small>
+                Sort by: 
+                <div class="dropdown d-inline">
+                  <button class="btn btn-dropdown dropdown-toggle ps-4" style="background-color: transparent!important; color: #FFF!important; font-weight: 600!important;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <small><span>{{ sortOptions.find(x => x.isActive ).title }}</span></small> 
+                  </button>
+                  <div class="dropdown-menu text-muted" aria-labelledby="dropdownMenuButton">
+                    <div v-for="(option, index) in sortOptions" @click="toggleSort(option.name)" class="d-flex justify-content-between dropdown-item text-muted" :class="index !== (sortOptions.length - 1) ? 'border-bottom' : ''" :key="index" role="button">
+                      <span>{{ option.title }} </span>
+                      <div class="d-inline">
+                        <img v-if="option.isActive" src="/checkmark-purple.svg" alt="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </small>
+            </span>
+
+            <div class="float-end content-padding">
+              <NuxtLink to="/feedback-new">
+                <button type="button" class="btn btn-primary py-2 px-4">
+                  <span class="fw-semibold" style="font-size: 14px;">
+                    + Add Feedback
+                  </span>
+                </button>
+              </NuxtLink>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="container">
       <div class="row">
         <div class="col-lg-3 col-md-12 p-0 m-0">
@@ -80,7 +183,7 @@
         </div>
 
         <div class="col-lg-9 col-md-12 mb-5 mt-lg-0 mt-md-4">
-          <div class="text-white rounded px-4 py-4 bg-white bg-dark-blue">
+          <div class="text-white rounded px-4 py-4 bg-white bg-dark-blue d-none d-md-block">
             <div class="d-md-inline-block pe-4 d-none" style="font-size: 18px;">
               <img src="/light-bulb.svg" class="me-4 mb-2">
               <strong>{{ filterSuggestions.length }} Suggestions</strong> 
@@ -207,7 +310,7 @@ import { useStore } from '~~/stores/store'
 export default {
   data() {
     return {
-      // store: useStore(),
+      isToggled: false,
       productRequestsVisible: [],
       productRequests: useStore().productRequests,
       currentUser: {},
