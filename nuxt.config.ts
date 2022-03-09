@@ -15,4 +15,8 @@ export default defineNuxtConfig({
     buildModules: [
         '@pinia/nuxt',
     ],
+    "env": {
+        "browser": true,
+        "node": true
+    }
 })

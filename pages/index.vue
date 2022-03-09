@@ -1,6 +1,8 @@
 <template>
   <div>
 
+    <!-- Mobile Nav -->
+
     <div class="d-md-none">
       <div class="text-white fixed-top sticky" style="z-index: 9999;">
         <div style="background: url(/suggestions/mobile/background-header.png); background-size: cover;">
@@ -23,9 +25,7 @@
               </div>
             </div>
           </div>
-        </div>
-
-        
+        </div>        
       </div>
 
       <div class="offcanvas offcanvas-end" style="background-color: #F4F5FA;" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
@@ -47,8 +47,8 @@
                   <span style="font-weight: 600; font-size: 18px; color: #3A4374;">
                     Roadmap 
                   </span>
-                  <NuxtLink to="/roadmap">
-                    <span class="float-end text-muted text-underline-hover">
+                  <NuxtLink to="/roadmap" >
+                    <span  data-bs-toggle="offcanvas"  class="float-end text-muted text-underline-hover">
                       <small>View</small>
                     </span>
                   </NuxtLink>
@@ -77,11 +77,11 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
     
+    <!-- Mobile Subnav -->
 
     <div class="bg-dark-blue d-md-none mt-5">
       <div class="container">
@@ -120,14 +120,16 @@
       </div>
     </div>
 
+    <!-- Tablet/Desktop Nav -->
+
     <div class="container">
-      <div class="row">
+      <div class="row mt-md-5">
         <div class="col-lg-3 col-md-12 p-0 m-0">
           
           <div class="container p-0 m-0">
             <div class="row p-0 m-0">
 
-              <div class="col-md-4 col-lg-12 mt-md-0 mb-lg-3 d-none d-md-block">
+              <div class="col-md-4 mt-5 col-lg-12 mt-md-0 mb-lg-3 d-none d-md-block">
                 <div class="text-white radial-gradient pb-md-1 rounded pt-5 pb-3 h-100 px-3 mb-3">
                   <h4 class="m-0 fw-bold">Frontend Mentor</h4> 
                   <small> <span class=" fw-light">Feedback Board</span></small> 
@@ -176,11 +178,10 @@
                 </div>
               </div>
             </div>
-          </div>
-          
-          
-          
+          </div>          
         </div>
+
+        <!-- Tablet/Desktop Subnav -->
 
         <div class="col-lg-9 col-md-12 mb-5 mt-lg-0 mt-md-4">
           <div class="text-white rounded px-4 py-4 bg-white bg-dark-blue d-none d-md-block">
@@ -477,7 +478,6 @@ export default {
     // ...mapState("movies", ["movieList"]),
   },
   mounted () {
-    console.log('ooga booga')
     window.scrollTo(0, 0)
   },
   async created() {
