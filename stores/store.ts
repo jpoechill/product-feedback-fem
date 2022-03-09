@@ -18,6 +18,7 @@ export const useStore = defineStore('storeId', {
           "category": "enhancement",
           "upvotes": 112,
           "status": "suggestion",
+          upvoters: ['velvetround'],
           "description": "Easier to search for solutions based on a specific stack.",
           "comments": [
             {
@@ -46,6 +47,7 @@ export const useStore = defineStore('storeId', {
           "category": "feature",
           "upvotes": 99,
           "status": "suggestion",
+          upvoters: [],
           "description": "It would help people with light sensitivities and who prefer dark mode.",
           "comments": [
             {
@@ -94,6 +96,7 @@ export const useStore = defineStore('storeId', {
           "category": "feature",
           "upvotes": 65,
           "status": "suggestion",
+          upvoters: [],
           "description": "Challenge-specific Q&A would make for easy reference.",
           "comments": [
             {
@@ -113,6 +116,7 @@ export const useStore = defineStore('storeId', {
           "category": "enhancement",
           "upvotes": 51,
           "status": "suggestion",
+          upvoters: [],
           "description": "Images and screencasts can enhance comments on solutions.",
           "comments": [
             { 
@@ -141,6 +145,7 @@ export const useStore = defineStore('storeId', {
           "category": "feature",
           "upvotes": 42,
           "status": "suggestion",
+          upvoters: [],
           "description": "Stay updated on comments and solutions other people post.",
           "comments": [
             {
@@ -180,6 +185,7 @@ export const useStore = defineStore('storeId', {
           "category": "bug",
           "upvotes": 3,
           "status": "suggestion",
+          upvoters: [],
           "description": "Challenge preview images are missing when you apply a filter."
         },
         {
@@ -216,6 +222,7 @@ export const useStore = defineStore('storeId', {
           "category": "feature",
           "upvotes": 28,
           "status": "planned",
+          upvoters: [],
           "description": "Sequenced projects for different goals to help people improve.",
           "comments": [
             {
@@ -254,6 +261,7 @@ export const useStore = defineStore('storeId', {
           "category": "feature",
           "upvotes": 31,
           "status": "in-progress",
+          upvoters: [],
           "description": "Be able to bookmark challenges to take later on.",
           "comments": [
             {
@@ -273,6 +281,7 @@ export const useStore = defineStore('storeId', {
           "category": "bug",
           "upvotes": 9,
           "status": "in-progress",
+          upvoters: [],
           "description": "Screenshots of solutions with animations don’t display correctly."
         },
         {
@@ -281,6 +290,7 @@ export const useStore = defineStore('storeId', {
           "category": "enhancement",
           "upvotes": 71,
           "status": "live",
+          upvoters: [],
           "description": "Small animations at specific points can add delight.",
           "comments": [
             {
@@ -331,6 +341,19 @@ export const useStore = defineStore('storeId', {
           return x
         }
       })
+    },
+    toggleUpvote: function (commentID, upvoter) {
+      console.log(commentID,upvoter)
+
+      let curr = this.productRequests.find(x => x.id === commentID)
+
+      if (curr.upvoters.includes(upvoter)) {
+        curr.upvotes--
+        curr.upvoters = curr.upvoters.filter(x => x !== upvoter)
+      } else {
+        curr.upvoters.push(upvoter)
+        curr.upvotes++
+      }
     },
     deleteFeedback(feedbackID){
       this.productRequests = this.productRequests.filter(x => x.id !== feedbackID)

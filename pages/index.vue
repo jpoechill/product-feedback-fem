@@ -244,12 +244,12 @@
             <div class="container">
               <div class="row pt-4 pb-3">
                 <div class="col-md-1 d-none d-md-block col-md-1">
-                  <span class="badge bg-light text-dark px-3 py-0 mx-0 mt-0 fw-bold fs-smaller" role="button">
+                  <span @click="toggleUpvote(product.id)" class="badge bg-light text-dark px-3 py-0 mx-0 mt-0 fw-bold fs-smaller" :class="product.upvoters.includes(currentUser.username) ? 'bg-blue text-white' : ''" role="button">
                     <svg width="10" height="7" class="mb-2" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M1 6l4-4 4 4" stroke="#4661E6" stroke-width="2" fill="none" fill-rule="evenodd"/>
+                      <path d="M1 6l4-4 4 4" :stroke="product.upvoters.includes(currentUser.username) ? '#FFFFFF' : '#4661E6'" stroke-width="2" fill="none" fill-rule="evenodd"/>
                     </svg>
                     <br>
-                    <span class="text-blue fw-bold">{{ product.upvotes }}</span>
+                    <span class="fw-bold" :class="product.upvoters.includes(currentUser.username) ? 'text-white' : 'text-blue'">{{ product.upvotes }}</span>
                   </span>
                 </div>
                 <div class="col-md-10 ps-md-4">
@@ -266,9 +266,12 @@
                   <div class="fw-bold h-100 d-flex justify-content-center align-items-center">
                     <div class="d-flex justify-content-between w-100 mt-2">
                       <div>
-                        <span class="badge bg-light text-dark px-3 py-0 mx-0 mt-0 fw-bold fs-smaller" role="button">
-                          <img src="/shared/icon-arrow-up.svg" alt="arrow-up" class="me-2">
-                          <span class="text-dark fw-bolder">{{ product.upvotes }}</span>
+                        <span @click="toggleUpvote(product.id)" class="badge bg-light text-dark px-3 py-0 mx-0 mt-0 fw-bold fs-smaller" :class="product.upvoters.includes(currentUser.username) ? 'bg-blue text-white' : ''" role="button">
+                          <svg width="10" height="7" class="me-2" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 6l4-4 4 4" :stroke="product.upvoters.includes(currentUser.username) ? '#FFFFFF' : '#4661E6'" stroke-width="2" fill="none" fill-rule="evenodd"/>
+                          </svg>
+                          <!-- <img src="/shared/icon-arrow-up.svg" alt="arrow-up" class="me-2"> -->
+                          <span class="fw-bold" :class="product.upvoters.includes(currentUser.username) ? 'text-white' : 'text-blue'">{{ product.upvotes }}</span>
                         </span>
                       </div>
                       <div>
@@ -311,10 +314,11 @@ import { useStore } from '~~/stores/store'
 export default {
   data() {
     return {
+      store: useStore(),
       isToggled: false,
       productRequestsVisible: [],
       productRequests: useStore().productRequests,
-      currentUser: {},
+      currentUser: useStore().currentUser,
       sortOptions: [
         {
           name: 'mostUpvotes',
@@ -408,6 +412,9 @@ export default {
         return ''
       }
     },
+    toggleUpvote: function (commentID) {
+      this.store.toggleUpvote(commentID, this.currentUser.username)
+    },
     toggleSort: function (sortName) {
       let self = this
 
@@ -455,7 +462,6 @@ export default {
         return x
       })
 
-      console.log(self.activeSortOption.name)
       self.sortBy(self.activeSortOption.name)    
     }
   },
@@ -487,7 +493,6 @@ export default {
       
       // this.productRequests = products.data;
       this.productRequestsVisible = this.productRequests.filter(y => y.status === 'suggestion')
-      // this.currentUser = userInfo.data;
 
     } catch (error) {
       console.log(error);
@@ -522,6 +527,10 @@ body, html {
 
 .badge:hover {
   background-color: #CFD7FF!important;
+}
+
+.bg-blue:hover {
+  background-color: #4661E6!important;
 }
 
 .badge:active {
@@ -564,6 +573,11 @@ h4 {
   border-radius: 10px;
   padding-top: 11px!important;
   padding-bottom: 11px!important;
+}
+
+.bg-blue {
+  background-color: #4661E6!important;
+  color: #FFF!important;
 }
 
 /* custom bullet colors */
