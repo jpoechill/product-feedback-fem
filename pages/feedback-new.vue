@@ -4,15 +4,17 @@
       <div class="row mb-5">
         <div class="col-lg-6 offset-lg-3 offset-md-none col-md-12">
           <div class="pb-4 mb-4">
-            <nuxtLink to="/" class="text-decoration-none">
-              <img src="/shared/icon-arrow-left.svg" class="me-3" alt="left arrow">
-              <span class="fs-smaller fw-bold text-muted">Go Back</span>
-            </nuxtLink>
+            <div>
+              <button @click="$router.back()" class="btn" role="button">
+                <img src="/shared/icon-arrow-left.svg" class="me-3" alt="Left Arrow">
+                <span class="fs-smaller fw-bold text-muted" role="button">Go Back</span>
+              </button> 
+            </div>
           </div>
           <div class="position-relative bg-white p-4 mt-4 rounded">
 
             <div class="position-absolute top-0 start-0 translate-middle ms-5">
-              <img src="/shared/icon-new-feedback.svg" alt="icon-new-feedback">
+              <img src="/shared/icon-new-feedback.svg" alt="New Feedback Icon">
             </div>
 
             <h4 class="mt-4 pt-2 mb-3 text-blue fw-bold">
@@ -56,7 +58,7 @@
                     <div v-for="(option, index) in categoryOptions" @click="toggleCategory(option.name)" class="d-flex justify-content-between dropdown-item text-muted" :class="index !== (categoryOptions.length - 1) ? 'border-bottom' : ''" :key="index" role="button">
                       <span>{{ option.title }} </span>
                       <div class="d-inline">
-                        <img v-if="option.isActive" src="/checkmark-purple.svg" alt="">
+                        <img v-if="option.isActive" src="/checkmark-purple.svg" alt="Checkmark Purple">
                       </div>
                     </div>
                   </div>

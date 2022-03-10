@@ -10,10 +10,10 @@
             <div class="d-flex px-3 justify-content-between align-items-center">
               <div>
                 <div class="d-block mb-2 mt-2">
-                  <div>
-                    <img src="/shared/icon-arrow-left.svg" class="me-3" role="button" alt="left arrow">
-                    <span @click="$router.back()" class="fs-smaller fw-bold text-white" role="button">Go Back</span>
-                  </div>
+                  <button @click="$router.back()" class="btn" role="button">
+                    <img src="/shared/icon-arrow-left.svg" class="me-3" role="button" alt="Left Arrow">
+                    <span class="fs-smaller fw-bold text-white">Go Back</span>
+                  </button>
                 </div>
                 <h4 class="fw-bolder">Roadmap</h4>
               </div>
@@ -36,10 +36,16 @@
 
     <div class="border-bottom d-md-none">
       <div class="container">
-        <div class="row d-flex pt-1 text-muted fs-smaller justify-content-between">
-          <div class="col-4 p-3 text-center d-inline-block" role="button" :class="statuses[0].isActive ? 'border-bottom-purple fw-bold text-blue' : ''" @click="toggleTabs('planned')">Planned ({{ filterPlanned.length }})</div>
-          <div class="col-4 p-3 text-center d-inline-block" role="button" :class="statuses[1].isActive ? 'border-bottom-purple fw-bold text-blue' : ''" @click="toggleTabs('inProgress')">In-Progress ({{ filterInProgress.length }})</div>
-          <div class="col-4 p-3 text-center d-inline-block" role="button" :class="statuses[2].isActive ? 'border-bottom-purple fw-bold text-blue' : ''" @click="toggleTabs('live')">Live ({{ filterLive.length }})</div>
+        <div class="row d-flex pt-1 justify-content-between">
+          <div class="col-4 p-3 text-center d-inline-block" role="button" :class="statuses[0].isActive ? 'border-bottom-purple' : ''" @click="toggleTabs('planned')">
+            <button class="btn text-decoration-none text-muted fs-smaller" :class="statuses[0].isActive ? 'fw-bold text-blue' : ''">Planned ({{ filterPlanned.length }})</button>
+          </div>
+          <div class="col-4 p-3 text-center d-inline-block" role="button" :class="statuses[1].isActive ? 'border-bottom-purple' : ''" @click="toggleTabs('inProgress')">
+            <button class="btn text-decoration-none text-muted fs-smaller" :class="statuses[1].isActive ? 'fw-bold text-blue' : ''">In-Progress ({{ filterInProgress.length }})</button>
+          </div>
+          <div class="col-4 p-3 text-center d-inline-block" role="button" :class="statuses[2].isActive ? 'border-bottom-purple' : ''" @click="toggleTabs('live')">
+            <button class="btn text-decoration-none text-muted fs-smaller" :class="statuses[2].isActive ? 'fw-bold text-blue' : ''">Live ({{ filterLive.length }})</button>
+          </div>
         </div>
       </div>
     </div>
@@ -52,12 +58,12 @@
           <div class="bg-dark-blue text-white rounded mb-3 px-4 py-4 ">
             <div class="d-flex px-3 justify-content-between align-items-center">
               <div>
-                <div class="d-block mb-2 mt-2">
-                  <div>
-                    <img src="/shared/icon-arrow-left.svg" class="me-3" role="button" alt="left arrow">
-                    <span @click="$router.back()" class="fs-smaller fw-bold text-white" role="button">Go Back</span>
+                <button @click="$router.back()" class="btn mb-2 mt-2" role="button">
+                  <div class="d-block">
+                    <img src="/shared/icon-arrow-left.svg" class="me-3" role="button" alt="Left Arrow">
+                    <span class="fs-smaller fw-bold text-white" role="button">Go Back</span>
                   </div>
-                </div>
+                </button>
                 <h3 class="fw-bolder">Roadmap</h3>
               </div>
               <div>
@@ -85,7 +91,7 @@
               <img src="/oval-maroon.svg" class="me-2 mb-1"> 
                 <span class="d-inline ps-2 text-muted fs-small">{{ capitalize(item.status) }}</span>  
                 <NuxtLink :to="'/posts/' + item.id" class="text-decoration-none text-blue">
-                  <span class="d-block pt-3 pb-2 fw-bold">{{ item.title }}</span>
+                  <span class="d-block mt-3 mb-2 fw-bold">{{ item.title }}</span>
                 </NuxtLink>
                 <span class="d-block text-muted fs-small">
                   {{ item.description }}
@@ -125,7 +131,7 @@
               <img src="/oval-purple.svg" class="me-2 mb-1"> 
                 <span class="d-inline ps-2 text-muted fs-small">{{ capitalize(item.status) }}</span>  
                 <nuxtLink :to="'/posts/' + item.id" class="text-decoration-none text-blue">
-                  <span class="d-block pt-3 pb-2 fw-bold">{{ item.title }}</span>
+                  <span class="d-block mt-3 mb-2 fw-bold">{{ item.title }}</span>
                 </nuxtLink>
                 <span class="d-block text-muted fs-small">
                   {{ item.description }}
@@ -165,7 +171,7 @@
               <img src="/oval-sky.svg" class="me-2 mb-1"> 
                 <span class="d-inline ps-2 text-muted fs-small">{{ capitalize(item.status) }}</span>  
                 <nuxtLink :to="'/posts/' + item.id" class="text-decoration-none text-blue">
-                  <span class="d-block pt-3 pb-2 fw-bold">{{ item.title }}</span>
+                  <span class="d-block mt-3 mb-2 fw-bold">{{ item.title }}</span>
                 </nuxtLink>
                 <span class="d-block text-muted fs-small">
                   {{ item.description }}

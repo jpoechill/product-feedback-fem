@@ -3,84 +3,86 @@
 
     <!-- Mobile Nav -->
 
-    <div class="d-md-none">
-      <div class="text-white fixed-top sticky" style="z-index: 9999;">
-        <div style="background: url(/suggestions/mobile/background-header.png); background-size: cover;">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="py-3 ps-2">
-                    <span class="fw-bold">
-                    Feedback Mentor 
-                    </span><br>
-                    Feedbackboard
-                  </div>
-                  <div class="pe-2">
-                    <a class="d-block" data-bs-toggle="offcanvas" @click="snap()" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-                      <img :src="isToggled ? '/shared/mobile/icon-close.svg' : '/shared/mobile/icon-hamburger.svg'" alt="" @click="isToggled = !isToggled">
-                    </a>
+    <nav>
+      <div class="d-md-none">
+        <div class="text-white fixed-top sticky" style="z-index: 9999;">
+          <div style="background: url(/suggestions/mobile/background-header.png); background-size: cover;">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="py-3 ps-2">
+                      <span class="fw-bold">
+                      Feedback Mentor 
+                      </span><br>
+                      Feedbackboard
+                    </div>
+                    <div class="pe-2">
+                      <a class="d-block" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                        <img :src="isToggled ? '/shared/mobile/icon-close.svg' : '/shared/mobile/icon-hamburger.svg'" alt="Toggle Menu" @click="isToggled = !isToggled">
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>        
-      </div>
+          </div>        
+        </div>
 
-      <div class="offcanvas offcanvas-end" style="background-color: #F4F5FA;" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-        <div class="offcanvas-body mt-5 pt-5">
-          
-          <div class="container p-0 m-0">
-            <div class="row p-0 m-0">
+        <div class="offcanvas offcanvas-end" style="background-color: #F4F5FA;" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+          <div class="offcanvas-body mt-5 pt-5">
+            
+            <div class="container p-0 m-0">
+              <div class="row p-0 m-0">
 
-              <div class="col-md-4 col-lg-12">
-                <div class="bg-white px-3 pb-md-1 py-3 mt-md-0 mt-1 rounded h-100">
-                  <span v-for="(category, index) in categoryFilterOptions" :key="index" data-bs-dismiss="offcanvas" @click="toggleCategory(category.name); isToggled = !isToggled;" :class="category.isActive ? 'bg-primary' : 'bg-light text-dark fw-semibold'" role='button' class="badge px-3 py-2 me-2 fs-smaller">
-                    {{ category.title }}
-                  </span>
-                </div>
-              </div>
-
-              <div class="col-md-4 col-lg-12 mt-lg-3">
-                <div class="bg-white pt-4 pb-0 px-4 mt-4 mt-md-0 pb-md-1 rounded h-100">
-                  <span style="font-weight: 600; font-size: 18px; color: #3A4374;">
-                    Roadmap 
-                  </span>
-                  <NuxtLink to="/roadmap" >
-                    <span  data-bs-toggle="offcanvas"  class="float-end text-muted text-underline-hover">
-                      <small>View</small>
+                <div class="col-md-4 col-lg-12">
+                  <div class="bg-white px-3 pb-md-1 py-3 mt-md-0 mt-1 rounded h-100">
+                    <span v-for="(category, index) in categoryFilterOptions" :key="index" data-bs-dismiss="offcanvas" @click="toggleCategory(category.name); isToggled = !isToggled;" :class="category.isActive ? 'bg-primary' : 'bg-light text-dark fw-semibold'" role='button' class="badge px-3 py-2 me-2 fs-smaller">
+                      {{ category.title }}
                     </span>
-                  </NuxtLink>
+                  </div>
+                </div>
 
-                  <ul class="ps-0 fw-light mt-4 fs-6 text-muted fs-small mb-0">
-                    <li class="my-1">
-                      <img src="/oval-maroon.svg" class="me-2"> Planned
-                      <span class="float-end">
-                        {{ filterPlanned.length }}
+                <div class="col-md-4 col-lg-12 mt-lg-3">
+                  <div class="bg-white pt-4 pb-0 px-4 mt-4 mt-md-0 pb-md-1 rounded h-100">
+                    <span style="font-weight: 600; font-size: 18px; color: #3A4374;">
+                      Roadmap 
+                    </span>
+                    <NuxtLink to="/roadmap" >
+                      <span  data-bs-toggle="offcanvas"  class="float-end text-muted text-underline-hover">
+                        <small>View</small>
                       </span>
-                    </li>
-                    <li class="my-1">
-                      <img src="/oval-purple.svg" class="me-2"> In-Progress
-                      <span class="float-end">
-                        {{ filterInProgress.length }}
-                      </span>
-                    </li>
-                    <li class="my-1">
-                      <img src="/oval-sky.svg" class="me-2"> Live
-                      <span class="float-end">
-                        {{ filterLive.length }}
-                      </span>
-                    </li>
-                  </ul>
+                    </NuxtLink>
+
+                    <ul class="ps-0 fw-light mt-4 fs-6 text-muted fs-small mb-0">
+                      <li class="my-1">
+                        <img src="/oval-maroon.svg" alt="Oval Maroon" class="me-2"> Planned
+                        <span class="float-end">
+                          {{ filterPlanned.length }}
+                        </span>
+                      </li>
+                      <li class="my-1">
+                        <img src="/oval-purple.svg" alt="Oval Purple" class="me-2"> In-Progress
+                        <span class="float-end">
+                          {{ filterInProgress.length }}
+                        </span>
+                      </li>
+                      <li class="my-1">
+                        <img src="/oval-sky.svg" alt="Oval Sky Blue" class="me-2"> Live
+                        <span class="float-end">
+                          {{ filterLive.length }}
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    
+    </nav>
+
     <!-- Mobile Subnav -->
 
     <div class="bg-dark-blue d-md-none mt-5">
@@ -98,7 +100,7 @@
                     <div v-for="(option, index) in sortOptions" @click="toggleSort(option.name)" class="d-flex justify-content-between dropdown-item text-muted" :class="index !== (sortOptions.length - 1) ? 'border-bottom' : ''" :key="index" role="button">
                       <span>{{ option.title }} </span>
                       <div class="d-inline">
-                        <img v-if="option.isActive" src="/checkmark-purple.svg" alt="">
+                        <img v-if="option.isActive" src="/checkmark-purple.svg" alt="Checkmark Purple">
                       </div>
                     </div>
                   </div>
@@ -138,9 +140,10 @@
 
               <div class="col-md-4 col-lg-12">
                 <div class="bg-white px-3 pb-md-1 py-3 mt-md-0 mt-3 rounded d-none d-md-block h-100">
-                  <span v-for="(category, index) in categoryFilterOptions" :key="index" @click="toggleCategory(category.name)" :class="category.isActive ? 'bg-primary' : 'bg-light text-dark fw-semibold'" role='button' class="badge px-3 py-2 me-2 fs-smaller">
+                  <button v-for="(category, index) in categoryFilterOptions" :key="index" @click="toggleCategory(category.name)" :class="category.isActive ? 'bg-primary' : 'bg-light text-dark fw-semibold'" role='button' class="badge border-0 px-3 py-2 me-2 fs-smaller">
                     {{ category.title }}
-                  </span>
+                  </button>
+                  
                 </div>
               </div>
 
@@ -157,19 +160,19 @@
 
                   <ul class="ps-0 fw-light mt-4 fs-6 text-muted fs-small">
                     <li class="my-1">
-                      <img src="/oval-maroon.svg" class="me-2"> Planned
+                      <img src="/oval-maroon.svg" alt="Oval Maroon" class="me-2"> Planned
                       <span class="float-end">
                         {{ filterPlanned.length }}
                       </span>
                     </li>
                     <li class="my-1">
-                      <img src="/oval-purple.svg" class="me-2"> In-Progress
+                      <img src="/oval-purple.svg" alt="Oval Purple" class="me-2"> In-Progress
                       <span class="float-end">
                         {{ filterInProgress.length }}
                       </span>
                     </li>
                     <li class="my-1">
-                      <img src="/oval-sky.svg" class="me-2"> Live
+                      <img src="/oval-sky.svg" alt="oval Sky Blue" class="me-2"> Live
                       <span class="float-end">
                         {{ filterLive.length }}
                       </span>
@@ -186,25 +189,32 @@
         <div class="col-lg-9 col-md-12 mb-5 mt-lg-0 mt-md-4">
           <div class="text-white rounded px-4 py-4 bg-white bg-dark-blue d-none d-md-block">
             <div class="d-md-inline-block pe-4 d-none" style="font-size: 18px;">
-              <img src="/light-bulb.svg" class="me-4 mb-2">
+              <img src="/light-bulb.svg" alt="Light Bulb" class="me-4 mb-2">
               <strong>{{ filterSuggestions.length }} Suggestions</strong> 
             </div>
 
             <span class="">
               <small>
                 Sort by: 
+
                 <div class="dropdown d-inline">
-                  <button class="btn btn-dropdown dropdown-toggle ps-4" style="background-color: transparent!important; color: #FFF!important; font-weight: 600!important;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <button class="btn btn-secondary dropdown-toggle" style="background-color: transparent!important; color: #FFF!important; font-weight: 600!important;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                     <small><span>{{ sortOptions.find(x => x.isActive ).title }}</span></small> 
                   </button>
-                  <div class="dropdown-menu text-muted" aria-labelledby="dropdownMenuButton">
-                    <div v-for="(option, index) in sortOptions" @click="toggleSort(option.name)" class="d-flex justify-content-between dropdown-item text-muted" :class="index !== (sortOptions.length - 1) ? 'border-bottom' : ''" :key="index" role="button">
-                      <span>{{ option.title }} </span>
-                      <div class="d-inline">
-                        <img v-if="option.isActive" src="/checkmark-purple.svg" alt="">
-                      </div>
-                    </div>
-                  </div>
+                  <ul class="dropdown-menu text-muted" aria-labelledby="dropdownMenuButton1">
+                    <li v-for="(option, index) in sortOptions" @click="toggleSort(option.name)" :key="index" class="dropdown-item p-0 text-muted" :class="index !== (sortOptions.length - 1) ? 'border-bottom' : ''">
+                      <a class="dropdown-item" href="#">
+                        <div class="d-flex justify-content-between align-items-center ">                          
+                          <span class="text-muted">
+                            {{ option.title }}
+                          </span>
+                          <div class="d-inline">
+                            <img v-if="option.isActive" src="/checkmark-purple.svg" alt="Checkmark Purple">
+                          </div>
+                        </div> 
+                      </a>
+                    </li>
+                  </ul>
                 </div>
               </small>
             </span>
@@ -224,7 +234,7 @@
             Loading
           </div>
           <div v-else-if="productRequestsVisible.length === 0" class="rounded p-5 mt-3 bg-white text-center text-muted fw-light">
-            <img src="/inspector-gadget.svg" alt="inspector-img" class="py-5">
+            <img src="/inspector-gadget.svg" alt="Inspector Gadget" class="py-5">
               <p>
                 <span class="fw-bold text-blue" style="font-size: 24px;">There is no feedback yet. </span>
                 <br><br>
@@ -244,13 +254,13 @@
             <div class="container">
               <div class="row pt-4 pb-3">
                 <div class="col-md-1 d-none d-md-block col-md-1">
-                  <span @click="toggleUpvote(product.id)" class="badge bg-light text-dark px-3 py-0 mx-0 mt-0 fw-bold fs-smaller" :class="product.upvoters.includes(currentUser.username) ? 'bg-blue text-white' : ''" role="button">
+                  <button @click="toggleUpvote(product.id)" class="btn badge bg-light text-dark px-3 py-0 mx-0 mt-0 fw-bold fs-smaller" :class="product.upvoters && product.upvoters.includes(currentUser.username) ? 'bg-blue text-white' : ''" role="button">
                     <svg width="10" height="7" class="mb-2" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M1 6l4-4 4 4" :stroke="product.upvoters.includes(currentUser.username) ? '#FFFFFF' : '#4661E6'" stroke-width="2" fill="none" fill-rule="evenodd"/>
+                      <path d="M1 6l4-4 4 4" :stroke="product.upvoters && product.upvoters.includes(currentUser.username) ? '#FFFFFF' : '#4661E6'" stroke-width="2" fill="none" fill-rule="evenodd"/>
                     </svg>
                     <br>
-                    <span class="fw-bold" :class="product.upvoters.includes(currentUser.username) ? 'text-white' : 'text-blue'">{{ product.upvotes }}</span>
-                  </span>
+                    <span class="fw-bold" :class="product.upvoters && product.upvoters.includes(currentUser.username) ? 'text-white' : 'text-blue'">{{ product.upvotes }}</span>
+                  </button>
                 </div>
                 <div class="col-md-10 ps-md-4">
                   <NuxtLink :to="'/posts/' + product.id" class="text-dark text-decoration-none">
@@ -266,16 +276,15 @@
                   <div class="fw-bold h-100 d-flex justify-content-center align-items-center">
                     <div class="d-flex justify-content-between w-100 mt-2">
                       <div>
-                        <span @click="toggleUpvote(product.id)" class="badge bg-light text-dark px-3 py-0 mx-0 mt-0 fw-bold fs-smaller" :class="product.upvoters.includes(currentUser.username) ? 'bg-blue text-white' : ''" role="button">
+                        <span @click="toggleUpvote(product.id)" class="badge bg-light text-dark px-3 py-0 mx-0 mt-0 fw-bold fs-smaller" :class="product.upvoters && product.upvoters.includes(currentUser.username) ? 'bg-blue text-white' : ''" role="button">
                           <svg width="10" height="7" class="me-2" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1 6l4-4 4 4" :stroke="product.upvoters.includes(currentUser.username) ? '#FFFFFF' : '#4661E6'" stroke-width="2" fill="none" fill-rule="evenodd"/>
+                            <path d="M1 6l4-4 4 4" :stroke="product.upvoters && product.upvoters.includes(currentUser.username) ? '#FFFFFF' : '#4661E6'" stroke-width="2" fill="none" fill-rule="evenodd"/>
                           </svg>
-                          <!-- <img src="/shared/icon-arrow-up.svg" alt="arrow-up" class="me-2"> -->
-                          <span class="fw-bold" :class="product.upvoters.includes(currentUser.username) ? 'text-white' : 'text-blue'">{{ product.upvotes }}</span>
+                          <span class="fw-bold" :class="product.upvoters && product.upvoters.includes(currentUser.username) ? 'text-white' : 'text-blue'">{{ product.upvotes }}</span>
                         </span>
                       </div>
                       <div>
-                        <img src="/chat-bubble.svg" class="me-3" alt="">
+                        <img src="/chat-bubble.svg" class="me-3" alt="Chat Bubble">
                         <span v-if="!product.comments">
                           0
                         </span>
@@ -288,7 +297,7 @@
                 </div>
                 <div class="d-none d-md-block col-md-1">
                   <div class="fw-bold h-100 d-flex justify-content-center align-items-center">
-                    <img src="/chat-bubble.svg" class="me-3" alt="">
+                    <img src="/chat-bubble.svg" class="me-3" alt="Chat Bubble">
                     <span v-if="!product.comments">
                       0
                     </span>
@@ -308,7 +317,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import { useStore } from '~~/stores/store'
 
 export default {
@@ -376,14 +384,6 @@ export default {
     };
   },
   methods: {
-    snap: function () {
-      // var offcanvasElementList = [].slice.call(document.querySelectorAll('.offcanvas'))
-      // var offcanvasList = offcanvasElementList.map(function (offcanvasEl) {
-      //   return new bootstrap.Offcanvas(offcanvasEl)
-      // })
-
-      // console.log(offcanvasElementList)
-    },
     sortBy: function (direction) {
       this.productRequestsVisible = this.productRequestsVisible.sort((a, b) => {
         if (!a.comments) {
@@ -447,7 +447,6 @@ export default {
       let self = this
 
       this.categoryFilterOptions = this.categoryFilterOptions.map(x => {
-        
         if (x.name === categoryName) {
           if (x.name === 'all') {
             self.productRequestsVisible = self.productRequests.filter(y => y.status === 'suggestion')
@@ -458,11 +457,10 @@ export default {
         } else {
           x.isActive = false
         }
-        
         return x
       })
 
-      self.sortBy(self.activeSortOption.name)    
+      // self.sortBy(self.activeSortOption.name)    
     }
   },
   computed: {
@@ -481,17 +479,12 @@ export default {
     filterLive: function () {
       return this.productRequests.filter(x => x.status === 'live')
     }
-    // ...mapState("movies", ["movieList"]),
   },
   mounted () {
     window.scrollTo(0, 0)
   },
   async created() {
     try {
-      // const products = await axios.get(`http://localhost:3004/productRequests`);
-      // const userInfo = await axios.get(`http://localhost:3004/currentUser `);
-      
-      // this.productRequests = products.data;
       this.productRequestsVisible = this.productRequests.filter(y => y.status === 'suggestion')
 
     } catch (error) {

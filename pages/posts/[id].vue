@@ -4,10 +4,11 @@
       <div class="row mb-4">
         <div class="col-lg-8 offset-lg-2 col-md-12">
           <div class="py-4 d-flex justify-content-between">
-            <!-- <nuxtLink to="/" class="text-decoration-none"> -->
             <div>
-              <img src="/shared/icon-arrow-left.svg" class="me-3" alt="left arrow">
-              <span @click="$router.back()" class="fs-smaller fw-bold text-muted" role="button">Go Back</span>
+              <button @click="$router.back()" class="btn" role="button">
+                <img src="/shared/icon-arrow-left.svg" class="me-3" alt="Left Arrow">
+                <span class="fs-smaller fw-bold text-muted" role="button">Go Back</span>
+              </button> 
             </div>
              
             <NuxtLink :to="'/edit/' + currProduct.id">
@@ -23,15 +24,17 @@
             <div class="container py-2">
               <div class="row">
                 <div class="col-md-1 d-none d-md-block">
-                  <span @click="toggleUpvote(currProduct.id)" class="badge bg-light text-dark px-2 pb-0 py-0 mx-0 mt-0 fw-bold fs-smaller" :class="currProduct.upvoters.includes(currentUser.username) ? 'bg-blue text-white' : ''" role="button">
-                    <svg width="10" height="7" class="mb-2" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M1 6l4-4 4 4" :stroke="currProduct.upvoters.includes(currentUser.username) ? '#FFFFFF' : '#4661E6'" stroke-width="2" fill="none" fill-rule="evenodd"/>
-                    </svg>
-                    <br>
-                    <span class="fw-bold" :class="currProduct.upvoters.includes(currentUser.username) ? 'text-white' : 'text-blue'">
-                      {{ currProduct.upvotes }}
-                    </span>
-                  </span>
+                  <!-- <button @click="toggleUpvote(currProduct.id)" class="btn p-0" role="button"> -->
+                    <button @click="toggleUpvote(currProduct.id)"  class="btn badge bg-light text-dark px-2 pb-0 py-0 mx-0 mt-0 mb-0 fw-bold fs-smaller" :class="currProduct.upvoters.includes(currentUser.username) ? 'bg-blue text-white' : ''" role="button">
+                      <svg width="10" height="7" class="mb-2" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 6l4-4 4 4" :stroke="currProduct.upvoters.includes(currentUser.username) ? '#FFFFFF' : '#4661E6'" stroke-width="2" fill="none" fill-rule="evenodd"/>
+                      </svg>
+                      <br>
+                      <span class="fw-bold" :class="currProduct.upvoters.includes(currentUser.username) ? 'text-white' : 'text-blue'">
+                        {{ currProduct.upvotes }}
+                      </span>
+                    </button>
+                  <!-- </button> -->
                 </div>
 
                 <div class="col-md-9">
@@ -51,16 +54,15 @@
                   <div class="d-md-none d-sm-block mt-2 w-100">
                     <div class="d-flex justify-content-between w-100"> 
                       <div class="d-inline">
-                        <span @click="toggleUpvote(currProduct.id)" class="badge bg-light text-dark px-3 py-0 mx-0 mt-0 fw-bold fs-smaller" :class="currProduct.upvoters.includes(currentUser.username) ? 'bg-blue text-white' : ''" role="button">
+                        <button @click="toggleUpvote(currProduct.id)" class="btn badge bg-light text-dark px-3 py-0 mx-0 mt-0 fw-bold fs-smaller" :class="currProduct.upvoters.includes(currentUser.username) ? 'bg-blue text-white' : ''" role="button">
                           <svg width="10" height="7" class="me-2" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1 6l4-4 4 4" :stroke="currProduct.upvoters.includes(currentUser.username) ? '#FFFFFF' : '#4661E6'" stroke-width="2" fill="none" fill-rule="evenodd"/>
                           </svg>
-                          <!-- <img src="/shared/icon-arrow-up.svg" alt="arrow-up" class="me-2"> -->
                           <span class="fw-bold" :class="currProduct.upvoters.includes(currentUser.username) ? 'text-white' : 'text-blue'">{{ currProduct.upvotes }}</span>
-                        </span>
+                        </button>
                       </div>
                       <div class="d-inline">
-                        <img src="/chat-bubble.svg" class="me-3" alt="">
+                        <img src="/chat-bubble.svg" class="me-3" alt="Chat Bubble">
                         <span v-if="!currProduct.comments">
                           0
                         </span>
@@ -71,7 +73,7 @@
                     </div>
                   </div>
                   <div class="d-none d-md-inline-block">
-                    <img src="/chat-bubble.svg" class="d-inline-block pe-3" alt="">
+                    <img src="/chat-bubble.svg" class="d-inline-block pe-3" alt="Chat Bubble">
                     <!-- <span> -->
                       {{ currProduct.comments ? currProduct.comments.length : '0' }}
                     <!-- </span> -->
@@ -94,7 +96,7 @@
                   <div class="d-flex justify-content-between align-items-top">
                     <div class="d-flex align-items-top">
                       <div class="d-inline-block">
-                        <img :src="comment.user.image" class="img-avatar-size mt-1 d-inline-block" alt="" width="100%">
+                        <img :src="comment.user.image" class="img-avatar-size mt-1 d-inline-block" :alt="comment.user.username + ' Image'" width="100%">
                       </div> 
                       <div class="d-inline-block ps-3">
                         <span class="fw-bold text-blue" style="font-size: 14px;">
@@ -106,9 +108,9 @@
                       </div>
                     </div>
                     <div>
-                      <span @click="showReply(index)" role="button" class="text-underline-hover font-light-blue fw-semibold" style="font-size: 13px;">
+                      <a href="#" @click="showReply(index)" role="button" class="text-underline-hover font-light-blue fw-semibold" style="font-size: 13px;">
                         Reply
-                      </span>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -150,7 +152,7 @@
                         <div class="d-flex justify-content-between align-items-top mb-3">
                           <div class="d-flex align-items-top">
                             <div class="d-inline-block">
-                              <img :src="comment.replies[replyIndex].user.image" class="img-avatar-size mt-1 d-inline-block" alt="" width="100%">
+                              <img :src="comment.replies[replyIndex].user.image" class="img-avatar-size mt-1 d-inline-block" :alt="comment.replies[replyIndex].username + ' Image'" width="100%">
                             </div> 
                             <div class="d-inline-block ps-3">
                               <span class="fw-bold text-blue" style="font-size: 14px;">
@@ -162,9 +164,9 @@
                             </div>
                           </div>
                           <div>
-                            <span @click="toggleSubReply(index, replyIndex)" role="button" class="text-underline-hover font-light-blue fw-semibold" style="font-size: 13px;">
+                            <a href="#" @click="toggleSubReply(index, replyIndex)" role="button" class="text-underline-hover font-light-blue fw-semibold" style="font-size: 13px;">
                               Reply
-                            </span>
+                            </a>
                           </div>
                         </div>
 
@@ -204,7 +206,7 @@
                         <div class="d-flex justify-content-between align-items-top">
                           <div class="d-flex align-items-top">
                             <div class="d-inline-block">
-                              <img :src="comment.replies[comment.replies.length-1].user.image" class="img-avatar-size mt-1 d-inline-block" alt="" width="100%">
+                              <img :src="comment.replies[comment.replies.length-1].user.image" class="img-avatar-size mt-1 d-inline-block" :alt="comment.replies[comment.replies.length-1].username + 'Image'" width="100%">
                             </div> 
                             <div class="d-inline-block ps-3">
                               <span class="fw-bold text-blue" style="font-size: 14px;">
@@ -216,9 +218,9 @@
                             </div>
                           </div>
                           <div>
-                            <span @click="toggleSubReply(index, comment.replies.length-1)" role="button" class="text-underline-hover font-light-blue fw-semibold" style="font-size: 13px;">
+                            <a href="#" @click="toggleSubReply(index, comment.replies.length-1)" role="button" class="text-underline-hover font-light-blue fw-semibold" style="font-size: 13px;">
                               Reply
-                            </span>
+                            </a>
                           </div>
                         </div>
 
@@ -320,7 +322,6 @@ export default {
       console.log('add comment')
 
       let commentID = this.currProduct.comments.length ? this.currProduct.comments[this.currProduct.comments.length-1].id + 1 : 1
-      // console.log(this.currProduct.comments[this.currProduct.comments.length-1].id + 1)
       console.log(commentID)
 
       console.log('before')

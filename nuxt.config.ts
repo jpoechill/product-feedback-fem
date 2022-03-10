@@ -3,6 +3,11 @@ import { defineNuxtConfig } from 'nuxt3'
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
     meta: {
+        htmlAttrs: {
+            lang: 'en'
+        },
+        title: 'Product Feedback App',
+        lang: 'en',
         link: [
             { rel: "stylesheet", href: "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" },
             { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Jost:wght@300;400;600;900&display=swap" }
@@ -18,5 +23,5 @@ export default defineNuxtConfig({
     "env": {
         "browser": true,
         "node": true
-    }
+    },
 })
