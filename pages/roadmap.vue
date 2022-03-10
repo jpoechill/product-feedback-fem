@@ -101,14 +101,14 @@
                 </span> 
                 <br>
                 <div class="d-flex justify-content-between align-items-center">
-                  <span class="badge bg-light text-dark ps-3 pe-3 ms-0 me-2 fs-smaller fw-bold" role="button">
+                  <button @click="toggleUpvote(item.id)" class="btn badge bg-light text-dark px-3 py-0 mx-0 mt-1 fw-bold fs-smaller" :class="item.upvoters && item.upvoters.includes(currentUser.username) ? 'bg-blue text-white' : ''" role="button">
                     <svg width="10" height="7" class="me-2" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M1 6l4-4 4 4" stroke="#4661E6" stroke-width="2" fill="none" fill-rule="evenodd"/>
+                      <path d="M1 6l4-4 4 4" :stroke="item.upvoters && item.upvoters.includes(currentUser.username) ? '#FFFFFF' : '#4661E6'" stroke-width="2" fill="none" fill-rule="evenodd"/>
                     </svg>
-                    <span class="text-dark">
-                      {{ item.upvotes }}  
+                    <span class="fw-bold" :class="item.upvoters && item.upvoters.includes(currentUser.username) ? 'text-white' : 'text-blue'">
+                      {{ item.upvotes }}
                     </span>
-                  </span>
+                  </button>
                   <div>
                     <img src="/chat-bubble.svg" alt="" class="pe-3 mb-1">
                     <span v-if="!item.comments" class="fw-bold fs-6">
@@ -141,14 +141,14 @@
                 </span> 
                 <br>
                 <div class="d-flex justify-content-between align-items-center">
-                  <span class="badge bg-light text-dark ps-3 pe-3 ms-0 me-2 fs-smaller fw-bold" role="button">
+                  <button @click="toggleUpvote(item.id)" class="btn badge bg-light text-dark px-3 py-0 mx-0 mt-1 fw-bold fs-smaller" :class="item.upvoters && item.upvoters.includes(currentUser.username) ? 'bg-blue text-white' : ''" role="button">
                     <svg width="10" height="7" class="me-2" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M1 6l4-4 4 4" stroke="#4661E6" stroke-width="2" fill="none" fill-rule="evenodd"/>
+                      <path d="M1 6l4-4 4 4" :stroke="item.upvoters && item.upvoters.includes(currentUser.username) ? '#FFFFFF' : '#4661E6'" stroke-width="2" fill="none" fill-rule="evenodd"/>
                     </svg>
-                    <span class="text-dark">
-                      {{ item.upvotes }}  
+                    <span class="fw-bold" :class="item.upvoters && item.upvoters.includes(currentUser.username) ? 'text-white' : 'text-blue'">
+                      {{ item.upvotes }}
                     </span>
-                  </span>
+                  </button>
                   <div>
                     <img src="/chat-bubble.svg" alt="" class="pe-3 mb-1">
                     <span v-if="!item.comments" class="fw-bold fs-6">
@@ -180,14 +180,14 @@
                   {{ capitalize(item.category) }}  
                 </span>  
                 <div class="d-flex justify-content-between align-items-center">
-                  <span class="badge bg-light text-dark ps-3 pe-3 ms-0 me-2 fs-smaller fw-bold" role="button">
+                  <button @click="toggleUpvote(item.id)" class="btn badge bg-light text-dark px-3 py-0 mx-0 mt-1 fw-bold fs-smaller" :class="item.upvoters && item.upvoters.includes(currentUser.username) ? 'bg-blue text-white' : ''" role="button">
                     <svg width="10" height="7" class="me-2" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M1 6l4-4 4 4" stroke="#4661E6" stroke-width="2" fill="none" fill-rule="evenodd"/>
+                      <path d="M1 6l4-4 4 4" :stroke="item.upvoters && item.upvoters.includes(currentUser.username) ? '#FFFFFF' : '#4661E6'" stroke-width="2" fill="none" fill-rule="evenodd"/>
                     </svg>
-                    <span class="text-dark">
-                      {{ item.upvotes }}  
+                    <span class="fw-bold" :class="item.upvoters && item.upvoters.includes(currentUser.username) ? 'text-white' : 'text-blue'">
+                      {{ item.upvotes }}
                     </span>
-                  </span>
+                  </button>
                   <div>
                     <img src="/chat-bubble.svg" alt="" class="pe-3 mb-1">
                     <span v-if="!item.comments" class="fw-bold fs-6">
@@ -200,7 +200,6 @@
                 </div>
               </div>  
           </div>
-
         </div>
       </div>
     </div>
@@ -226,14 +225,14 @@
                 </span> 
                 <br>
                 <div class="d-flex justify-content-between align-items-center">
-                  <span class="badge bg-light text-dark ps-3 pe-3 ms-0 me-2 fs-smaller fw-bold" role="button">
+                  <button @click="toggleUpvote(item.id)" class="btn badge bg-light text-dark px-3 py-0 mx-0 mt-1 fw-bold fs-smaller" :class="item.upvoters && item.upvoters.includes(currentUser.username) ? 'bg-blue text-white' : ''" role="button">
                     <svg width="10" height="7" class="me-2" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M1 6l4-4 4 4" stroke="#4661E6" stroke-width="2" fill="none" fill-rule="evenodd"/>
+                      <path d="M1 6l4-4 4 4" :stroke="item.upvoters && item.upvoters.includes(currentUser.username) ? '#FFFFFF' : '#4661E6'" stroke-width="2" fill="none" fill-rule="evenodd"/>
                     </svg>
-                    <span class="text-dark">
-                      {{ item.upvotes }}  
+                    <span class="fw-bold" :class="item.upvoters && item.upvoters.includes(currentUser.username) ? 'text-white' : 'text-blue'">
+                      {{ item.upvotes }}
                     </span>
-                  </span>
+                  </button>
                   <div>
                     <img src="/chat-bubble.svg" alt="" class="pe-3 mb-1">
                     <span v-if="!item.comments" class="fw-bold fs-6">
@@ -251,7 +250,6 @@
         <div class="col-md-4">
           <span class="fw-bold">In-Progress ({{ filterInProgress.length }})</span> <br>
           <span class="text-muted fs-small d-block mb-4 pb-2">Currently being developed</span>
-
           <div v-for="(item, index) in filterInProgress" :key="index" class="py-0 rounded bg-dark mb-4 position-relative overflow-hidden">
             <div class="bg-white text-dark p-4 border-top-purple">
               <img src="/oval-purple.svg" class="me-2 mb-1"> 
@@ -267,14 +265,14 @@
                 </span> 
                 <br>
                 <div class="d-flex justify-content-between align-items-center">
-                  <span class="badge bg-light text-dark ps-3 pe-3 ms-0 me-2 fs-smaller fw-bold" role="button">
+                  <button @click="toggleUpvote(item.id)" class="btn badge bg-light text-dark px-3 py-0 mx-0 mt-1 fw-bold fs-smaller" :class="item.upvoters && item.upvoters.includes(currentUser.username) ? 'bg-blue text-white' : ''" role="button">
                     <svg width="10" height="7" class="me-2" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M1 6l4-4 4 4" stroke="#4661E6" stroke-width="2" fill="none" fill-rule="evenodd"/>
+                      <path d="M1 6l4-4 4 4" :stroke="item.upvoters && item.upvoters.includes(currentUser.username) ? '#FFFFFF' : '#4661E6'" stroke-width="2" fill="none" fill-rule="evenodd"/>
                     </svg>
-                    <span class="text-dark">
-                      {{ item.upvotes }}  
+                    <span class="fw-bold" :class="item.upvoters && item.upvoters.includes(currentUser.username) ? 'text-white' : 'text-blue'">
+                      {{ item.upvotes }}
                     </span>
-                  </span>
+                  </button>
                   <div>
                     <img src="/chat-bubble.svg" alt="" class="pe-3 mb-1">
                     <span v-if="!item.comments" class="fw-bold fs-6">
@@ -292,7 +290,6 @@
         <div class="col-md-4">
           <span class="fw-bold">Live ({{ filterLive.length }})</span> <br>
           <span class="text-muted fs-small d-block mb-4 pb-2">Released features</span>
-
           <div v-for="(item, index) in filterLive" :key="index" class="py-0 rounded bg-dark mb-4 position-relative overflow-hidden">
             <div class="bg-white text-dark p-4" style="border-top: 5px solid #62BCFA;">
               <img src="/oval-sky.svg" class="me-2 mb-1"> 
@@ -307,14 +304,14 @@
                   {{ capitalize(item.category) }}  
                 </span>  
                 <div class="d-flex justify-content-between align-items-center">
-                  <span class="badge bg-light text-dark ps-3 pe-3 ms-0 me-2 fs-smaller fw-bold" role="button">
+                  <button @click="toggleUpvote(item.id)" class="btn badge bg-light text-dark px-3 py-0 mx-0 mt-1 fw-bold fs-smaller" :class="item.upvoters && item.upvoters.includes(currentUser.username) ? 'bg-blue text-white' : ''" role="button">
                     <svg width="10" height="7" class="me-2" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M1 6l4-4 4 4" stroke="#4661E6" stroke-width="2" fill="none" fill-rule="evenodd"/>
+                      <path d="M1 6l4-4 4 4" :stroke="item.upvoters && item.upvoters.includes(currentUser.username) ? '#FFFFFF' : '#4661E6'" stroke-width="2" fill="none" fill-rule="evenodd"/>
                     </svg>
-                    <span class="text-dark">
-                      {{ item.upvotes }}  
+                    <span class="fw-bold" :class="item.upvoters && item.upvoters.includes(currentUser.username) ? 'text-white' : 'text-blue'">
+                      {{ item.upvotes }}
                     </span>
-                  </span>
+                  </button>
                   <div>
                     <img src="/chat-bubble.svg" alt="" class="pe-3 mb-1">
                     <span v-if="!item.comments" class="fw-bold fs-6">
@@ -341,6 +338,8 @@ import { useStore } from '~~/stores/store'
 export default {
   data() {
     return {
+      currentUser: useStore().currentUser,
+      store: useStore(),
       statuses: [
         {
           name: 'planned',
@@ -359,6 +358,9 @@ export default {
     };
   },
   methods: {
+    toggleUpvote: function (commentID) {
+      this.store.toggleUpvote(commentID, this.currentUser.username)
+    },
     toggleTabs: function (tabName) {
       this.statuses = this.statuses.map(x => {
         if (x.name === tabName) {
@@ -394,10 +396,6 @@ export default {
   },
   async created() {
     try {
-      // const products = await axios.get(`http://localhost:3004/productRequests`);
-      
-      // this.productRequests = products.data;
-
     } catch (error) {
       console.log(error);
     }

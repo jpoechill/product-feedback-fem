@@ -37,9 +37,9 @@
 
                 <div class="col-md-4 col-lg-12">
                   <div class="bg-white px-3 pb-md-1 py-3 mt-md-0 mt-1 rounded h-100">
-                    <span v-for="(category, index) in categoryFilterOptions" :key="index" data-bs-dismiss="offcanvas" @click="toggleCategory(category.name); isToggled = !isToggled;" :class="category.isActive ? 'bg-primary' : 'bg-light text-dark fw-semibold'" role='button' class="badge px-3 py-2 me-2 fs-smaller">
+                    <button v-for="(category, index) in categoryFilterOptions" :key="index" data-bs-dismiss="offcanvas" @click="toggleCategory(category.name); isToggled = !isToggled;" :class="category.isActive ? 'bg-primary' : 'bg-light text-dark fw-semibold'" role='button' class="btn mt-2 badge px-3 py-2 me-2 fs-smaller">
                       {{ category.title }}
-                    </span>
+                    </button>
                   </div>
                 </div>
 

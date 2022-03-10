@@ -347,11 +347,11 @@ export const useStore = defineStore('storeId', {
 
       let curr = this.productRequests.find(x => x.id === commentID)
 
-      if (curr.upvoters.includes(upvoter)) {
+      if (curr.upvoters && curr.upvoters.includes(upvoter)) {
         curr.upvotes--
         curr.upvoters = curr.upvoters.filter(x => x !== upvoter)
       } else {
-        curr.upvoters.push(upvoter)
+        curr.upvoters = [upvoter]
         curr.upvotes++
       }
     },

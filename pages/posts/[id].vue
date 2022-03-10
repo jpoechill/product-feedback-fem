@@ -11,12 +11,10 @@
               </button> 
             </div>
              
-            <NuxtLink :to="'/edit/' + currProduct.id">
-              <button type="button" class="btn btn-primary btn-blue py-2 px-4 fs-small fw-bold">
-                <small>
-                  Edit Feedback
-                </small>
-              </button>
+            <NuxtLink :to="'/edit/' + currProduct.id" class="btn btn-primary btn-blue py-2 px-4 fs-small fw-bold">
+              <small>
+                Edit Feedback
+              </small>
             </NuxtLink>
           </div>
           <div class="bg-white px-2 py-4 pb-3 rounded">
@@ -259,7 +257,7 @@
       </div>
 
       <div class="row mb-5">
-        <div class="col-md-8 offset-md-2 col-sm-12">
+        <div class="col-lg-8 offset-lg-2 col-md-12">
           <div class="bg-white px-2 py-4 rounded fs-small ">
             <span @click="addComment()" class="ps-4 fw-bold text-blue">Add Comment</span> <br><br>
 
