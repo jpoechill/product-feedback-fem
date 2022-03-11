@@ -43,31 +43,27 @@
                 Category
               </small>
             </span>  <br>
-            <span class="text-muted" style="font-size: 14px;">
+            <span class="text-muted mb-2 d-block" style="font-size: 14px;">
               Choose a category for your feedback
             </span>
             
-            <span class="ms-4">
-              <small>
-                <div class="dropdown my-2">
-                  <button class="d-flex py-2 justify-content-between border align-items-center btn btn-dropdown text-left dropdown-toggle ps-4 text-dark w-100 border-box" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <!-- <small> -->
-                      <span>
-                        {{ categoryOptions.find(x => x.isActive).title }}
-                      </span>
-                    <!-- </small>  -->
-                  </button>
-                  <div class="dropdown-menu text-muted w-100 my-2" aria-labelledby="dropdownMenuButton">
-                    <div v-for="(option, index) in categoryOptions" @click="toggleCategory(option.name)" class="d-flex justify-content-between dropdown-item text-muted" :class="index !== (categoryOptions.length - 1) ? 'border-bottom' : ''" :key="index" role="button">
-                      <span>{{ option.title }} </span>
+            <div class="dropdown d-block w-100">
+              <button class="d-flex py-2 mt-2 justify-content-between border align-items-center btn btn-dropdown text-left dropdown-toggle ps-4 text-dark w-100 border-box" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <span>{{ categoryOptions.find(x => x.isActive ).title }}</span>
+              </button>
+              <ul class="dropdown-menu text-muted w-100 my-2 p-0" aria-labelledby="dropdownMenuButton1">
+                <li v-for="(option, index) in categoryOptions" @click="toggleCategory(option.name)" :key="index" class="d-flex justify-content-between dropdown-item text-muted w-100 p-0" :class="index !== (categoryOptions.length - 1) ? 'border-bottom' : ''">
+                  <a class="dropdown-item" href="#">
+                    <div class="d-flex text-muted justify-content-between align-items-center">                          
+                      <span><small>{{ option.title }}</small></span>
                       <div class="d-inline">
                         <img v-if="option.isActive" src="/checkmark-purple.svg" alt="Checkmark Purple">
                       </div>
-                    </div>
-                  </div>
-                </div>
-              </small>
-            </span>
+                    </div> 
+                  </a>
+                </li>
+              </ul>
+            </div>
 
             <br>
 
@@ -75,38 +71,23 @@
               Update Status
             </span>  
 
-            <!-- <span class="d-block mt-2 mb-2">
-              <small>
-                  <select class="form-select d-inline w-100" aria-label="Default select example">
-                    <option selected>Suggestion</option>
-                    <option value="1">Planned</option>
-                    <option value="2">In-Progress</option>
-                    <option value="3">Live</option>
-                  </select>
-              </small>
-            </span> -->
-
-            <span class="ms-4">
-              <small>
-                <div class="dropdown my-2">
-                  <button class="d-flex py-2 justify-content-between border align-items-center btn btn-dropdown text-left dropdown-toggle ps-4 text-dark w-100 border-box" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <!-- <small> -->
-                      <span>
-                        {{ statusOptions.find(x => x.isActive).title }}
-                      </span>
-                    <!-- </small>  -->
-                  </button>
-                  <div class="dropdown-menu text-muted my-2 w-100" aria-labelledby="dropdownMenuButton">
-                    <div v-for="(option, index) in statusOptions" @click="toggleStatus(option.name)" class="d-flex justify-content-between dropdown-item text-muted" :class="index !== (statusOptions.length - 1) ? 'border-bottom' : ''" :key="index" role="button">
-                      <span class="text-custom">{{ option.title }} </span>
+            <div class="dropdown d-block w-100">
+              <button class="d-flex py-2 mt-2 justify-content-between border align-items-center btn btn-dropdown text-left dropdown-toggle ps-4 text-dark w-100 border-box" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <span>{{ statusOptions.find(x => x.isActive).title }}</span>
+              </button>
+              <ul class="dropdown-menu text-muted w-100 my-2 p-0" aria-labelledby="dropdownMenuButton1">
+                <li v-for="(option, index) in statusOptions" @click="toggleStatus(option.name)" :key="index" class="d-flex justify-content-between dropdown-item text-muted w-100 p-0" :class="index !== (statusOptions.length - 1) ? 'border-bottom' : ''">
+                  <a class="dropdown-item" href="#">
+                    <div class="d-flex text-muted justify-content-between align-items-center">                          
+                      <span><small>{{ option.title }}</small></span>
                       <div class="d-inline">
-                        <img v-if="option.isActive" src="/checkmark-purple.svg" alt="">
+                        <img v-if="option.isActive" src="/checkmark-purple.svg" alt="Checkmark Purple">
                       </div>
-                    </div>
-                  </div>
-                </div>
-              </small>
-            </span>
+                    </div> 
+                  </a>
+                </li>
+              </ul>
+            </div>
 
             <br>
 
@@ -126,30 +107,24 @@
             <br>
 
             <div class="d-flex justify-content-between mt-2 mb-2">
-              <!-- <NuxtLink to="/"> -->
-                <button @click="store.deleteFeedback(currProduct.id); this.$router.push('/')" type="button" class="btn btn-danger py-2 px-4 me-4">
-                  <small>
-                    Delete
-                  </small>
-                </button>
-              <!-- </NuxtLink> -->
+              <button @click="store.deleteFeedback(currProduct.id); this.$router.push('/')" type="button" class="btn btn-danger py-2 px-4 me-4">
+                <small>
+                  Delete
+                </small>
+              </button>
 
               <div class="d-inline">
-                <NuxtLink :to="'/posts/' + currProduct.id">
-                  <button type="button" class="btn btn-primary btn-dark-blue py-2 px-4 me-4">
-                    <small>
-                      Cancel
-                    </small>
-                  </button>
+                <NuxtLink :to="'/posts/' + currProduct.id"  type="button" class="btn btn-primary btn-dark-blue py-2 px-4 me-4">
+                  <small>
+                    Cancel
+                  </small>
                 </NuxtLink>
 
-                <!-- <NuxtLink to="/"> -->
-                  <button @click="validate()" type="button" class="btn btn-primary py-2 px-4">
-                    <small>
-                      Save Changes
-                    </small>
-                  </button>
-                <!-- </NuxtLink> -->
+                <button @click="validate()" type="button" class="btn btn-primary py-2 px-4">
+                  <small>
+                    Save Changes
+                  </small>
+                </button>
               </div>
               
             </div>
@@ -263,6 +238,7 @@ export default {
       }) 
     },
     toggleCategory: function (categoryName) {
+      console.log('zz')
       this.categoryOptions = this.categoryOptions.map(x => {
         if (x.name === categoryName) {
           x.isActive = true
@@ -289,7 +265,6 @@ export default {
   async created() {
     try {
       const products = this.productRequests
-      let self = this
 
       this.currProduct = {...products.find(x => {
         return this.$route.params.id == x.id 

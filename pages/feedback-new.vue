@@ -48,6 +48,25 @@
             </span>
             <br>
 
+            <div class="dropdown d-block w-100">
+              <button class="d-flex py-2 mt-2 justify-content-between border align-items-center btn btn-dropdown text-left dropdown-toggle ps-4 text-dark w-100 border-box" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <span>{{ categoryOptions.find(x => x.isActive).title}}</span>
+              </button>
+              <ul class="dropdown-menu text-muted w-100 my-2 p-0" aria-labelledby="dropdownMenuButton1">
+                <li v-for="(option, index) in categoryOptions" @click="toggleCategory(option.name)" :key="index" class="d-flex justify-content-between dropdown-item text-muted w-100 p-0" :class="index !== (categoryOptions.length - 1) ? 'border-bottom' : ''">
+                  <a class="dropdown-item" href="#">
+                    <div class="d-flex text-muted justify-content-between align-items-center">                          
+                      <span><small>{{ option.title }}</small></span>
+                      <div class="d-inline">
+                        <img v-if="option.isActive" src="/checkmark-purple.svg" alt="Checkmark Purple">
+                      </div>
+                    </div> 
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+<!-- 
             <div class="mb-4">
               <small>
                 <div class="dropdown my-2">
@@ -64,7 +83,7 @@
                   </div>
                 </div>
               </small>
-            </div>
+            </div> -->
 
             <div class="text-blue fw-bold pt-2">
               <small>
@@ -82,12 +101,10 @@
             <br>
 
             <div class="d-flex justify-content-end mt-2">
-              <NuxtLink to="/">
-                <button type="button" class="btn btn-dark-blue text-white py-2 px-4 me-4">
-                  <small>
-                    Cancel
-                  </small>
-                </button>
+              <NuxtLink to="/" type="button" class="btn btn-dark-blue text-white py-2 px-4 me-4">
+                <small>
+                  Cancel
+                </small>
               </NuxtLink>
 
               <!-- <NuxtLink to="#"> -->

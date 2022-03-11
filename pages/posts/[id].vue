@@ -22,17 +22,15 @@
             <div class="container py-2">
               <div class="row">
                 <div class="col-md-1 d-none d-md-block">
-                  <!-- <button @click="toggleUpvote(currProduct.id)" class="btn p-0" role="button"> -->
-                    <button @click="toggleUpvote(currProduct.id)"  class="btn badge bg-light text-dark px-2 pb-0 py-0 mx-0 mt-0 mb-0 fw-bold fs-smaller" :class="currProduct.upvoters.includes(currentUser.username) ? 'bg-blue text-white' : ''" role="button">
-                      <svg width="10" height="7" class="mb-2" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1 6l4-4 4 4" :stroke="currProduct.upvoters.includes(currentUser.username) ? '#FFFFFF' : '#4661E6'" stroke-width="2" fill="none" fill-rule="evenodd"/>
-                      </svg>
-                      <br>
-                      <span class="fw-bold" :class="currProduct.upvoters.includes(currentUser.username) ? 'text-white' : 'text-blue'">
-                        {{ currProduct.upvotes }}
-                      </span>
-                    </button>
-                  <!-- </button> -->
+                  <button @click="toggleUpvote(currProduct.id)"  class="btn badge bg-light text-dark px-2 pb-0 py-0 mx-0 mt-0 mb-0 fw-bold fs-smaller" :class="currProduct.upvoters.includes(currentUser.username) ? 'bg-blue text-white' : ''" role="button">
+                    <svg width="10" height="7" class="mb-2" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1 6l4-4 4 4" :stroke="currProduct.upvoters.includes(currentUser.username) ? '#FFFFFF' : '#4661E6'" stroke-width="2" fill="none" fill-rule="evenodd"/>
+                    </svg>
+                    <br>
+                    <span class="fw-bold" :class="currProduct.upvoters.includes(currentUser.username) ? 'text-white' : 'text-blue'">
+                      {{ currProduct.upvotes }}
+                    </span>
+                  </button>
                 </div>
 
                 <div class="col-md-9">
@@ -72,9 +70,7 @@
                   </div>
                   <div class="d-none d-md-inline-block">
                     <img src="/chat-bubble.svg" class="d-inline-block pe-3" alt="Chat Bubble">
-                    <!-- <span> -->
-                      {{ currProduct.comments ? currProduct.comments.length : '0' }}
-                    <!-- </span> -->
+                    {{ currProduct.comments ? currProduct.comments.length : '0' }}
                   </div>
                 </div>
               </div>
@@ -98,7 +94,7 @@
                       </div> 
                       <div class="d-inline-block ps-3">
                         <span class="fw-bold text-blue" style="font-size: 14px;">
-                        {{ comment.user.name }} 111
+                        {{ comment.user.name }}
                       </span><br>
                       <span style="font-size: 14px;">
                         @{{ comment.user.username }} 
@@ -114,6 +110,8 @@
                 </div>
               </div>
 
+              <!-- First Reply -->
+
               <div class="row">
                 <div class="col-md-1 pt-3 text-center">
                   <div class="mx-auto" style="background-color: lightgrey; width: 1px; height: 100%;" v-if="comment.replies && comment.replies.length >= 1"></div>
@@ -126,8 +124,13 @@
                     <div class="row">
                       <div class="col-md-12">
                         <div class="d-flex">
-                          <!-- {{ comment }} -->
-                          <textarea v-model="comment.activeComment" rows="3" class="d-inline form-control mb-0 me-3 w-sm-50" style="width: 100%;"></textarea>
+                          <div class="w-100 pe-3">
+                            <textarea v-model="comment.activeComment" rows="3" class="w-100 d-inline form-control mb-0 me-3 w-sm-50" style="width: 100%;"></textarea>
+                            <br>
+                            <span class="mt-2" style="font-size: 14px; color: red; font-weight: 300">
+                              Can't be empty. 1
+                            </span>
+                          </div>
                           <div>
                             <button @click="addReply(index, comment.activeComment, comment.user.username); commentReplies[index].isActive = !commentReplies[index].isActive; comment.activeComment = ''" type="button" class="d-inline btn btn-primary fs-small fw-bold py-2 px-4">
                               <small class="text-nowrap">
@@ -141,6 +144,7 @@
                   </div>
 
               <div class="pb-xs-5 pb-md-0" :class="[comment.replies && comment.replies.length > 1 ? 'border-responsive-padding' : '', comment.replies && comment.replies.length == 1 ? 'mt-5 mt-md-0' : '']">
+                  
                   <!-- Top level replies -->
 
                   <div class="container ps-5 ps-md-0" v-for="(reply, replyIndex) in comment.replies" :key="replyIndex" >
@@ -167,14 +171,18 @@
                             </a>
                           </div>
                         </div>
-
                         
                         <span v-if="replyIndex !== comment.replies.length - 1">
                           <span class="font-purple fw-bold"> @{{ reply.replyingTo }} </span>
                           {{ reply.content }}
 
                           <div class="d-flex mt-3" v-if="comment.replies[replyIndex].isActive">
-                            <textarea v-model="comment.replies[replyIndex].activeReply" rows="3" class="d-inline form-control mb-0 me-3 w-sm-50" style="width: 100%;"></textarea>
+                            <div class="w-100 pe-3">
+                              <textarea v-model="comment.replies[replyIndex].activeReply" rows="3" class="d-inline form-control mb-0 me-3 w-sm-50" style="width: 100%;"></textarea>
+                              <span class="d-block mt-2" style="font-size: 14px; color: red; font-weight: 300">
+                                Can't be empty. 2
+                              </span>
+                            </div>
                             <div>
                               <button @click="addReply(index, comment.replies[replyIndex].activeReply, comment.replies[replyIndex].user.username, replyIndex); comment.replies[replyIndex].isActive = !comment.replies[replyIndex].isActive; comment.replies[replyIndex].activeReply = ''" type="button" class="d-inline btn btn-primary fs-small fw-bold py-2 px-4">
                                 <small class="text-nowrap">
@@ -194,13 +202,12 @@
               </div>
               
               <!-- Last level reply -->
+
               <div class="row">
                 <div class="offset-md-1 col-md-11 margin-custom"  v-if="comment.replies && comment.replies.length >= 1" >
                   <div class="container ps-5 ps-md-0 pe-custom mb-3"  :class="comment.replies && comment.replies.length == 1 ? 'border-responsive-margin' : ''">
                     <div class="row mt-0">
                       <div class="col-md-12 px-0">
-                        <!-- oooga {{ comment.replies.length }} {{ comment.replies && comment.replies.length == 1 }} -->
-                        <!-- {{comment.replies.length}} -->
                         <div class="d-flex justify-content-between align-items-top">
                           <div class="d-flex align-items-top">
                             <div class="d-inline-block">
@@ -228,7 +235,12 @@
                         {{ comment.replies[comment.replies.length-1].content }} 
                         
                         <div class="d-flex mt-3" v-if="comment.replies[comment.replies.length-1].isActive">
-                          <textarea v-model="comment.replies[comment.replies.length-1].activeReply" rows="3" class="d-inline form-control mb-0 me-3 w-sm-50" style="width: 100%;"></textarea>
+                          <div class="w-100 pe-3">
+                            <textarea v-model="comment.replies[comment.replies.length-1].activeReply" rows="3" class="d-inline form-control mb-0 me-3 w-sm-50" style="width: 100%;"></textarea>
+                            <span class="d-block mt-2" style="font-size: 14px; color: red; font-weight: 300">
+                              Can't be empty. 3
+                            </span>
+                          </div>
                           <div>
                             <button @click="addReply(index, comment.replies[comment.replies.length-1].activeReply, comment.replies[comment.replies.length-1].user.username); comment.replies[comment.replies.length-2].isActive = !comment.replies[comment.replies.length-2].isActive; comment.replies[comment.replies.length-2].activeReply = ''"  type="button" class="d-inline btn btn-primary fs-small fw-bold py-2 px-4">
                               <small class="text-nowrap">
@@ -256,13 +268,18 @@
 
       </div>
 
+      <!-- New Comment -->
+
       <div class="row mb-5">
         <div class="col-lg-8 offset-lg-2 col-md-12">
           <div class="bg-white px-2 py-4 rounded fs-small ">
             <span @click="addComment()" class="ps-4 fw-bold text-blue">Add Comment</span> <br><br>
 
             <div class="px-4">
-              <textarea v-model="newComment" class="form-control" placeholder="Type your comment here" maxLength="250"></textarea>
+              <textarea v-model="newComment" class="form-control" :class="[hasErrorFeedback ? 'has-error' : '']" placeholder="Type your comment here" maxLength="250"></textarea>
+              <span v-if="hasErrorFeedback" class="d-block mt-2" style="font-size: 14px; color: red; font-weight: 300">
+                Can't be empty.
+              </span>
             </div>
 
             <div class="d-flex justify-content-between px-4 mt-4">
@@ -302,7 +319,8 @@ export default {
       currProduct: {
         comments: [],
         id: 0
-      }
+      },
+      hasErrorFeedback: false
     }
   },
   methods: {
@@ -317,36 +335,40 @@ export default {
       this.store.toggleUpvote(commentID, this.currentUser.username)
     },
     addComment: function () {
-      console.log('add comment')
+      if (this.newComment !== '') {
+        let commentID = this.currProduct.comments.length ? this.currProduct.comments[this.currProduct.comments.length-1].id + 1 : 1
 
-      let commentID = this.currProduct.comments.length ? this.currProduct.comments[this.currProduct.comments.length-1].id + 1 : 1
-      console.log(commentID)
+        const payload = {
+          id: commentID,
+          content: this.newComment,
+          user: useStore().currentUser
+        }
 
-      console.log('before')
+        console.log('middle')
+        console.log(payload)
+        console.log(this.currProduct.id, payload)
 
-      const payload = {
-        id: commentID,
-        content: this.newComment,
-        user: useStore().currentUser
+        this.newComment = ''
+
+        useStore().addComment(this.currProduct.id, payload)
+        this.reset()
+        this.hasErrorFeedback = false
+      } else {
+        this.hasErrorFeedback = true
       }
-
-      console.log('middle')
-      console.log(payload)
-      console.log(this.currProduct.id, payload)
-
-      this.newComment = ''
-
-      useStore().addComment(this.currProduct.id, payload)
-      this.reset()
     },
     addReply: function (commentIndex, commentContent, replyTo, replyIndex) {
-      const payload = {
-        content: commentContent,
-        replyingTo: replyTo,
-        user: useStore().currentUser
-      }
+      if (commentContent !== '') {
+        const payload = {
+          content: commentContent,
+          replyingTo: replyTo,
+          user: useStore().currentUser
+        }
 
-      useStore().addReply(this.currProduct.id, commentIndex, payload)
+        useStore().addReply(this.currProduct.id, commentIndex, payload)
+      } else {
+        alert('has error')
+      }      
     },
     toggleAllReplies: function(commentIndex, replyIndex) {
       // console.log(this.commentReplies)
@@ -427,7 +449,7 @@ export default {
     }
   },
   mounted () {
-    window.scrollTo(0, 0)
+    // window.scrollTo(0, 0)
   },
   computed: {
     descriptionLength: function () {
