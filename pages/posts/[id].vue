@@ -102,7 +102,7 @@
                       </div>
                     </div>
                     <div>
-                      <a href="#" @click="showReply(index)" role="button" class="text-underline-hover font-light-blue fw-semibold" style="font-size: 13px;">
+                      <a href="##" @click="showReply(index)" role="button" class="text-underline-hover font-light-blue fw-semibold" style="font-size: 13px;">
                         Reply
                       </a>
                     </div>
@@ -125,6 +125,7 @@
                       <div class="col-md-12">
                         <div class="d-flex">
                           <div class="w-100 pe-3">
+                            Comment content: {{ comment.activeComment }} Comment index: {{ index }}
                             <textarea v-model="comment.activeComment" rows="3" class="w-100 d-inline form-control mb-0 me-3 w-sm-50" style="width: 100%;"></textarea>
                             <br>
                             <span class="mt-2" style="font-size: 14px; color: red; font-weight: 300">
@@ -145,7 +146,7 @@
 
               <div class="pb-xs-5 pb-md-0" :class="[comment.replies && comment.replies.length > 1 ? 'border-responsive-padding' : '', comment.replies && comment.replies.length == 1 ? 'mt-5 mt-md-0' : '']">
                   
-                  <!-- Top level replies -->
+                  <!-- Top level subreplies (>1) -->
 
                   <div class="container ps-5 ps-md-0" v-for="(reply, replyIndex) in comment.replies" :key="replyIndex" >
                     <div class="row mt-4 mb-0"  v-if="replyIndex !== comment.replies.length - 1">
@@ -166,7 +167,7 @@
                             </div>
                           </div>
                           <div>
-                            <a href="#" @click="toggleSubReply(index, replyIndex)" role="button" class="text-underline-hover font-light-blue fw-semibold" style="font-size: 13px;">
+                            <a href="##" @click="toggleSubReply(index, replyIndex)" role="button" class="text-underline-hover font-light-blue fw-semibold" style="font-size: 13px;">
                               Reply
                             </a>
                           </div>
@@ -175,9 +176,9 @@
                         <span v-if="replyIndex !== comment.replies.length - 1">
                           <span class="font-purple fw-bold"> @{{ reply.replyingTo }} </span>
                           {{ reply.content }}
-
                           <div class="d-flex mt-3" v-if="comment.replies[replyIndex].isActive">
                             <div class="w-100 pe-3">
+                              Comment Content:  {{ comment.replies[replyIndex].activeReply }} Comment Index: {{ index }} Subreply Index: {{ replyIndex }}
                               <textarea v-model="comment.replies[replyIndex].activeReply" rows="3" class="d-inline form-control mb-0 me-3 w-sm-50" style="width: 100%;"></textarea>
                               <span class="d-block mt-2" style="font-size: 14px; color: red; font-weight: 300">
                                 Can't be empty. 2
@@ -201,7 +202,7 @@
               </div>
               </div>
               
-              <!-- Last level reply -->
+              <!-- Last level subreply -->
 
               <div class="row">
                 <div class="offset-md-1 col-md-11 margin-custom"  v-if="comment.replies && comment.replies.length >= 1" >
@@ -223,7 +224,7 @@
                             </div>
                           </div>
                           <div>
-                            <a href="#" @click="toggleSubReply(index, comment.replies.length-1)" role="button" class="text-underline-hover font-light-blue fw-semibold" style="font-size: 13px;">
+                            <a href="##" @click="toggleSubReply(index, comment.replies.length-1)" role="button" class="text-underline-hover font-light-blue fw-semibold" style="font-size: 13px;">
                               Reply
                             </a>
                           </div>
@@ -236,6 +237,7 @@
                         
                         <div class="d-flex mt-3" v-if="comment.replies[comment.replies.length-1].isActive">
                           <div class="w-100 pe-3">
+                            Comment Content:  {{ comment.replies[comment.replies.length-1].activeReply }} Comment Index: {{ index }} Subreply Index: {{ comment.replies.length-1 }}
                             <textarea v-model="comment.replies[comment.replies.length-1].activeReply" rows="3" class="d-inline form-control mb-0 me-3 w-sm-50" style="width: 100%;"></textarea>
                             <span class="d-block mt-2" style="font-size: 14px; color: red; font-weight: 300">
                               Can't be empty. 3

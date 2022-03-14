@@ -107,13 +107,11 @@
                 </small>
               </NuxtLink>
 
-              <!-- <NuxtLink to="#"> -->
-                <button @click="validate()" type="button" class="btn btn-primary py-2 px-4">
-                  <small>
-                    Add Feedback
-                  </small>
-                </button>
-              <!-- </NuxtLink> -->
+              <button @click="validate()" type="button" class="btn btn-primary py-2 px-4">
+                <small>
+                  Add Feedback
+                </small>
+              </button>
             </div>
             
           </div>

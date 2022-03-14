@@ -216,6 +216,7 @@
                     </li>
                   </ul>
                 </div>
+
               </small>
             </span>
 
@@ -574,6 +575,7 @@ h4 {
 }
 
 /* custom bullet colors */
+
 ul {
   list-style-type: none !important; /* Remove default bullets */
 }
