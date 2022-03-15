@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main>
 
     <!-- Mobile Nav -->
 
@@ -312,7 +312,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>

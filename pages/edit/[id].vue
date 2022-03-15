@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main>
     <div class="container mt-md-5">
       <div class="row mb-5">
         <div class="col-lg-6 offset-lg-3 col-md-12">
@@ -133,7 +133,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
