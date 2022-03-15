@@ -5,10 +5,10 @@
         <div class="col-lg-8 offset-lg-2 col-md-12">
           <div class="py-4 d-flex justify-content-between">
             <div>
-              <button @click="$router.back()" class="btn" role="button">
+              <NuxtLink to="/" class="btn" role="button">
                 <img src="/shared/icon-arrow-left.svg" class="me-3" alt="Left Arrow">
                 <span class="fs-smaller fw-bold text-muted" role="button">Go Back</span>
-              </button> 
+              </NuxtLink> 
             </div>
              
             <NuxtLink :to="'/edit/' + currProduct.id" class="btn btn-primary btn-blue py-2 px-4 fs-small fw-bold">
@@ -110,7 +110,7 @@
                 </div>
               </div>
 
-              <!-- First Reply -->
+              <!-- First Comment -->
 
               <div class="row">
                 <div class="col-md-1 pt-3 text-center">
@@ -125,15 +125,15 @@
                       <div class="col-md-12">
                         <div class="d-flex">
                           <div class="w-100 pe-3">
-                            Comment content: {{ comment.activeComment }} Comment index: {{ index }}
-                            <textarea v-model="comment.activeComment" rows="3" class="w-100 d-inline form-control mb-0 me-3 w-sm-50" style="width: 100%;"></textarea>
+                            <!-- Comment content: {{ comment.activeComment }} Comment index: {{ index }} Comment error: {{ comment.hasError }} -->
+                            <textarea v-model="comment.activeComment" rows="3" class="w-100 d-inline form-control mb-0 me-3 w-sm-50" :class="[comment.hasError ? 'has-error' : '']" style="width: 100%;"></textarea>
                             <br>
-                            <span class="mt-2" style="font-size: 14px; color: red; font-weight: 300">
-                              Can't be empty. 1
+                            <span v-if="comment.hasError" class="mt-2" style="font-size: 14px; color: red; font-weight: 300">
+                              Can't be empty.
                             </span>
                           </div>
                           <div>
-                            <button @click="addReply(index, comment.activeComment, comment.user.username); commentReplies[index].isActive = !commentReplies[index].isActive; comment.activeComment = ''" type="button" class="d-inline btn btn-primary fs-small fw-bold py-2 px-4">
+                            <button @click="addReply(index, comment.activeComment, comment.user.username);" type="button" class="d-inline btn btn-primary fs-small fw-bold py-2 px-4">
                               <small class="text-nowrap">
                                 Post Reply
                               </small>
@@ -178,14 +178,13 @@
                           {{ reply.content }}
                           <div class="d-flex mt-3" v-if="comment.replies[replyIndex].isActive">
                             <div class="w-100 pe-3">
-                              Comment Content:  {{ comment.replies[replyIndex].activeReply }} Comment Index: {{ index }} Subreply Index: {{ replyIndex }}
-                              <textarea v-model="comment.replies[replyIndex].activeReply" rows="3" class="d-inline form-control mb-0 me-3 w-sm-50" style="width: 100%;"></textarea>
-                              <span class="d-block mt-2" style="font-size: 14px; color: red; font-weight: 300">
-                                Can't be empty. 2
+                              <textarea v-model="comment.replies[replyIndex].activeReply" rows="3" :class="[comment.replies[replyIndex].hasError ? 'has-error' : '']" class="d-inline form-control mb-0 me-3 w-sm-50" style="width: 100%;"></textarea>
+                              <span v-if="comment.replies[replyIndex].hasError" class="d-block mt-2" style="font-size: 14px; color: red; font-weight: 300">
+                                Can't be empty.
                               </span>
                             </div>
                             <div>
-                              <button @click="addReply(index, comment.replies[replyIndex].activeReply, comment.replies[replyIndex].user.username, replyIndex); comment.replies[replyIndex].isActive = !comment.replies[replyIndex].isActive; comment.replies[replyIndex].activeReply = ''" type="button" class="d-inline btn btn-primary fs-small fw-bold py-2 px-4">
+                              <button @click="addReply(index, comment.replies[replyIndex].activeReply, comment.replies[replyIndex].user.username, replyIndex);" type="button" class="d-inline btn btn-primary fs-small fw-bold py-2 px-4">
                                 <small class="text-nowrap">
                                   Post Reply
                                 </small>
@@ -237,18 +236,19 @@
                         
                         <div class="d-flex mt-3" v-if="comment.replies[comment.replies.length-1].isActive">
                           <div class="w-100 pe-3">
-                            Comment Content:  {{ comment.replies[comment.replies.length-1].activeReply }} Comment Index: {{ index }} Subreply Index: {{ comment.replies.length-1 }}
-                            <textarea v-model="comment.replies[comment.replies.length-1].activeReply" rows="3" class="d-inline form-control mb-0 me-3 w-sm-50" style="width: 100%;"></textarea>
-                            <span class="d-block mt-2" style="font-size: 14px; color: red; font-weight: 300">
-                              Can't be empty. 3
+                            <textarea v-model="comment.replies[comment.replies.length-1].activeReply" rows="3" :class="[comment.replies[comment.replies.length-1].hasError ? 'has-error' : '']" class="d-inline form-control mb-0 me-3 w-sm-50" style="width: 100%;"></textarea>
+                            <span v-if="comment.replies[comment.replies.length-1].hasError" class="d-block mt-2" style="font-size: 14px; color: red; font-weight: 300">
+                              Can't be empty.
                             </span>
                           </div>
                           <div>
-                            <button @click="addReply(index, comment.replies[comment.replies.length-1].activeReply, comment.replies[comment.replies.length-1].user.username); comment.replies[comment.replies.length-2].isActive = !comment.replies[comment.replies.length-2].isActive; comment.replies[comment.replies.length-2].activeReply = ''"  type="button" class="d-inline btn btn-primary fs-small fw-bold py-2 px-4">
+
+                            <button @click="addReply(index, comment.replies[comment.replies.length-1].activeReply, comment.replies[comment.replies.length-1].user.username, comment.replies.length-1);"  type="button" class="d-inline btn btn-primary fs-small fw-bold py-2 px-4">
                               <small class="text-nowrap">
                                 Post Reply
                               </small>
                             </button>
+
                           </div>
                         </div>
 
@@ -338,17 +338,13 @@ export default {
     },
     addComment: function () {
       if (this.newComment !== '') {
-        let commentID = this.currProduct.comments.length ? this.currProduct.comments[this.currProduct.comments.length-1].id + 1 : 1
+        let commentID = this.currProduct.comments ? this.currProduct.comments[this.currProduct.comments.length-1].id + 1 : 1
 
         const payload = {
           id: commentID,
           content: this.newComment,
           user: useStore().currentUser
         }
-
-        console.log('middle')
-        console.log(payload)
-        console.log(this.currProduct.id, payload)
 
         this.newComment = ''
 
@@ -360,32 +356,57 @@ export default {
       }
     },
     addReply: function (commentIndex, commentContent, replyTo, replyIndex) {
-      if (commentContent !== '') {
+      // console.log(commentContent)
+
+      if (commentContent) {
         const payload = {
           content: commentContent,
           replyingTo: replyTo,
           user: useStore().currentUser
         }
 
+
+        this.commentReplies[commentIndex].isActive = false;
+        this.currProduct.comments[commentIndex].activeComment = ''
+        this.currProduct.comments[commentIndex].hasError = false;
+
         useStore().addReply(this.currProduct.id, commentIndex, payload)
+
+
+        // reset the right subreply
+        if (replyIndex >=0 ) {
+          console.log('reset: ' + replyIndex)
+          if (this.currProduct.comments[commentIndex].replies && replyIndex !== this.currProduct.comments[commentIndex].replies.length-1) {
+            this.currProduct.comments[commentIndex].replies[replyIndex].isActive = false
+            this.currProduct.comments[commentIndex].replies[replyIndex].activeReply = ''
+          } else {
+            this.currProduct.comments[commentIndex].replies[replyIndex-2].isActive = false
+            this.currProduct.comments[commentIndex].replies[replyIndex-2].activeReply = ''
+          }
+        }
       } else {
-        alert('has error')
+        if (this.currProduct.comments[commentIndex].replies) {
+          this.currProduct.comments[commentIndex].replies[replyIndex].hasError = true;
+        } else {
+          this.currProduct.comments[commentIndex].hasError = true;
+        }
       }      
     },
     toggleAllReplies: function(commentIndex, replyIndex) {
-      // console.log(this.commentReplies)
       let self = this
       
       if (!replyIndex) {
         this.commentReplies.forEach((x, index) => {
           if (commentIndex !== index) {
             x.isActive = false
+            x.hasError = false
           }
 
           self.currProduct.comments.forEach((y) => {
             if (y.replies) {
               y.replies.forEach(z => {
                 z.isActive = false
+                z.hasError = false
               })
             }
           })
@@ -398,6 +419,7 @@ export default {
             console.log(replyIndex)
             if (z !== replyIndex - 1) {
               y.isActive = false
+              y.hasError = false
             }
           })
         })
@@ -424,6 +446,7 @@ export default {
         if (temp) {
           this.currProduct = temp
 
+
           this.currProduct.comments = this.currProduct.comments.map(x => {
             let item = {
               isActive: false,
@@ -439,6 +462,9 @@ export default {
             }
 
             x.activeComment = ''
+            x.hasError = false
+            
+            console.log(x)
 
             self.commentReplies.push(item)
 

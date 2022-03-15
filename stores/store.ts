@@ -324,7 +324,12 @@ export const useStore = defineStore('storeId', {
       this.productRequests.push(payload)
     },
     addComment(feedbackID, payload){
-      this.productRequests.find(x => x.id === feedbackID).comments.push(payload)
+      let comment = this.productRequests.find(x => x.id === feedbackID)
+      if (comment && comment.comments) {
+        comment.comments.push(payload)
+      } else {
+        comment.comments = [payload]
+      }
     },
     addReply(feedbackID, commentIndex, payload){
       if (!this.productRequests.find(x => x.id === feedbackID).comments[commentIndex].replies) {
