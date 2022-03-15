@@ -259,7 +259,7 @@
                   </NuxtLink>
                   <br>
                   <div class="py-1 fs-small" style="font-weight: 300; color=#647196;">{{ product.description }}</div>
-                  <span id="badge-no-click-obj" class="badge bg-light badge-no-click text-dark px-3 py-0 mx-0 mt-2" style="font-weight: 500; font-size: 13px;">
+                  <span id="custom-badge" class="badge bg-light badge-no-click text-dark px-3 py-0 mx-0 mt-2" style="font-weight: 500; font-size: 13px;">
                     {{ capitalize(product.category) }}
                   </span>
                 </div>
@@ -522,7 +522,7 @@ body, html {
   color: #fff;
 }
 
-.badge-no-click:hover, #badge-no-click-obj:active {
+.badge-no-click:hover, #custom-badge:active {
   color: #4661E6!important;
   background-color: #f8f9fa!important;
 }

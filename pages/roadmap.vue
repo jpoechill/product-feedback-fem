@@ -96,7 +96,7 @@
                 <span class="d-block text-muted fs-small">
                   {{ item.description }}
                 </span>
-                <span id="badge-no-click" class="badge badge-no-click bg-light text-dark ps-3 pe-3 ms-0 mt-3 me-2 fs-smaller fw-bold">
+                <span id="custom-badge" class="badge badge-no-click bg-light text-dark ps-3 pe-3 ms-0 mt-3 me-2 fs-smaller fw-bold">
                   {{ capitalize(item.category) }}  
                 </span> 
                 <br>
@@ -136,7 +136,7 @@
                 <span class="d-block text-muted fs-small">
                   {{ item.description }}
                 </span>
-                <span id="badge-no-click" class="badge bg-light badge-no-click text-dark ps-3 pe-3 ms-0 mt-3 me-2 fs-smaller fw-bold">
+                <span id="custom-badge" class="badge bg-light badge-no-click text-dark ps-3 pe-3 ms-0 mt-3 me-2 fs-smaller fw-bold">
                   {{ capitalize(item.category) }}  
                 </span> 
                 <br>
@@ -176,7 +176,7 @@
                 <span class="d-block text-muted fs-small">
                   {{ item.description }}
                 </span>
-                <span id="badge-no-click" class="badge badge-no-click bg-light text-dark ps-3 pe-3 ms-0 mt-3 me-2 fs-smaller fw-bold">
+                <span id="custom-badge" class="badge badge-no-click bg-light text-dark ps-3 pe-3 ms-0 mt-3 me-2 fs-smaller fw-bold">
                   {{ capitalize(item.category) }}  
                 </span>  
                 <div class="d-flex justify-content-between align-items-center">
@@ -220,7 +220,7 @@
                 <span class="d-block text-muted fs-small">
                   {{ item.description }}
                 </span>
-                <span id="badge-no-click" class="badge badge-no-click bg-light text-dark ps-3 pe-3 ms-0 mt-3 me-2 fs-smaller fw-bold">
+                <span id="custom-badge" class="badge badge-no-click bg-light text-dark ps-3 pe-3 ms-0 mt-3 me-2 fs-smaller fw-bold">
                   {{ capitalize(item.category) }}  
                 </span> 
                 <br>
@@ -260,7 +260,7 @@
                 <span class="d-block text-muted fs-small">
                   {{ item.description }}
                 </span>
-                <span id="badge-no-click" class="badge bg-light badge-no-click text-dark ps-3 pe-3 ms-0 mt-3 me-2 fs-smaller fw-bold">
+                <span id="custom-badge" class="badge bg-light badge-no-click text-dark ps-3 pe-3 ms-0 mt-3 me-2 fs-smaller fw-bold">
                   {{ capitalize(item.category) }}  
                 </span> 
                 <br>
@@ -300,7 +300,7 @@
                 <span class="d-block text-muted fs-small">
                   {{ item.description }}
                 </span>
-                <span id="badge-no-click" class="badge badge-no-click bg-light text-dark ps-3 pe-3 ms-0 mt-3 me-2 fs-smaller fw-bold">
+                <span id="custom-badge" class="badge badge-no-click bg-light text-dark ps-3 pe-3 ms-0 mt-3 me-2 fs-smaller fw-bold">
                   {{ capitalize(item.category) }}  
                 </span>  
                 <div class="d-flex justify-content-between align-items-center">
