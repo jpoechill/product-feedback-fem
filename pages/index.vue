@@ -88,23 +88,21 @@
     <div class="bg-dark-blue d-md-none mt-5">
       <div class="container">
         <div class="row px-2">
-          <div class="col-md-12 text-white pt-5 mt-1 pb-3">
-            <span>
-                <small>Sort by: </small>
-                <div class="dropdown d-inline">
-                  <button class="btn btn-dropdown dropdown-toggle ps-4" style="background-color: transparent!important; color: #FFF!important; font-weight: 600!important;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span><small>{{ sortOptions.find(x => x.isActive ).title }}</small> </span>
-                  </button>
-                  <div class="dropdown-menu text-muted" aria-labelledby="dropdownMenuButton">
-                    <div v-for="(option, index) in sortOptions" @click="toggleSort(option.name)" class="d-flex justify-content-between dropdown-item text-muted" :class="index !== (sortOptions.length - 1) ? 'border-bottom' : ''" :key="index" role="button">
-                      <span>{{ option.title }} </span>
-                      <div class="d-inline">
-                        <img v-if="option.isActive" src="/checkmark-purple.svg" alt="Checkmark Purple">
-                      </div>
-                    </div>
+          <div class="col-md-12 text-white pt-5 mt-1 pb-3">>
+            <small>Sort by: </small>
+            <div class="dropdown d-inline">
+              <button class="btn btn-dropdown dropdown-toggle ps-4" style="background-color: transparent!important; color: #FFF!important; font-weight: 600!important;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span><small>{{ sortOptions.find(x => x.isActive ).title }}</small> </span>
+              </button>
+              <div class="dropdown-menu text-muted" aria-labelledby="dropdownMenuButton">
+                <div v-for="(option, index) in sortOptions" @click="toggleSort(option.name)" class="d-flex justify-content-between dropdown-item text-muted" :class="index !== (sortOptions.length - 1) ? 'border-bottom' : ''" :key="index" role="button">
+                  <span>{{ option.title }} </span>
+                  <div class="d-inline">
+                    <img v-if="option.isActive" src="/checkmark-purple.svg" alt="Checkmark Purple">
                   </div>
                 </div>
-            </span>
+              </div>
+            </div>
 
             <div class="float-end content-padding">
               <NuxtLink to="/feedback-new">
@@ -191,32 +189,26 @@
               <strong>{{ filterSuggestions.length }} Suggestions</strong> 
             </div>
 
-            <span class="">
-              <small>
-                Sort by: 
-
-                <div class="dropdown d-inline">
-                  <button class="btn btn-secondary dropdown-toggle" style="background-color: transparent!important; color: #FFF!important; font-weight: 600!important;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <small><span>{{ sortOptions.find(x => x.isActive ).title }}</span></small> 
-                  </button>
-                  <ul class="dropdown-menu text-muted" aria-labelledby="dropdownMenuButton1">
-                    <li v-for="(option, index) in sortOptions" @click="toggleSort(option.name)" :key="index" class="dropdown-item p-0 text-muted" :class="index !== (sortOptions.length - 1) ? 'border-bottom' : ''">
-                      <a class="dropdown-item" href="#">
-                        <div class="d-flex justify-content-between align-items-center ">                          
-                          <span class="text-muted">
-                            {{ option.title }}
-                          </span>
-                          <div class="d-inline">
-                            <img v-if="option.isActive" src="/checkmark-purple.svg" alt="Checkmark Purple">
-                          </div>
-                        </div> 
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-
-              </small>
-            </span>
+            <small>Sort by: </small>
+            <div class="dropdown d-inline">
+              <button class="btn btn-secondary dropdown-toggle" style="background-color: transparent!important; color: #FFF!important; font-weight: 600!important;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <small><span>{{ sortOptions.find(x => x.isActive ).title }}</span></small> 
+              </button>
+              <ul class="dropdown-menu text-muted" aria-labelledby="dropdownMenuButton1">
+                <li v-for="(option, index) in sortOptions" @click="toggleSort(option.name)" :key="index" class="dropdown-item p-0 text-muted" :class="index !== (sortOptions.length - 1) ? 'border-bottom' : ''">
+                  <a class="dropdown-item" href="#">
+                    <div class="d-flex justify-content-between align-items-center ">                          
+                      <span class="text-muted">
+                        {{ option.title }}
+                      </span>
+                      <div class="d-inline">
+                        <img v-if="option.isActive" src="/checkmark-purple.svg" alt="Checkmark Purple">
+                      </div>
+                    </div> 
+                  </a>
+                </li>
+              </ul>
+            </div>
 
             <div class="float-end content-padding">
               <NuxtLink to="/feedback-new">
