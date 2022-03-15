@@ -12,9 +12,9 @@
                 <div class="col-md-12">
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="py-3 ps-2">
-                      <span class="fw-bold">
-                      Feedback Mentor 
-                      </span><br>
+                      <!-- <span class="fw-bold"> -->
+                      <h1 class="fw-bold p-0 m-0">Feedback Mentor</h1>
+                      <!-- </span> -->
                       Feedbackboard
                     </div>
                     <div class="pe-2">
@@ -131,7 +131,7 @@
 
               <div class="col-md-4 mt-5 col-lg-12 mt-md-0 mb-lg-3 d-none d-md-block">
                 <div class="text-white radial-gradient pb-md-1 rounded pt-5 pb-3 h-100 px-3 mb-3">
-                  <h4 class="m-0 fw-bold">Frontend Mentor</h4> 
+                  <h1 class="m-0 fw-bold">Frontend Mentor</h1> 
                   <span class=" fw-light"><small>Feedback Board</small></span>
                 </div>
               </div>
@@ -267,7 +267,7 @@
                   </NuxtLink>
                   <br>
                   <div class="py-1 fs-small" style="font-weight: 300; color=#647196;">{{ product.description }}</div>
-                  <span id="badge-no-click" class="badge bg-light badge-no-click text-dark px-3 py-0 mx-0 mt-2" style="font-weight: 500; font-size: 13px;">
+                  <span id="badge-no-click-obj" class="badge bg-light badge-no-click text-dark px-3 py-0 mx-0 mt-2" style="font-weight: 500; font-size: 13px;">
                     {{ capitalize(product.category) }}
                   </span>
                 </div>
@@ -530,7 +530,7 @@ body, html {
   color: #fff;
 }
 
-.badge-no-click:hover, #badge-no-click:active {
+.badge-no-click:hover, #badge-no-click-obj:active {
   color: #4661E6!important;
   background-color: #f8f9fa!important;
 }
@@ -551,7 +551,7 @@ body, html {
   color: #FFF!important;
 }
 
-h4 {
+h1, h4 {
   font-size: 20px;
   font-weight: 400;
   letter-spacing: -0.25px!important;
