@@ -5,9 +5,9 @@
         <div class="col-lg-8 offset-lg-2 col-md-12">
           <div class="py-4 d-flex justify-content-between">
             <div>
-              <NuxtLink to="/" class="btn" role="button">
+              <NuxtLink to="/" class="btn">
                 <img src="/shared/icon-arrow-left.svg" class="me-3" alt="Left Arrow">
-                <span class="fs-smaller fw-bold text-muted" role="button">Go Back</span>
+                <span class="fs-smaller fw-bold text-muted">Go Back</span>
               </NuxtLink> 
             </div>
              
@@ -22,7 +22,7 @@
             <div class="container py-2">
               <div class="row">
                 <div class="col-md-1 d-none d-md-block">
-                  <button @click="toggleUpvote(currProduct.id)"  class="btn badge bg-light text-dark px-2 pb-0 py-0 mx-0 mt-0 mb-0 fw-bold fs-smaller" :class="currProduct.upvoters.includes(currentUser.username) ? 'bg-blue text-white' : ''" role="button">
+                  <button @click="toggleUpvote(currProduct.id)"  class="btn badge bg-light text-dark px-2 pb-0 py-0 mx-0 mt-0 mb-0 fw-bold fs-smaller" :class="currProduct.upvoters.includes(currentUser.username) ? 'bg-blue text-white' : ''">
                     <svg width="10" height="7" class="mb-2" xmlns="http://www.w3.org/2000/svg">
                       <path d="M1 6l4-4 4 4" :stroke="currProduct.upvoters.includes(currentUser.username) ? '#FFFFFF' : '#4661E6'" stroke-width="2" fill="none" fill-rule="evenodd"/>
                     </svg>
@@ -50,7 +50,7 @@
                   <div class="d-md-none d-sm-block mt-2 w-100">
                     <div class="d-flex justify-content-between w-100"> 
                       <div class="d-inline">
-                        <button @click="toggleUpvote(currProduct.id)" class="btn badge bg-light text-dark px-3 py-0 mx-0 mt-0 fw-bold fs-smaller" :class="currProduct.upvoters.includes(currentUser.username) ? 'bg-blue text-white' : ''" role="button">
+                        <button @click="toggleUpvote(currProduct.id)" class="btn badge bg-light text-dark px-3 py-0 mx-0 mt-0 fw-bold fs-smaller" :class="currProduct.upvoters.includes(currentUser.username) ? 'bg-blue text-white' : ''">
                           <svg width="10" height="7" class="me-2" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1 6l4-4 4 4" :stroke="currProduct.upvoters.includes(currentUser.username) ? '#FFFFFF' : '#4661E6'" stroke-width="2" fill="none" fill-rule="evenodd"/>
                           </svg>

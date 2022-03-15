@@ -5,9 +5,9 @@
         <div class="col-lg-6 offset-lg-3 offset-md-none col-md-12">
           <div class="pb-4 mb-4">
             <div>
-              <button @click="$router.back()" class="btn" role="button">
+              <button @click="$router.back()" class="btn">
                 <img src="/shared/icon-arrow-left.svg" class="me-3" alt="Left Arrow">
-                <span class="fs-smaller fw-bold text-muted" role="button">Go Back</span>
+                <span class="fs-smaller fw-bold text-muted">Go Back</span>
               </button> 
             </div>
           </div>
@@ -65,25 +65,6 @@
                 </li>
               </ul>
             </div>
-
-<!-- 
-            <div class="mb-4">
-              <small>
-                <div class="dropdown my-2">
-                  <button class="d-flex py-2 justify-content-between border align-items-center btn btn-dropdown text-left dropdown-toggle ps-4 text-dark w-100 border-box" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <small><span>{{ categoryOptions.find(x => x.isActive).title}}</span></small> 
-                  </button>
-                  <div class="dropdown-menu text-muted w-100 my-2" aria-labelledby="dropdownMenuButton">
-                    <div v-for="(option, index) in categoryOptions" @click="toggleCategory(option.name)" class="d-flex justify-content-between dropdown-item text-muted" :class="index !== (categoryOptions.length - 1) ? 'border-bottom' : ''" :key="index" role="button">
-                      <span>{{ option.title }} </span>
-                      <div class="d-inline">
-                        <img v-if="option.isActive" src="/checkmark-purple.svg" alt="Checkmark Purple">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </small>
-            </div> -->
 
             <div class="text-blue fw-bold pt-2">
               <small>

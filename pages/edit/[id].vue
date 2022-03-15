@@ -5,9 +5,9 @@
         <div class="col-lg-6 offset-lg-3 col-md-12">
           <div class="py-4">
             <div>
-              <button @click="$router.back()" class="btn" role="button">
+              <button @click="$router.back()" class="btn">
                 <img src="/shared/icon-arrow-left.svg" class="me-3" alt="Left Arrow">
-                <span class="fs-smaller fw-bold text-muted" role="button">Go Back</span>
+                <span class="fs-smaller fw-bold text-muted">Go Back</span>
               </button> 
             </div>
           </div>

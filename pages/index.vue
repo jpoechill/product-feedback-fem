@@ -37,7 +37,7 @@
 
                 <div class="col-md-4 col-lg-12">
                   <div class="bg-white px-3 pb-md-1 py-3 mt-md-0 mt-1 rounded h-100">
-                    <button v-for="(category, index) in categoryFilterOptions" :key="index" data-bs-dismiss="offcanvas" @click="toggleCategory(category.name); isToggled = !isToggled;" :class="category.isActive ? 'bg-primary' : 'bg-light text-dark fw-semibold'" role='button' class="btn mt-2 badge px-3 py-2 me-2 fs-smaller">
+                    <button v-for="(category, index) in categoryFilterOptions" :key="index" data-bs-dismiss="offcanvas" @click="toggleCategory(category.name); isToggled = !isToggled;" :class="category.isActive ? 'bg-primary' : 'bg-light text-dark fw-semibold'" class="btn mt-2 badge px-3 py-2 me-2 fs-smaller">
                       {{ category.title }}
                     </button>
                   </div>
@@ -90,11 +90,10 @@
         <div class="row px-2">
           <div class="col-md-12 text-white pt-5 mt-1 pb-3">
             <span>
-              <small>
-                Sort by: 
+                <small>Sort by: </small>
                 <div class="dropdown d-inline">
                   <button class="btn btn-dropdown dropdown-toggle ps-4" style="background-color: transparent!important; color: #FFF!important; font-weight: 600!important;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <small><span>{{ sortOptions.find(x => x.isActive ).title }}</span></small> 
+                    <span><small>{{ sortOptions.find(x => x.isActive ).title }}</small> </span>
                   </button>
                   <div class="dropdown-menu text-muted" aria-labelledby="dropdownMenuButton">
                     <div v-for="(option, index) in sortOptions" @click="toggleSort(option.name)" class="d-flex justify-content-between dropdown-item text-muted" :class="index !== (sortOptions.length - 1) ? 'border-bottom' : ''" :key="index" role="button">
@@ -105,7 +104,6 @@
                     </div>
                   </div>
                 </div>
-              </small>
             </span>
 
             <div class="float-end content-padding">
@@ -134,13 +132,13 @@
               <div class="col-md-4 mt-5 col-lg-12 mt-md-0 mb-lg-3 d-none d-md-block">
                 <div class="text-white radial-gradient pb-md-1 rounded pt-5 pb-3 h-100 px-3 mb-3">
                   <h4 class="m-0 fw-bold">Frontend Mentor</h4> 
-                  <small> <span class=" fw-light">Feedback Board</span></small> 
+                  <span class=" fw-light"><small>Feedback Board</small></span>
                 </div>
               </div>
 
               <div class="col-md-4 col-lg-12">
                 <div class="bg-white px-3 pb-md-1 py-3 mt-md-0 mt-3 rounded d-none d-md-block h-100">
-                  <button v-for="(category, index) in categoryFilterOptions" :key="index" @click="toggleCategory(category.name)" :class="category.isActive ? 'bg-primary' : 'bg-light text-dark fw-semibold'" role='button' class="badge border-0 px-3 py-2 me-2 fs-smaller">
+                  <button v-for="(category, index) in categoryFilterOptions" :key="index" @click="toggleCategory(category.name)" :class="category.isActive ? 'bg-primary' : 'bg-light text-dark fw-semibold'" class="badge border-0 px-3 py-2 me-2 fs-smaller">
                     {{ category.title }}
                   </button>
                   
@@ -255,7 +253,7 @@
             <div class="container">
               <div class="row pt-4 pb-3">
                 <div class="col-md-1 d-none d-md-block col-md-1">
-                  <button @click="toggleUpvote(product.id)" class="btn badge bg-light text-dark px-3 py-0 mx-0 mt-0 fw-bold fs-smaller" :class="product.upvoters && product.upvoters.includes(currentUser.username) ? 'bg-blue text-white' : ''" role="button">
+                  <button @click="toggleUpvote(product.id)" class="btn badge bg-light text-dark px-3 py-0 mx-0 mt-0 fw-bold fs-smaller" :class="product.upvoters && product.upvoters.includes(currentUser.username) ? 'bg-blue text-white' : ''">
                     <svg width="10" height="7" class="mb-2" xmlns="http://www.w3.org/2000/svg">
                       <path d="M1 6l4-4 4 4" :stroke="product.upvoters && product.upvoters.includes(currentUser.username) ? '#FFFFFF' : '#4661E6'" stroke-width="2" fill="none" fill-rule="evenodd"/>
                     </svg>
