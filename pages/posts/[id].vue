@@ -22,12 +22,12 @@
             <div class="container py-2">
               <div class="row">
                 <div class="col-md-1 d-none d-md-block">
-                  <button @click="toggleUpvote(currProduct.id)"  class="btn badge bg-light text-dark px-2 pb-0 py-0 mx-0 mt-0 mb-0 fw-bold fs-smaller" :class="currProduct.upvoters.includes(currentUser.username) ? 'bg-blue text-white' : ''">
+                  <button @click="toggleUpvote(currProduct.id)"  class="btn badge bg-light text-dark px-2 pb-0 py-0 mx-0 mt-0 mb-0 fw-bold fs-smaller" :class="currProduct.upvoters && currProduct.upvoters.includes(currentUser.username) ? 'bg-blue text-white' : ''">
                     <svg width="10" height="7" class="mb-2" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M1 6l4-4 4 4" :stroke="currProduct.upvoters.includes(currentUser.username) ? '#FFFFFF' : '#4661E6'" stroke-width="2" fill="none" fill-rule="evenodd"/>
+                      <path d="M1 6l4-4 4 4" :stroke="currProduct.upvoters && currProduct.upvoters.includes(currentUser.username) ? '#FFFFFF' : '#4661E6'" stroke-width="2" fill="none" fill-rule="evenodd"/>
                     </svg>
                     <br>
-                    <span class="fw-bold" :class="currProduct.upvoters.includes(currentUser.username) ? 'text-white' : 'text-blue'">
+                    <span class="fw-bold" :class="currProduct.upvoters && currProduct.upvoters.includes(currentUser.username) ? 'text-white' : 'text-blue'">
                       {{ currProduct.upvotes }}
                     </span>
                   </button>
@@ -50,11 +50,11 @@
                   <div class="d-md-none d-sm-block mt-2 w-100">
                     <div class="d-flex justify-content-between w-100"> 
                       <div class="d-inline">
-                        <button @click="toggleUpvote(currProduct.id)" class="btn badge bg-light text-dark px-3 py-0 mx-0 mt-0 fw-bold fs-smaller" :class="currProduct.upvoters.includes(currentUser.username) ? 'bg-blue text-white' : ''">
+                        <button @click="toggleUpvote(currProduct.id)" class="btn badge bg-light text-dark px-3 py-0 mx-0 mt-0 fw-bold fs-smaller" :class="currProduct.upvoters && currProduct.upvoters.includes(currentUser.username) ? 'bg-blue text-white' : ''">
                           <svg width="10" height="7" class="me-2" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1 6l4-4 4 4" :stroke="currProduct.upvoters.includes(currentUser.username) ? '#FFFFFF' : '#4661E6'" stroke-width="2" fill="none" fill-rule="evenodd"/>
+                            <path d="M1 6l4-4 4 4" :stroke="currProduct.upvoters && currProduct.upvoters.includes(currentUser.username) ? '#FFFFFF' : '#4661E6'" stroke-width="2" fill="none" fill-rule="evenodd"/>
                           </svg>
-                          <span class="fw-bold" :class="currProduct.upvoters.includes(currentUser.username) ? 'text-white' : 'text-blue'">{{ currProduct.upvotes }}</span>
+                          <span class="fw-bold" :class="currProduct.upvoters && currProduct.upvoters.includes(currentUser.username) ? 'text-white' : 'text-blue'">{{ currProduct.upvotes }}</span>
                         </button>
                       </div>
                       <div class="d-inline">
@@ -356,8 +356,6 @@ export default {
       }
     },
     addReply: function (commentIndex, commentContent, replyTo, replyIndex) {
-      // console.log(commentContent)
-
       if (commentContent) {
         const payload = {
           content: commentContent,
@@ -375,7 +373,6 @@ export default {
 
         // reset the right subreply
         if (replyIndex >=0 ) {
-          console.log('reset: ' + replyIndex)
           if (this.currProduct.comments[commentIndex].replies && replyIndex !== this.currProduct.comments[commentIndex].replies.length-1) {
             this.currProduct.comments[commentIndex].replies[replyIndex].isActive = false
             this.currProduct.comments[commentIndex].replies[replyIndex].activeReply = ''
@@ -416,7 +413,6 @@ export default {
           x.isActive = false
 
           self.currProduct.comments[commentIndex].replies.forEach((y, z) => {
-            console.log(replyIndex)
             if (z !== replyIndex - 1) {
               y.isActive = false
               y.hasError = false
@@ -463,8 +459,6 @@ export default {
 
             x.activeComment = ''
             x.hasError = false
-            
-            console.log(x)
 
             self.commentReplies.push(item)
 

@@ -88,7 +88,7 @@
     <div class="bg-dark-blue d-md-none mt-5">
       <div class="container">
         <div class="row px-2">
-          <div class="col-md-12 text-white pt-5 mt-1 pb-3">>
+          <div class="col-md-12 text-white pt-5 mt-1 pb-3">
             <small>Sort by: </small>
             <div class="dropdown d-inline">
               <button class="btn btn-dropdown dropdown-toggle ps-4" style="background-color: transparent!important; color: #FFF!important; font-weight: 600!important;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -106,7 +106,7 @@
 
             <div class="float-end content-padding">
               <NuxtLink to="/feedback-new">
-                <button type="button" class="btn btn-primary py-2 px-4">
+                <button type="button" class="btn btn-primary py-2 px-3">
                   <span class="fw-semibold" style="font-size: 14px;">
                     + Add Feedback
                   </span>
