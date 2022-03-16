@@ -29,7 +29,7 @@
           </div>        
         </div>
 
-        <div class="offcanvas offcanvas-end" style="background-color: #F4F5FA;" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas offcanvas-end" style="background-color: #F4F5FA;" tabindex="-1" id="offcanvasExample">
           <div class="offcanvas-body mt-5 pt-5">
             
             <div class="container p-0 m-0">
@@ -105,12 +105,10 @@
             </div>
 
             <div class="float-end content-padding">
-              <NuxtLink to="/feedback-new">
-                <button type="button" class="btn btn-primary py-2 px-3">
-                  <span class="fw-semibold" style="font-size: 14px;">
-                    + Add Feedback
-                  </span>
-                </button>
+              <NuxtLink to="/feedback-new" class="btn btn-primary py-2 px-3">
+                <span class="fw-semibold" style="font-size: 14px;">
+                  + Add Feedback
+                </span>
               </NuxtLink>
             </div>
           </div>
@@ -211,12 +209,10 @@
             </div>
 
             <div class="float-end content-padding">
-              <NuxtLink to="/feedback-new">
-                <button type="button" class="btn btn-primary py-2 px-4">
-                  <span class="fw-semibold" style="font-size: 14px;">
-                    + Add Feedback
-                  </span>
-                </button>
+              <NuxtLink to="/feedback-new" class="btn btn-primary py-2 px-4">
+                <span class="fw-semibold" style="font-size: 14px;">
+                  + Add Feedback 123
+                </span>
               </NuxtLink>
             </div>
           </div>
@@ -232,12 +228,10 @@
                   Got a suggestion? Found a bug that needs to be squashed? <br>
                   We love hearing about new ideas to improve our app.
             </p>
-            <NuxtLink to="/feedback-new">
-              <button type="button" class="mt-5 mb-5 btn btn-primary py-2 px-4">
-                <span class="fw-semibold" style="font-size: 14px;">
-                  + Add Feedback
-                </span>
-              </button>
+            <NuxtLink to="/feedback-new" class="mt-5 mb-5 btn btn-primary py-2 px-4">
+              <span class="fw-semibold" style="font-size: 14px;">
+                + Add Feedback
+              </span>
             </NuxtLink>
           </div>
 
