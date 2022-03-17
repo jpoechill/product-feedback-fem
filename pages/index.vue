@@ -211,7 +211,7 @@
             <div class="float-end content-padding">
               <NuxtLink to="/feedback-new" class="btn btn-primary py-2 px-4">
                 <span class="fw-semibold" style="font-size: 14px;">
-                  + Add Feedback 123
+                  + Add Feedback
                 </span>
               </NuxtLink>
             </div>
